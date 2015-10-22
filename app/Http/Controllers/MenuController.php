@@ -10,7 +10,7 @@ class MenuController extends Controller
 {
     public function create()
     {
-			$pdf = \PDF::loadView('welcome', []);
+			$pdf = \PDF::loadView('pdf', []);
 			return $pdf->stream();
     }
 }

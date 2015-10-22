@@ -1,9 +1,10 @@
 var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
-    mix.less(['custom.less'],  'public/css/all.css');
+   mix.less(['custom.less'],  'public/css/all.css');
+   mix.less(['pdf.less'],  'public/css/pdf.css');
 
-     mix.version(['public/css/all.css']);
+   mix.version(['public/css/all.css', 'public/css/pdf.css']);
 
 /*    mix.less(["admin/admin.less"], "public/css/admin/all.css");
 
