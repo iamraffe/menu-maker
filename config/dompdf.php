@@ -38,7 +38,7 @@ return array(
          * Times-Roman, Times-Bold, Times-BoldItalic, Times-Italic,
          * Symbol, ZapfDingbats.
          */
-        "DOMPDF_FONT_DIR" => public_path('/fonts/'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
+        "DOMPDF_FONT_DIR" => storage_path('fonts/'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
 
         /**
          * The location of the DOMPDF font cache directory
@@ -117,7 +117,7 @@ return array(
          * @link http://www.ros.co.nz/pdf
          * @link http://www.php.net/image
          */
-        "DOMPDF_PDF_BACKEND" => "CPDF",
+        "DOMPDF_PDF_BACKEND" => "auto",
 
         /**
          * PDFlib license key
@@ -143,7 +143,7 @@ return array(
          * the desired content might be different (e.g. screen or projection view of html file).
          * Therefore allow specification of content here.
          */
-        "DOMPDF_DEFAULT_MEDIA_TYPE" => "screen",
+        "DOMPDF_DEFAULT_MEDIA_TYPE" => "print",
 
         /**
          * The default paper size.
