@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
-Route::get('create', 'MenuController@create');
+// Route::get('create', 'MenuController@create');
+
+//1. create routes:
+Route::get('test', ['uses' => 'TestController@index']);
+Route::post('test/update/{id}', ['as' => 'test/update', 'uses' => 'TestController@update']);
+Route::post('test/bulk_update', ['as' => 'test/bulk_update', 'uses' => 'TestController@bulk_update']);
