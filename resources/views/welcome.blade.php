@@ -8,18 +8,106 @@
         <div class="wrapper">
              <div class="left-column column">
                 <img src="img/logo.png" alt="Logo" class="logo">
-                <div class="menu-section">
-                    <h2 class="category">starters</h2>
-                    <p>today's mozzarella ... 8</p> 
-                    <p>cerignola olives ... 5</p> 
-                    <p>bibb salad<span class="description"> – cucumber, melon, mint, scallion, vinaigrette</span> ... 8</p> 
-                    <p>tomato &amp; melon salad<span class="description"> – peach chili sauce, mint, olive oil 8 rosemary focaccia - house chèvre, fig jam</span> ... 9</p> 
-                    <p>burrata<span class="description"> – eggplant, roasted pepper, romesco, basil, olive oil</span> ... 12</p> 
-                    <p>orecchiette<span class="description"> – pesto, summer squash</span> ... 12</p> 
-                    <p>culatello &amp; old parmigiano<span class="description"> – sicilian olive oil, 10 yr balsamic, arugula</span> ... 12</p> 
-                    <p>meat plate<span class="description"> – la quercia tamworth prosciutto, house nduja, salumeria, biellese finochietta, house pickles, red pepper mostarda</span> ... 12</p> 
-                    <p>cheese plate<span class="description"> – montboissie, fiore sardo, bayley hazen blue, marcona, almonds, peach jam, house pickles</span> ... 12</p>    
-                </div>
+                @foreach($categories as $category)
+                    <div class="menu-section">
+
+                        <h2 class="category">{!!$category['object']->relatedText!!}</h2>
+                        @foreach($category['items'] as $item)
+                            <p>
+                                <button class="delete-item btn btn-link">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                                {!! $item->relatedText !!}
+                                <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $item->category }}" data-toggle="modal">
+                                    <span class="fa fa-pencil"></span>
+                                </a>
+                            </p>
+                        @endforeach
+                    </div>
+                @endforeach
+{{--                    
+                        <h2 class="category">starters</h2>
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>today's mozzarella ... 8</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="90Pmp2xJZK" data-category="false" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p>      
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>cerignola olives ... 5</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p> 
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>bibb salad</strong> – cucumber, melon, mint, scallion, vinaigrette<strong> ... 8</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p> 
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>tomato &amp; melon salad</strong> – peach chili sauce, mint, olive oil 8 rosemary focaccia - house chèvre, fig jam<strong> ... 9</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p> 
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>burrata</strong> – eggplant, roasted pepper, romesco, basil, olive oil<strong> ... 12</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p> 
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>orecchiette</strong> – pesto, summer squash<strong> ... 12</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p> 
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>culatello &amp; old parmigiano</strong> – sicilian olive oil, 10 yr balsamic, arugula<strong> ... 12</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p> 
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>meat plate</strong> – la quercia tamworth prosciutto, house nduja, salumeria, biellese finochietta, house pickles, red pepper mostarda<strong> ... 12</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p> 
+                        <p>
+                            <button class="delete-item btn btn-link">
+                                <span class="fa fa-times"></span>
+                            </button>
+                            <strong>cheese plate</strong> – montboissie, fiore sardo, bayley hazen blue, marcona, almonds, peach jam, house pickles<strong> ... 12</strong>
+                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </p>   --}}  
                 <div class="menu-section">
                     <h2 class="category">pizza</h2>
                     <p>marinara<span class="description"> –– tomato, garlic, oregano</span> ... 8</p> 

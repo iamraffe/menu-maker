@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'MenuController@index');
 
 Route::get('create', 'MenuController@create');
+
+Route::get('edit', 'MenuController@edit');
+
+Route::post('update', 'MenuController@update');

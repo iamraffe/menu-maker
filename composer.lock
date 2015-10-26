@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a56a245e1220e5118898cf931ff43594",
-    "content-hash": "4224d1bd346dc9378e1e01ca5ddbe4e1",
+    "hash": "9ac332a75197c701531d840108632eb6",
+    "content-hash": "0748fd516b72ea63a81c025754885cca",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -437,6 +437,44 @@
                 "wkhtmltopdf"
             ],
             "time": "2015-01-22 08:01:37"
+        },
+        {
+            "name": "hipsterjazzbo/laraparse",
+            "version": "v0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HipsterJazzbo/LaraParse.git",
+                "reference": "bc46e4e996cc6b39e5f893ac8e601d7bd5eff68d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HipsterJazzbo/LaraParse/zipball/bc46e4e996cc6b39e5f893ac8e601d7bd5eff68d",
+                "reference": "bc46e4e996cc6b39e5f893ac8e601d7bd5eff68d",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.0.*|5.1.*",
+                "nesbot/carbon": "~1.16",
+                "parse/php-sdk": "~1.1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaraParse\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Fidecaro",
+                    "email": "calebfidecaro@gmail.com"
+                }
+            ],
+            "description": "Integrate your Laravel 5 project with Parse (parse.com)",
+            "time": "2015-09-14 04:04:05"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1183,6 +1221,59 @@
                 "random"
             ],
             "time": "2015-10-18 21:39:26"
+        },
+        {
+            "name": "parse/php-sdk",
+            "version": "1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ParsePlatform/parse-php-sdk.git",
+                "reference": "f1f3e14073746fdc76f455a600e3db7b59e1d490"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ParsePlatform/parse-php-sdk/zipball/f1f3e14073746fdc76f455a600e3db7b59e1d490",
+                "reference": "f1f3e14073746fdc76f455a600e3db7b59e1d490",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "~2.5",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Parse\\": "src/Parse/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Parse Platform License"
+            ],
+            "authors": [
+                {
+                    "name": "Parse",
+                    "homepage": "https://github.com/parseplatform/parse-php-sdk/contributors"
+                }
+            ],
+            "description": "Parse PHP SDK",
+            "homepage": "https://github.com/parseplatform/parse-php-sdk",
+            "keywords": [
+                "parse",
+                "sdk"
+            ],
+            "time": "2015-10-13 20:04:19"
         },
         {
             "name": "phenx/php-font-lib",
