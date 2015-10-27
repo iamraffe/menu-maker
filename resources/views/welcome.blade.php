@@ -14,13 +14,7 @@
                             <h2 class="category">{!!$category['object']->relatedText!!}</h2>
                             @foreach($category['items'] as $item)
                                 <p>
-                                    <button class="delete-item btn btn-link">
-                                        <span class="fa fa-times"></span>
-                                    </button>
                                     {!! $item->relatedText !!}
-                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $item->category }}" data-toggle="modal">
-                                        <span class="fa fa-pencil"></span>
-                                    </a>
                                 </p>
                             @endforeach
                         </div>
@@ -34,13 +28,7 @@
                             <h2 class="category">{!!$category['object']->relatedText!!}</h2>
                             @foreach($category['items'] as $item)
                                 <p>
-                                    <button class="delete-item btn btn-link">
-                                        <span class="fa fa-times"></span>
-                                    </button>
                                     {!! $item->relatedText !!}
-                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $item->category }}" data-toggle="modal">
-                                        <span class="fa fa-pencil"></span>
-                                    </a>
                                 </p>
                             @endforeach
                         </div>

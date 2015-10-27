@@ -37,7 +37,12 @@
                 @foreach($categories as $position => $category)
                     @if($position < 4)
                         <div class="menu-section">
-                            <h2 class="category">{!!$category['object']->relatedText!!}</h2>
+                            <h2 class="category editable" data-id="{{ $category['object']->getObjectId() }}">
+                                {!!$category['object']->relatedText!!}
+                                <a href="#myModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" class="btn btn-link" data-toggle="modal">
+                                    <span class="fa fa-pencil"></span>
+                                </a>
+                            </h2>
                             @foreach($category['items'] as $item)
                                 <p>
                                     <button class="delete-item btn btn-link">
@@ -137,6 +142,19 @@
             toolbar:    "bold",
 
         });
+        // tinymce.init({
+        //     selector: "h2.editable",
+        //     inline: true,
+        //     toolbar: false,
+        //     menubar: false,
+        //     plugins: "save",
+        //     toolbar: "save",
+        //     save_enablewhendirty: true,
+        //     save_onsavecallback: function() {
+        //                         // USE THIS IN YOUR AJAX CALL
+        //                 console.log(tinyMCE.get('h2').getContent());
+        //         }
+        // });
 
         // Prevent bootstrap dialog from blocking focusin
         $(document).on('focusin', function(e) {

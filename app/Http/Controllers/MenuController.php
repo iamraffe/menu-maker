@@ -35,7 +35,19 @@ class MenuController extends Controller
 
   public function create()
   {
-		$pdf = \PDF::loadView('pdf', []);
+  	$allCategories = $this->items->findAllBy('category', true);
+  	foreach($allCategories as $category){
+  		$categories[$category->position]['object'] = $category;
+  		$items = $this->items->findAllBy('category', false, ['parent']);
+  		$items = $items->sortBy('position');
+  		foreach($items as $item){
+  			if($item->parent->getObjectId() == $category->getObjectId()){
+					$categories[$category->position]['items'][] = $item;
+  			}
+  		}
+  		
+  	}
+		$pdf = \PDF::loadView('pdf', ['categories' => $categories]);
 		return $pdf->stream();
   }
 
