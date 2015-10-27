@@ -34,172 +34,44 @@
         <div class="wrapper">
              <div class="left-column column">
                 <img src="img/logo.png" alt="Logo" class="logo">
-                @foreach($categories as $category)
-                    <div class="menu-section">
-
-                        <h2 class="category">{!!$category['object']->relatedText!!}</h2>
-                        @foreach($category['items'] as $item)
-                            <p>
-                                <button class="delete-item btn btn-link">
-                                    <span class="fa fa-times"></span>
-                                </button>
-                                {!! $item->relatedText !!}
-                                <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $item->category }}" data-toggle="modal">
-                                    <span class="fa fa-pencil"></span>
-                                </a>
-                            </p>
-                        @endforeach
-                    </div>
+                @foreach($categories as $position => $category)
+                    @if($position < 4)
+                        <div class="menu-section">
+                            <h2 class="category">{!!$category['object']->relatedText!!}</h2>
+                            @foreach($category['items'] as $item)
+                                <p>
+                                    <button class="delete-item btn btn-link">
+                                        <span class="fa fa-times"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $item->category }}" data-toggle="modal">
+                                        <span class="fa fa-pencil"></span>
+                                    </a>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
                 @endforeach
-{{--                    
-                        <h2 class="category">starters</h2>
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>today's mozzarella ... 8</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="90Pmp2xJZK" data-category="false" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p>      
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>cerignola olives ... 5</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p> 
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>bibb salad</strong> – cucumber, melon, mint, scallion, vinaigrette<strong> ... 8</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p> 
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>tomato &amp; melon salad</strong> – peach chili sauce, mint, olive oil 8 rosemary focaccia - house chèvre, fig jam<strong> ... 9</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p> 
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>burrata</strong> – eggplant, roasted pepper, romesco, basil, olive oil<strong> ... 12</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p> 
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>orecchiette</strong> – pesto, summer squash<strong> ... 12</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p> 
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>culatello &amp; old parmigiano</strong> – sicilian olive oil, 10 yr balsamic, arugula<strong> ... 12</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p> 
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>meat plate</strong> – la quercia tamworth prosciutto, house nduja, salumeria, biellese finochietta, house pickles, red pepper mostarda<strong> ... 12</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p> 
-                        <p>
-                            <button class="delete-item btn btn-link">
-                                <span class="fa fa-times"></span>
-                            </button>
-                            <strong>cheese plate</strong> – montboissie, fiore sardo, bayley hazen blue, marcona, almonds, peach jam, house pickles<strong> ... 12</strong>
-                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-toggle="modal">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                        </p>   --}}  
-                <div class="menu-section">
-                    <h2 class="category">pizza</h2>
-                    <p>marinara<strong> –– tomato, garlic, oregano</strong> ... 8</p> 
-                    <p>margherita<strong> – tomato, mozzarella, basil, parm</strong> ... 12</p> 
-                    <p>calabrese<strong> – tomato, mozzarella, salami, serrano, garlic, basil</strong> ... 14</p> 
-                    <p>fresca<strong> – prosciutto piccante, arugula, meyer lemon, mozz, olive oil</strong> ... 16</p> 
-                    <p>harissa<strong> – eggplant, shallot, banana pepper,pistachio, green herbs</strong> ... 12</p> 
-                    <p>taleggio<strong> –  sausage, mozzarella, scallion</strong> ... 14</p> 
-                    <p>corn &amp; nduja<strong> –  charred scallion, peppers, mozz, parm cream</strong> ... 15</p>
-                    <p>braised goat<strong> –  garrotxa, mozzarella, herbs, fennel pollen, onion</strong> ... 16</p>                    
-                    <p>calzone<strong> – mozz, ricotta, ham, black olive, salami, tomato, basil</strong> ... 17</p>
-                </div>
-                <div class="menu-section">
-                    <h2 class="category">dessert</h2>
-                    <p>yogurt panna cotta and melon ... 7</p> 
-                    <p>limoncello tart<strong> – fennel shortbread crust,toasted meringue, blackberries</strong> ... 7</p> 
-                    <p>vanilla ice cream and sherry ... 7</p> 
-                    <p>mango lassi ice cream<strong> – mint, maldon salt</strong> ... 7</p> 
-                    <p>grilled chocolate sandwich<strong> – olive oil brioche,olive oil ice cream</strong> ... 9</p> 
-                    <p>nv valdespino “el candado” pedro ximenez 10 (3 oz)</p>             
-                </div>
             </div>
             <div class="right-column column">
-                <div class="menu-section">
-                    <h2 class="category">beer</h2>
-                    <p>zilker<strong> – pale ale</strong> ... 5</p> 
-                    <p>strange land <strong>sour brown ale</strong> ... 5</p> 
-                    <p>karbach<strong> – love street kolsch</strong> ... 5</p> 
-                    <p>rabbit hole<strong> – rapture brown ale</strong> ... 5</p>
-                    <p>live oak <strong> – hefeweizen</strong> ... 5</p> 
-                    <p>austin beer works<strong> – fire eagle IPA</strong> ... 5</p> 
-                    <p>lone star 12 oz ... 3</p> 
-                    <p>argus cidery ciderkin 12 oz ... 7</p> 
-                    <p>jester king<strong> – el cedro hoppy cedar-aged ale</strong> ...  11 / 30 (750ml)</p>             
-                </div>
-                <div class="menu-section">
-                    <h2 class="category">other drinks</h2>
-                    <p>mexican coke, topo chico, san pellegrino lemon or orange ... 3</p>
-                </div>
-                <div class="menu-section">
-                    <h2 class="category">sparkling</h2>
-                    <p><strong>nv pascal pibaleau “la perlette” pet nat rosé </strong>grolleau ... 14 / 40</p> 
-                    <p><strong>2012 tripoz “cremant de bourgogne” brut nature</strong> chardonnay ... 16 / 45</p>           
-                </div>
-                <div class="menu-section">
-                    <h2 class="category">rose</h2>
-                    <p><strong>2014 lioco “indica” mendocino county rosé</strong> carignan ... 12 / 35</p>              
-                </div>
-                <div class="menu-section">
-                    <h2 class="category">white</h2>
-                    <p><strong>2013 domaine de la patience “from the tank”</strong>chardonnay ... 7</p> 
-                    <p><strong>2014 berger</strong> grüner veltliner ... 10 / 28</p> 
-                    <p><strong>2014 peter lauer “barrel x”</strong>riesling ... 14 / 44</p> 
-                    <p><strong>2013 lieu dit</strong> sauvignon blanc <strong>saint ynez valley</strong> ... 14 / 40</p> 
-                    <p><strong>2014 occhipinti “sp 68 bianco”</strong> zibibbo, albanello ... 16 / 47</p>
-                </div>
-                <div class="menu-section">
-                    <h2 class="category">red</h2>
-                    <p><strong>2013 estézargues “from the tank” côtes du rhône</strong> grenache, syrah ... 7</p> 
-                    <p><strong>2013 cirelli montepulciano d’abruzzo</strong>montepulciano ... 10 / 28</p> 
-                    <p><strong>2013 roagna dolcetto d’alba</strong> dolcetto ... 12 / 32</p> 
-                    <p><strong>2014 chermette vissoux beaujolais</strong>gamay ... 12 / 35</p> 
-                    <p><strong>2013 montesecondo rosso toscana</strong>sangiovese ... 14 / 42</p> 
-                    <p><strong>2011 piedrasassi santa barbara county</strong> syrah ... 16 / 50</p> 
-                    <p><strong>2012 tyler santa barbara county</strong> pinot noir ... 16 / 50</p>
-                </div>
+                @foreach($categories as $position => $category)
+                    @if($position > 3)
+                        <div class="menu-section">
+                            <h2 class="category">{!!$category['object']->relatedText!!}</h2>
+                            @foreach($category['items'] as $item)
+                                <p>
+                                    <button class="delete-item btn btn-link">
+                                        <span class="fa fa-times"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $item->category }}" data-toggle="modal">
+                                        <span class="fa fa-pencil"></span>
+                                    </a>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                @endforeach
             </div>           
         </div>
 
