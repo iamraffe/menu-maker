@@ -7117,5 +7117,11 @@ p {
   margin-left: 2.5px;
   margin-top: 2.5px;
 }
+.form-control {
+  width: 120px;
+}
+.popover {
+  max-width: 400px;
+}
 
 /*# sourceMappingURL=all.css.map */

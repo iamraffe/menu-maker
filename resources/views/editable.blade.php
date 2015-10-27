@@ -18,7 +18,7 @@
 
         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
-                <h3 id="myModalLabel">Edit</h3>
+                <h3 id="myModalLabel">EDIT ITEM</h3>
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id">
@@ -31,17 +31,41 @@
                 <button class="btn btn-info update-item">Update Item</button>
             </div>
         </div>
+        <div id="popover-content" class="hide">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <select class="form-control">
+                <option>NA</option>
+                <option>RU</option>
+                <option>EU</option>
+                <option>SEA</option>
+              </select> 
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Name" class="form-control" >
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Go To Login »</button>                                  
+            </div>
+          </form>
+        </div>
         <div class="wrapper">
              <div class="left-column column">
                 <img src="img/logo.png" alt="Logo" class="logo">
                 @foreach($categories as $position => $category)
                     @if($position < 4)
                         <div class="menu-section">
-                            <h2 class="category editable" data-id="{{ $category['object']->getObjectId() }}">
+                            <h2 class="category" data-id="{{ $category['object']->getObjectId() }}">
                                 {!!$category['object']->relatedText!!}
                                 <a href="#myModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
+                                <a data-placement="bottom" data-toggle="popover" data-title="ADD ITEM" data-container="body" type="button" data-html="true" href="#" id="login">
+                                    <span class="fa fa-plus"></span>
+                                </a>
+{{--                                 <a href="#myOhterModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" class="btn btn-link" data-toggle="modal">
+                                    <span class="fa fa-plus"></span>
+                                </a> --}}
                             </h2>
                             @foreach($category['items'] as $item)
                                 <p>
@@ -94,8 +118,7 @@
           var button = $(event.relatedTarget);
           button.parent().find('button').addClass('hide');
           var id = button.data('id');
-          console.log(id);
-          var category = button.data('category');
+          // var category = button.data('category');
           tinyMCE.activeEditor.setContent(button.parent().html());
           var modal = $(this)
           modal.find('.modal-body input[name="id"]').val(id);
@@ -142,6 +165,13 @@
             toolbar:    "bold",
 
         });
+        $("[data-toggle=popover]").popover({
+            html: true, 
+            content: function() {
+                  return $('#popover-content').html();
+                }
+        });
+
         // tinymce.init({
         //     selector: "h2.editable",
         //     inline: true,
