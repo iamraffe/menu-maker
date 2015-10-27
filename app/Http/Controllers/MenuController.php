@@ -73,4 +73,22 @@ class MenuController extends Controller
   	$this->items->update($request->input('objectId'), $request->except('objectId'));
 		return response()->json(['Message' => 'Item updated.'], 200);
   }
+
+  public function store(Request $request)
+  {
+
+    $item = [
+      'position' => intval($request->input('position')),
+      'parent' => $this->items->find($request->input('parent')),
+      'relatedText' => $request->input('relatedText'),
+      'category' => false
+    ];
+
+    $this->items->create($item);
+  }
+
+  public function delete($objectId)
+  {
+    $this->items->delete($objectId);
+  }
 }

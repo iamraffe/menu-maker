@@ -42,7 +42,7 @@ html {
   margin-bottom: 10px;
 }
 .wrapper .column div.menu-section p {
-  font-family: Pea Mystie;
+  font-family: 'Avenir Next Condensed';
   font-weight: lighter;
   font-style: normal;
   font-size: 10px;
@@ -50,8 +50,8 @@ html {
   line-height: 0.85em;
   margin: 0 0 5px 0;
 }
-.wrapper .column div.menu-section p span.description {
-  font-family: Pea Mystie;
+.wrapper .column div.menu-section p strong {
+  font-family: 'Avenir Next Condensed Demi';
   font-weight: normal;
   font-style: normal;
 }

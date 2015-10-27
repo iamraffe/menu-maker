@@ -18,3 +18,10 @@ Route::get('create', 'MenuController@create');
 Route::get('edit', 'MenuController@edit');
 
 Route::post('update', 'MenuController@update');
+
+Route::post('store', 'MenuController@store');
+
+Route::delete('delete/{objectId}', 'MenuController@delete');
+
+
+//Route::resource('menu', 'MenuController');

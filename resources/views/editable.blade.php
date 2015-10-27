@@ -4,7 +4,7 @@
         <title>Menu Maker</title>
         <meta name="_token" content="{!! csrf_token() !!}"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+{{--         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" /> --}}
         <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 
 
@@ -32,22 +32,26 @@
             </div>
         </div>
         <div id="popover-content" class="hide">
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <select class="form-control">
-                <option>NA</option>
-                <option>RU</option>
-                <option>EU</option>
-                <option>SEA</option>
-              </select> 
+            <div class="col-xs-12">
+              <form class="form-horizontal add-item" role="form">
+                <input type="hidden" name="parent">
+                <input type="hidden" name="position">
+{{--                     <div class="form-group">
+                  <select class="form-control">
+                    <option>NA</option>
+                    <option>RU</option>
+                    <option>EU</option>
+                    <option>SEA</option>
+                  </select> 
+                </div> --}}
+                <div class="form-group">
+                  <input type="text" placeholder="Item text..." name="relatedText" class="form-control" >
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary">Add Item</button>
+                </div>
+              </form>
             </div>
-            <div class="form-group">
-              <input type="text" placeholder="Name" class="form-control" >
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Go To Login »</button>                                  
-            </div>
-          </form>
         </div>
         <div class="wrapper">
              <div class="left-column column">
@@ -60,7 +64,7 @@
                                 <a href="#myModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <a data-placement="bottom" data-toggle="popover" data-title="ADD ITEM" data-container="body" type="button" data-html="true" href="#" id="login">
+                                <a data-toggle="popover" data-title="ADD ITEM" data-container="body" data-html="true" href="#" data-parent="{{ $category['object']->getObjectId() }}" data-position="{{ count($category['items']) }}"  data-placement="right" >
                                     <span class="fa fa-plus"></span>
                                 </a>
 {{--                                 <a href="#myOhterModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" class="btn btn-link" data-toggle="modal">
@@ -69,7 +73,7 @@
                             </h2>
                             @foreach($category['items'] as $item)
                                 <p>
-                                    <button class="delete-item btn btn-link">
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
                                         <span class="fa fa-times"></span>
                                     </button>
                                     {!! $item->relatedText !!}
@@ -89,7 +93,7 @@
                             <h2 class="category">{!!$category['object']->relatedText!!}</h2>
                             @foreach($category['items'] as $item)
                                 <p>
-                                    <button class="delete-item btn btn-link">
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
                                         <span class="fa fa-times"></span>
                                     </button>
                                     {!! $item->relatedText !!}
@@ -110,9 +114,47 @@
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
           }
         });
+        $(document).on('submit', 'form.add-item', function(e){
+            e.preventDefault();
+            var formData = $(this).serializeArray();
+            $.ajax({
+              url: "{{ url('store') }}",
+              data: formData,
+              type        : 'POST',
+              encode          : true,
+              async: true,
+              beforeSend: function(){
+                $('#loading').show().fadeIn('fast');
+              },
+              success: function(response){
+                //$('#loading').hide();
+                window.location.href = "{{ url('edit') }}";
+              },
+              error: function(xhr, textStatus, thrownError) {
+                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+              },
+            });
+
+        });
         $('button.delete-item').on('click', function(e){
             e.preventDefault();
-            confirm('Are you sure you want to delete this item?')
+            var param = $(this).attr("data-id");
+            var answer = confirm('Are you sure you want to delete this item?');
+            if (answer)
+            {
+                $.ajax({
+                    type        : 'POST',
+                    url         : "{{ url('/delete') }}"+"/"+param,
+                    data : {_method : 'DELETE'},
+                    encode          : true,
+                    error: function(xhr, textStatus, thrownError) {
+                        alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                    },
+                    success: function(response) {
+                        window.location.href = "{{ url('edit') }}";
+                    }
+                });
+            }
         });
         $('#myModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
@@ -146,7 +188,6 @@
               },
               success: function(response){
                 //$('#loading').hide();
-                $('#results').hide().html(response).fadeIn('fast');
                 $('#myModal').modal('hide');
                 window.location.href = "{{ url('edit') }}";
               },
@@ -168,9 +209,17 @@
         $("[data-toggle=popover]").popover({
             html: true, 
             content: function() {
-                  return $('#popover-content').html();
+                    var parent = $(this).attr('data-parent');
+                    var position = parseInt($(this).attr('data-position')) + 1;
+                    $('#popover-content form.add-item input[name=parent]').val(parent);
+                    $('#popover-content form.add-item input[name=position]').val(position);
+                    return $('#popover-content').html();
                 }
         });
+
+        // $("[data-toggle=popover]").on('show.bs.popover', function () {
+        //     console.log($(this).attr('data-id'));
+        // })
 
         // tinymce.init({
         //     selector: "h2.editable",
@@ -192,6 +241,8 @@
                 e.stopImmediatePropagation();
             }
         });
+
+
         </script>
     </body>
 </html>

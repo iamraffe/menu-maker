@@ -7049,8 +7049,31 @@ html {
   font-size: 19px;
   letter-spacing: 2.5px;
 }
+.wrapper .column div.menu-section h2.category a,
+.wrapper .column div.menu-section h2.category button {
+  outline: none;
+  font-size: 12px;
+  padding: 0;
+  margin-left: -5px;
+  line-height: 0;
+}
+.wrapper .column div.menu-section h2.category a:hover,
+.wrapper .column div.menu-section h2.category button:hover,
+.wrapper .column div.menu-section h2.category a:focus,
+.wrapper .column div.menu-section h2.category button:focus {
+  outline: none;
+  text-decoration: none;
+}
+.wrapper .column div.menu-section h2.category a span.fa-plus,
+.wrapper .column div.menu-section h2.category button span.fa-plus {
+  color: #888;
+}
+.wrapper .column div.menu-section h2.category a span.fa-pencil,
+.wrapper .column div.menu-section h2.category button span.fa-pencil {
+  color: #888;
+}
 .wrapper .column div.menu-section p {
-  font-family: 'Avenir Next Condensed';
+  font-family: Avenir Next Condensed;
   font-weight: normal;
   font-style: normal;
   font-size: 15px;
@@ -7058,7 +7081,7 @@ html {
   line-height: 1em;
 }
 .wrapper .column div.menu-section p strong {
-  font-family: 'Avenir Next Condensed Demi';
+  font-family: Avenir Next Condensed Demi;
   font-weight: 600;
   font-style: normal;
 }
@@ -7101,7 +7124,7 @@ html {
   border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.3);
   *border: 1px solid #999;
-  border-radius: 6px;
+  border-radius: 0px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   background-clip: padding-box;
   outline: none;
@@ -7117,11 +7140,14 @@ p {
   margin-left: 2.5px;
   margin-top: 2.5px;
 }
-.form-control {
-  width: 120px;
-}
 .popover {
-  max-width: 400px;
+  width: 560px;
+}
+.popover * {
+  box-sizing: border-box;
+}
+.popover .popover-content {
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=all.css.map */

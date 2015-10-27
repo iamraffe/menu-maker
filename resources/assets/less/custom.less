@@ -33,10 +33,36 @@ body, html{
 				font-weight: 200;
 				font-size: 19px;
 				letter-spacing: 2.5px;
+
+				a, button{
+					outline: none;
+					
+					font-size: 12px;
+					padding: 0;
+					margin-left: -5px;
+					line-height: 0;
+
+					&:hover, &:focus{
+						outline: none;
+						text-decoration: none;
+					}
+
+					span{
+						&.fa-plus{
+							color: #888;
+							
+						}
+						&.fa-pencil{
+							
+							color: #888;
+						}
+					}
+
+				}
 			}
 
 			p{
-				font-family:  'Avenir Next Condensed';
+				font-family:  Avenir Next Condensed;
 				font-weight: normal;
 				font-style: normal;
 
@@ -45,7 +71,7 @@ body, html{
 				line-height: 1em;
 
 				strong{
-					font-family: 'Avenir Next Condensed Demi';
+					font-family: Avenir Next Condensed Demi;
 					font-weight: 600;
 					font-style: normal;
 				}
@@ -110,7 +136,7 @@ body, html{
 	*border:1px solid #999;
 	-webkit-border-radius:6px;
 	-moz-border-radius:6px;
-	border-radius:6px;
+	border-radius:0px;
 	-webkit-box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);
 	box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);
@@ -135,11 +161,22 @@ p{
 }
 
 
+.popover{
+	width:560px;
+
+	& *{
+		box-sizing: border-box;
+	}
+
+
+	.popover-content{
+		box-sizing: border-box;
+	}
+}
 
 
 
 
 
-
-.form-control {width:120px;}
-.popover {max-width:400px;}
+// .form-control {width:120px;}
+// .popover {max-width:400px;}
