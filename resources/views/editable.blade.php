@@ -20,7 +20,27 @@
             <div class="modal-body">
                 <input type="hidden" name="id">
                 <input type="hidden" name="parent">
-                <input type="hidden" name="position">
+                {{-- <input type="hidden" name="position"> --}}
+                <div class="form-group">
+                    <select name="position" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                    </select>        
+                </div>
+
                 <textarea name="content"></textarea>
             </div>
 
@@ -50,7 +70,7 @@
                                         <span class="fa fa-times"></span>
                                     </button>
                                     {!! $item->relatedText !!}
-                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $item->category }}" data-toggle="modal">
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-toggle="modal">
                                         <span class="fa fa-pencil"></span>
                                     </a>
                                 </p>
@@ -144,15 +164,17 @@
             tinyMCE.activeEditor.setContent('');
             modal.find('button.item-action').addClass('add-item').text('Add Item');
             modal.find('.modal-body input[name=parent]').val(parent);
-            modal.find('.modal-body input[name=position]').val(position);
+            modal.find('.modal-body select option[value='+(position+1)+']').prop("selected", true);
           }
           else{
             button.parent().find('button').addClass('hide');
             var id = button.data('id');
+            var position = button.data('position');
             tinyMCE.activeEditor.setContent(button.parent().html());
             modal.find('.modal-body input[name="id"]').val(id);
             modal.find('h3').text('EDIT ITEM');
             modal.find('button.item-action').addClass('update-item').text('Update Item');
+            modal.find('.modal-body select option[value='+position+']').prop("selected", true);
           }
         });
         $('#myModal').on('hide.bs.modal', function (event) {

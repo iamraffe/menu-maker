@@ -70,7 +70,18 @@ class MenuController extends Controller
 
   public function update(Request $request)
   {
-  	$this->items->update($request->input('objectId'), $request->except('objectId'));
+    $objectId = $request->input('objectId');
+    $position = $request->input('position');
+    $item = $this->items->find($objectId, ['parent']);
+    $allItems = $this->items->findAllBy('parent', $item->parent, ['parent']);
+    dd($allItems);
+    foreach($allItems as $it){
+      if($it->position >= $position && $it->getObjectId() != $objectId){
+        $this->items->update($it->getObjectId(), ['position' => $it->position+1]);
+      }
+    }
+    
+  	$this->items->update($objectId, $request->except('objectId'));
 		return response()->json(['Message' => 'Item updated.'], 200);
   }
 
