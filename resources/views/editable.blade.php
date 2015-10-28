@@ -4,7 +4,6 @@
         <title>Menu Maker</title>
         <meta name="_token" content="{!! csrf_token() !!}"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-{{--         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" /> --}}
         <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 
 
@@ -14,43 +13,20 @@
         <link href="css/all.css" rel="stylesheet" media="all">
     </head>
     <body>
-{{-- <a href="#myModal" role="button" id="open" class="btn btn-link" data-toggle="modal"><span class="fa fa-edit"></span></a> --}}
-
         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
-                <h3 id="myModalLabel">EDIT ITEM</h3>
+                <h3 id="myModalLabel"></h3>
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id">
-{{--                 <input type="hidden" name="category"> --}}
+                <input type="hidden" name="parent">
+                <input type="hidden" name="position">
                 <textarea name="content"></textarea>
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Discard Changes</button>
-                <button class="btn btn-info update-item">Update Item</button>
-            </div>
-        </div>
-        <div id="popover-content" class="hide">
-            <div class="col-xs-12">
-              <form class="form-horizontal add-item" role="form">
-                <input type="hidden" name="parent">
-                <input type="hidden" name="position">
-{{--                     <div class="form-group">
-                  <select class="form-control">
-                    <option>NA</option>
-                    <option>RU</option>
-                    <option>EU</option>
-                    <option>SEA</option>
-                  </select> 
-                </div> --}}
-                <div class="form-group">
-                  <input type="text" placeholder="Item text..." name="relatedText" class="form-control" >
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-primary">Add Item</button>
-                </div>
-              </form>
+                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Discard</button>
+                <button class="btn btn-info item-action"></button>
             </div>
         </div>
         <div class="wrapper">
@@ -61,15 +37,12 @@
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category['object']->getObjectId() }}">
                                 {!!$category['object']->relatedText!!}
-                                <a href="#myModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" data-action="edit" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <a data-toggle="popover" data-title="ADD ITEM" data-container="body" data-html="true" href="#" data-parent="{{ $category['object']->getObjectId() }}" data-position="{{ count($category['items']) }}"  data-placement="right" >
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category['object']->getObjectId() }}" data-position="{{ count($category['items']) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-plus"></span>
                                 </a>
-{{--                                 <a href="#myOhterModal" role="button" class="open-modal" data-id="{{ $category['object']->getObjectId() }}" class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-plus"></span>
-                                </a> --}}
                             </h2>
                             @foreach($category['items'] as $item)
                                 <p>
@@ -114,12 +87,16 @@
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
           }
         });
-        $(document).on('submit', 'form.add-item', function(e){
+        $(document).on('click', '.item-action.add-item', function(e){
             e.preventDefault();
-            var formData = $(this).serializeArray();
+            var data = {
+                position: parseInt($(this).parent().siblings('.modal-body').children('input[name=position]').val() ) + 1,
+                parent: $(this).parent().siblings('.modal-body').children('input[name=parent]').val(),
+                relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
+            };
             $.ajax({
               url: "{{ url('store') }}",
-              data: formData,
+              data: data,
               type        : 'POST',
               encode          : true,
               async: true,
@@ -158,24 +135,36 @@
         });
         $('#myModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
-          button.parent().find('button').addClass('hide');
-          var id = button.data('id');
-          // var category = button.data('category');
-          tinyMCE.activeEditor.setContent(button.parent().html());
           var modal = $(this)
-          modal.find('.modal-body input[name="id"]').val(id);
-          // modal.find('.modal-body input[name="category"]').val(category);
-        })
+
+          if(button.data('action') === 'add'){
+            var parent = button.data('parent');
+            var position = button.data('position');
+            modal.find('h3').text('ADD ITEM');
+            tinyMCE.activeEditor.setContent('');
+            modal.find('button.item-action').addClass('add-item').text('Add Item');
+            modal.find('.modal-body input[name=parent]').val(parent);
+            modal.find('.modal-body input[name=position]').val(position);
+          }
+          else{
+            button.parent().find('button').addClass('hide');
+            var id = button.data('id');
+            tinyMCE.activeEditor.setContent(button.parent().html());
+            modal.find('.modal-body input[name="id"]').val(id);
+            modal.find('h3').text('EDIT ITEM');
+            modal.find('button.item-action').addClass('update-item').text('Update Item');
+          }
+        });
         $('#myModal').on('hide.bs.modal', function (event) {
-            $('button').removeClass('hide');
-        })
-        $('.update-item').on('click', function(e){
+            $('button').removeClass('hide add-item update-item');
+
+        });
+        $(document).on('click', '.update-item', function(e){
             e.preventDefault();
            
             var data = {
                 objectId: $(this).parent().siblings('.modal-body').children('input[name="id"]').val(),
                 relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html()
-                // category: $(this).parent().siblings('.modal-body').children('input[name="category"]').val()
             };
             $.ajax({
               url: "{{ url('update') }}",
@@ -206,35 +195,6 @@
             toolbar:    "bold",
 
         });
-        $("[data-toggle=popover]").popover({
-            html: true, 
-            content: function() {
-                    var parent = $(this).attr('data-parent');
-                    var position = parseInt($(this).attr('data-position')) + 1;
-                    $('#popover-content form.add-item input[name=parent]').val(parent);
-                    $('#popover-content form.add-item input[name=position]').val(position);
-                    return $('#popover-content').html();
-                }
-        });
-
-        // $("[data-toggle=popover]").on('show.bs.popover', function () {
-        //     console.log($(this).attr('data-id'));
-        // })
-
-        // tinymce.init({
-        //     selector: "h2.editable",
-        //     inline: true,
-        //     toolbar: false,
-        //     menubar: false,
-        //     plugins: "save",
-        //     toolbar: "save",
-        //     save_enablewhendirty: true,
-        //     save_onsavecallback: function() {
-        //                         // USE THIS IN YOUR AJAX CALL
-        //                 console.log(tinyMCE.get('h2').getContent());
-        //         }
-        // });
-
         // Prevent bootstrap dialog from blocking focusin
         $(document).on('focusin', function(e) {
             if ($(e.target).closest(".mce-window").length) {
@@ -246,3 +206,4 @@
         </script>
     </body>
 </html>
+ 
