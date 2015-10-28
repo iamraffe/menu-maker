@@ -7093,6 +7093,10 @@ html {
   margin-left: -5px;
   line-height: 0;
 }
+.wrapper .column div.menu-section p a span.fa-arrows-v,
+.wrapper .column div.menu-section p button span.fa-arrows-v {
+  margin-left: -30px;
+}
 .wrapper .column div.menu-section p a span.fa-times,
 .wrapper .column div.menu-section p button span.fa-times {
   color: red;
@@ -7148,6 +7152,14 @@ p {
 }
 .popover .popover-content {
   box-sizing: border-box;
+}
+.ui-state-default {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+.ui-sortable-helper {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
 }
 
 /*# sourceMappingURL=all.css.map */
