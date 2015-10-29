@@ -21,27 +21,6 @@
             <div class="modal-body">
                 <input type="hidden" name="id">
                 <input type="hidden" name="parent">
-                {{-- <input type="hidden" name="position"> --}}
-{{--                 <div class="form-group">
-                    <select name="position" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                    </select>        
-                </div> --}}
-
                 <textarea name="content"></textarea>
             </div>
 
@@ -52,9 +31,6 @@
         </div>
         <div class="wrapper">
              <div class="left-column column">
-{{--                 <div id="result">
-                </div> --}}
-                <img src="img/logo.png" alt="Logo" class="logo">
                 @foreach($categories as $position => $category)
                     @if($position < 4)
                         <div class="menu-section">
@@ -93,18 +69,18 @@
                         <div class="menu-section">
                             <h2 class="category">{!!$category['object']->relatedText!!}</h2>
                             @foreach($category['items'] as $item)
-                                <p>
-                                    <button class="btn btn-link">
-                                        <span class="fa fa-arrows-v"></span>
-                                    </button>
-                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                        <span class="fa fa-times"></span>
-                                    </button>
-                                    {!! $item->relatedText !!}
-                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-parent="{{ $category['object']->getObjectId() }}" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $item->category }}" data-toggle="modal">
-                                        <span class="fa fa-pencil"></span>
-                                    </a>
-                                </p>
+                                    <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                        <button class="btn btn-link">
+                                            <span class="fa fa-arrows-v"></span>
+                                        </button>
+                                        <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                        {!! $item->relatedText !!}
+                                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category['object']->getObjectId() }}" data-toggle="modal">
+                                            <span class="fa fa-pencil"></span>
+                                        </a>
+                                    </p>
                             @endforeach
                         </div>
                     @endif
@@ -118,6 +94,33 @@
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
           }
         });
+        $(window).load(function() {
+            $(".ui-state-default").each(function(index){
+                var size = $(this).text().trim().length;
+                console.log(size)
+                if(size < 76){
+                    $(this).addClass('force-one-line');
+                }
+                else if(size < 90){
+                    var i = 60;
+                    console.log($(this).text().trim());
+                    console.log($(this).html());
+                    while ($(this).text().trim().slice(i-1, i) != ' '){
+                        i--;
+                    }
+
+                    console.log(i);
+                    
+                    // $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
+                }
+            });
+
+        });
+
+        // $(document).ready(function(){
+        //     $(".relatedText").lettering();     
+        // });
+
         $(document).on('click', '.item-action.add-item', function(e){
             e.preventDefault();
             var data = {
@@ -179,7 +182,7 @@
           else{
             button.parent().find('button').addClass('hide');
             modal.find('h3').text('EDIT ITEM');
-            tinyMCE.activeEditor.setContent(button.parent().html());
+            tinyMCE.activeEditor.setContent(button.parent().html().find('<br>').remove().end());
             modal.find('button.item-action').addClass('update-item').text('Update Item');
             // modal.find('.modal-body select option[value='+position+']').prop("selected", true);
           }

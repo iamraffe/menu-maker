@@ -7095,7 +7095,7 @@ html {
 }
 .wrapper .column div.menu-section p a span.fa-arrows-v,
 .wrapper .column div.menu-section p button span.fa-arrows-v {
-  margin-left: -30px;
+  margin-left: -35px;
 }
 .wrapper .column div.menu-section p a span.fa-times,
 .wrapper .column div.menu-section p button span.fa-times {
@@ -7160,6 +7160,234 @@ p {
 .ui-sortable-helper {
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
+}
+.relatedText.force-one-line .char1 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char2 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char3 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char4 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char5 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char6 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char7 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char8 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char9 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char10 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char11 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char12 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char13 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char14 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char15 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char16 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char17 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char18 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char19 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char20 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char21 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char22 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char23 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char24 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char25 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char26 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char27 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char28 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char29 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char30 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char31 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char32 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char33 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char34 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char35 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char36 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char37 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char38 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char39 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char40 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char41 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char42 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char43 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char44 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char45 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char46 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char47 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char48 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char49 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char50 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char51 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char52 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char53 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char54 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char55 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char56 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char57 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char58 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char59 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char60 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char61 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char62 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char63 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char64 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char65 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char66 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char67 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char68 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char69 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char70 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char71 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char72 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char73 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char74 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char75 {
+  letter-spacing: 0.5px;
+}
+.relatedText.force-one-line .char76 {
+  letter-spacing: 0.5px;
 }
 
 /*# sourceMappingURL=all.css.map */

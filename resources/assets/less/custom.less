@@ -187,9 +187,22 @@ p{
 	cursor: -moz-grabbing;
 }
 
+.kerning-one-line(@n, @i: 1) when (@i =< @n) {
+  .char@{i} {
+    letter-spacing: 0.5px;
+  }
+  .kerning-one-line(@n, (@i + 1));
+}
 
+.relatedText{
+	// 76 Chars
+	&.force-one-line{
+		.kerning-one-line(76);
+	}
+	&.force-two-lines{
 
-
+	}
+}
 
 
 
