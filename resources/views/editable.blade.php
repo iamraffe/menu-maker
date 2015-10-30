@@ -171,7 +171,7 @@
           else{
             button.parent().find('button').addClass('hide');
             modal.find('h3').text('EDIT ITEM');
-            tinyMCE.activeEditor.setContent(button.parent().html().find('<br>').remove().end());
+            tinyMCE.activeEditor.setContent(button.parent().html());
             modal.find('button.item-action').addClass('update-item').text('Update Item');
             // modal.find('.modal-body select option[value='+position+']').prop("selected", true);
           }
