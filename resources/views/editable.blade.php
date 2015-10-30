@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Menu Maker</title>
-        <meta name="_token" content="{!! csrf_token() !!}"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+@extends('layout')
 
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-        <script src="http://tinymce.cachefly.net/4.2/tinymce.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link href="css/all.css" rel="stylesheet" media="all">
-    </head>
-    <body>
+@section('content')
         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <h3 id="myModalLabel"></h3>
@@ -87,8 +74,10 @@
                 @endforeach
             </div>           
         </div>
+@stop 
 
-        <script type="text/javascript">
+@section('scripts')
+    <script type="text/javascript">
         $.ajaxSetup({
           headers: {
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
@@ -323,7 +312,6 @@
                 }
             });
         });
-        </script>
-    </body>
-</html>
+    </script>
+@stop
  

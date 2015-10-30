@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Repositories\ParseArchiveRepository;
 use App\Repositories\ParseItemRepository;
 use Illuminate\Http\Request;
+use \Carbon\Carbon as Carbon;
 
 class MenuController extends Controller
 {
 	private $items;
 
-	public function __construct(ParseItemRepository $items)
+  private $archives;
+
+	public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives)
 	{
-		$this->items = $items;
+    $this->items = $items;
+    $this->archives = $archives;
 	}
 
 	public function index()
@@ -30,6 +35,14 @@ class MenuController extends Controller
   		}
   		
   	}
+    
+    // $allMenus = $this->archives->all();
+    // foreach($allMenus as $menu){
+    //   $name = Carbon::createFromFormat('Y-m-d-H.i', $menu->name)->toDateTimeString(); 
+
+    //   dd($name);
+    // }
+
 		return view('welcome')->with('categories', $categories);
 	}
 
@@ -48,7 +61,47 @@ class MenuController extends Controller
   		
   	}
 		$pdf = \PDF::loadView('pdf', ['categories' => $categories]);
+    // $pdf->save('archive/menu.pdf');
 		return $pdf->stream();
+  }
+
+  public function save()
+  {
+    $allCategories = $this->items->findAllBy('category', true);
+    foreach($allCategories as $category){
+      $categories[$category->position]['object'] = $category;
+      $items = $this->items->findAllBy('category', false, ['parent']);
+      $items = $items->sortBy('position');
+      foreach($items as $item){
+        if($item->parent->getObjectId() == $category->getObjectId()){
+          $categories[$category->position]['items'][] = $item;
+        }
+      }
+      
+    }
+    $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
+    $this->archives->create(['name'=> Carbon::now()->format('Y-m-d-H.i')]);
+    $pdf->save('archive/menu'.Carbon::now()->format('Y-m-d-H.i').'.pdf');
+    flash()->overlay('Your file has been saved correctly', 'This file will be displayed on the Archive section');
+    return redirect('/');
+  }
+
+  public function download()
+  {
+    $allCategories = $this->items->findAllBy('category', true);
+    foreach($allCategories as $category){
+      $categories[$category->position]['object'] = $category;
+      $items = $this->items->findAllBy('category', false, ['parent']);
+      $items = $items->sortBy('position');
+      foreach($items as $item){
+        if($item->parent->getObjectId() == $category->getObjectId()){
+          $categories[$category->position]['items'][] = $item;
+        }
+      }
+      
+    }
+    $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
+    return $pdf->download();
   }
 
   public function edit()

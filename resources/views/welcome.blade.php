@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Menu Maker</title>
-        <link href="css/all.css" rel="stylesheet" media="all">
-    </head>
-    <body>
+@extends('layout')
+
+@section('content')
         <div class="wrapper">
              <div class="left-column column">
-                <img src="img/logo.png" alt="Logo" class="logo">
+                {{-- <img src="img/logo.png" alt="Logo" class="logo"> --}}
                 @foreach($categories as $position => $category)
                     @if($position < 4)
                         <div class="menu-section">
@@ -36,5 +32,8 @@
                 @endforeach
             </div>           
         </div>
-    </body>
-</html>
+@stop
+
+@section('scripts')
+
+@stop

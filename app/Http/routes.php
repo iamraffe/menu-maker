@@ -21,6 +21,10 @@ Route::post('update', 'MenuController@update');
 
 Route::post('store', 'MenuController@store');
 
+Route::get('save', 'MenuController@save');
+
+Route::get('download', 'MenuController@download');
+
 Route::delete('delete/{objectId}', 'MenuController@delete');
 
 

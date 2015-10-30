@@ -33,7 +33,8 @@ return [
     */
 
     'subclasses' => [
-        '\App\ParseClasses\Item'
+        '\App\ParseClasses\Item',
+        '\App\ParseClasses\Archive',
     ],
 
 
@@ -53,6 +54,7 @@ return [
     |
     */
     'repositories' => [
+        '\App\Repositories\ParseArchiveRepository' => '\App\Repositories\Contracts\ArchiveRepository',
         '\App\Repositories\ParseItemRepository' => '\App\Repositories\Contracts\ItemRepository',
     ],
 ];
