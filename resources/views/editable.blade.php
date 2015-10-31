@@ -1,6 +1,16 @@
 @extends('layout')
 
 @section('content')
+        <div id="loading">
+            <div class="container">
+                 <div class="progress">
+                  <div class="progress-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    Loading...
+                  </div>
+                </div>
+            </div>
+
+        </div>
         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <h3 id="myModalLabel"></h3>
