@@ -7,7 +7,7 @@
     <body>
         <div class="wrapper">
              <div class="left-column column">
-                <img src="img/logo.png" alt="Logo" class="logo">
+                {{-- <img src="img/logo.png" alt="Logo" class="logo"> --}}
                 @foreach($categories as $position => $category)
                     @if($position < 4)
                         <div class="menu-section">
