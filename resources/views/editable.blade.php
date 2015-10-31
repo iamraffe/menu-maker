@@ -135,9 +135,10 @@
               async: true,
               beforeSend: function(){
                 $('#loading').show().fadeIn('fast');
+                $('#myModal').modal('hide');
               },
               success: function(response){
-                //$('#loading').hide();
+                $('#loading').hide();
                 window.location.href = "{{ url('edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
@@ -213,10 +214,11 @@
               async: true,
               beforeSend: function(){
                 $('#loading').show().fadeIn('fast');
+                $('#myModal').modal('hide');
               },
               success: function(response){
-                //$('#loading').hide();
-                $('#myModal').modal('hide');
+                $('#loading').hide();
+                // $('#myModal').modal('hide');
                 window.location.href = "{{ url('edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
@@ -303,8 +305,8 @@
                         $('#loading').show().fadeIn('fast');
                       },
                       success: function(response){
-                        //$('#loading').hide();
-                        $('#myModal').modal('hide');
+                        $('#loading').hide();
+                        // $('#myModal').modal('hide');
                         window.location.href = "{{ url('edit') }}";
                       },
                       error: function(xhr, textStatus, thrownError) {

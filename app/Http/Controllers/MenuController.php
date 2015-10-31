@@ -92,12 +92,12 @@ class MenuController extends Controller
       $this->items->update($request->input('objectId'), [ 'relatedText' => $request->input('relatedText')]);
     }
     else{
-      $allItems = $this->items->all();
+      // $allItems = $this->items->all();
       foreach($newOrder as $key => $objectId){
-        $found = $allItems->filter(function($item) use ($objectId){
-          return $item->objectId == $objectId;
-        })->first();
-        $this->items->update($found->objectId, ['position' => intval($key)+1]);
+        // $found = $allItems->filter(function($item) use ($objectId){
+        //   return $item->objectId == $objectId;
+        // })->first();
+        $this->items->update($objectId, ['position' => intval($key)+1]);
       }
     }
 		return response()->json(['Message' => 'Item updated.'], 200);
