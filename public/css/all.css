@@ -11605,6 +11605,14 @@ header[role="banner"] #logo-main {
   -webkit-animation-duration: 1.5s !important;
   animation-duration: 1.5s !important;
 }
+#no-nav-container .row.menus div {
+  padding: 0;
+}
+@media (min-width: 768px) {
+  #no-nav-container .row.menus div:first-child {
+    margin-left: 8.33333333%;
+  }
+}
 input {
   box-sizing: border-box;
   width: 100%;
