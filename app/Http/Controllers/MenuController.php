@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\ParseClasses\Archive;
+use App\ParseClasses\Item;
+use App\ParseClasses\Menu;
 use App\Repositories\ParseArchiveRepository;
 use App\Repositories\ParseItemRepository;
+use App\Repositories\ParseMenuRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Parse\ParseQuery;
@@ -17,10 +21,14 @@ class MenuController extends Controller
 
   private $archives;
 
-	public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives)
+  private $menu;
+
+	public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu)
 	{
     $this->items = $items;
     $this->archives = $archives;
+    $this->menu = $menu;
+    $this->middleware('auth');
 	}
 
   public function prepareItems($value='')
@@ -36,7 +44,7 @@ class MenuController extends Controller
 
 	public function index()
 	{
-    $categories = $this->prepareItems();
+    //$categories = $this->prepareItems();
     
     // $allMenus = $this->archives->all();
     // foreach($allMenus as $menu){
@@ -45,8 +53,29 @@ class MenuController extends Controller
     //   dd($name);
     // }
     // dd();
-		return view('welcome')->with('categories', $categories);
+    // 
+    // $query = new ParseQuery('Menu');
+    // $menu = $query->equalTo('name', 'menu')->first();
+    // $allCategories = $this->items->all();
+    // foreach ($allCategories as $key => $value) {
+    //   $this->items->update($value->objectId, ['menu' => $menu]);
+    // }
+    $allMenus = $this->menu->all();
+		return view('menu.index', compact('allMenus'));
 	}
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function show($menuName)
+  {
+    $menu = $this->menu->findBy('name', $menuName);
+    return view('menu.show', compact('menu'));
+  }
+
 
   public function create()
   {

@@ -3,6 +3,8 @@
 @import 'libs/bootswatch/yeti.less';
 @import (inline) 'libs/sweetalert.css';
 @import 'font-faces.less';
+@import (inline) 'libs/animate.css';
+
 *{
 	box-sizing: content-box;
 }
@@ -253,4 +255,54 @@ header[role="banner"] {
 		margin-top: 15%;
 
 	}
+}
+
+
+/*
+	
+	WELCOME SCREEN & LOGIN
+
+ */
+
+#no-nav-container{
+	background: #E9E7E0;
+	height: 100%;
+
+	h1{
+		display: none;
+	}
+	h2{
+		font-family: Pea Mystie;
+		text-transform: uppercase;
+		font-weight: 200;
+		font-size: 35px;
+		letter-spacing: 2.5px;
+		text-align: center;
+
+		a{
+			color: #bb5c50;
+
+			&:hover, &:focus{
+				text-decoration: none;
+			}
+		}
+	}
+	h2, form{
+		-moz-animation-duration: 1.5s !important;
+	  -webkit-animation-delay: 0.5s !important;
+	  animation-delay: 0.5s !important;
+	}
+	.bufalina-logo{
+		width: 250px;
+		margin: 75px auto;
+		display: block;
+		-moz-animation-duration: 1.5s !important;
+	  -webkit-animation-duration: 1.5s !important;
+	  animation-duration: 1.5s !important;
+	}
+}
+
+input {
+    box-sizing: border-box;
+    width: 100%;
 }

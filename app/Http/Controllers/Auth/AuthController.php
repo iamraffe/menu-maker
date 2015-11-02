@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Validator;
+use \LaraParse\Auth\Registrar as Registrar;
+use \LaraParse\Subclasses\User as ParseUser;
 
 class AuthController extends Controller
 {
@@ -23,43 +27,58 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $redirectTo = '/admin/menus';
+
+    public function __construct(Guard $auth, Registrar $registrar, ParseUser $user)
     {
+        $this->auth = $auth;
+        $this->registrar = $registrar;
+        $this->user = $user;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a login request to the application.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
-    protected function validator(array $data)
+    public function postLogin(Request $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required',
         ]);
+
+        $credentials = $request->only('username', 'password');
+
+        if ($this->auth->attempt($credentials, $request->has('remember_token'))) {
+            return redirect()->intended($this->redirectPath());
+        }
+
+        return redirect($this->loginPath())
+            ->withInput($request->only('username', 'remember_token'))
+            ->withErrors([
+                'username' => $this->getFailedLoginMessage(),
+            ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
+     /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    protected function create(array $data)
+    public function postRegister(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $validator = $this->registrar->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $this->auth->login($this->registrar->create($request->all()));
+
+        return redirect()->intended($this->redirectPath());
     }
 }
