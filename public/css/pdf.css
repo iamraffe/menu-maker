@@ -28,7 +28,7 @@ html {
 }
 .wrapper .column {
   float: left;
-  width: 250px;
+  width: 150px;
 }
 .wrapper .column div.menu-section {
   margin-bottom: 0;
@@ -42,7 +42,7 @@ html {
   margin-bottom: 10px;
 }
 .wrapper .column div.menu-section p {
-  font-family: 'Avenir Next Condensed';
+  font-family: 'Avenir Next Condensed Demi';
   font-weight: lighter;
   font-style: normal;
   font-size: 10px;

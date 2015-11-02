@@ -70,6 +70,7 @@ class MenuController extends Controller
   {
     $categories = $this->prepareItems();
     $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
+    // $pdf->setOption('user-style-sheet', '/your/file.css');
     return $pdf->download();
   }
 
