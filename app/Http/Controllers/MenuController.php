@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Repositories\ParseArchiveRepository;
 use App\Repositories\ParseItemRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Parse\ParseQuery;
 use \Carbon\Carbon as Carbon;
 
 class MenuController extends Controller
@@ -21,20 +23,20 @@ class MenuController extends Controller
     $this->archives = $archives;
 	}
 
+  public function prepareItems($value='')
+  {
+    $query = new ParseQuery('Item');
+    $allCategories = $this->items->findAllBy('category', true);
+    foreach($allCategories as $category){
+      $categories[$category->position]['object'] = $category;
+      $categories[$category->position]['items'] = Collection::make($query->equalTo('parent', $category)->ascending('position')->find());    
+    }
+    return $categories;
+  }
+
 	public function index()
 	{
-  	$allCategories = $this->items->findAllBy('category', true);
-  	foreach($allCategories as $category){
-  		$categories[$category->position]['object'] = $category;
-  		$items = $this->items->findAllBy('category', false, ['parent']);
-  		$items = $items->sortBy('position');
-  		foreach($items as $item){
-  			if($item->parent->getObjectId() == $category->getObjectId()){
-					$categories[$category->position]['items'][] = $item;
-  			}
-  		}
-  		
-  	}
+    $categories = $this->prepareItems();
     
     // $allMenus = $this->archives->all();
     // foreach($allMenus as $menu){
@@ -42,24 +44,13 @@ class MenuController extends Controller
 
     //   dd($name);
     // }
-
+    // dd();
 		return view('welcome')->with('categories', $categories);
 	}
 
   public function create()
   {
-  	$allCategories = $this->items->findAllBy('category', true);
-  	foreach($allCategories as $category){
-  		$categories[$category->position]['object'] = $category;
-  		$items = $this->items->findAllBy('category', false, ['parent']);
-  		$items = $items->sortBy('position');
-  		foreach($items as $item){
-  			if($item->parent->getObjectId() == $category->getObjectId()){
-					$categories[$category->position]['items'][] = $item;
-  			}
-  		}
-  		
-  	}
+    $categories = $this->prepareItems();
 		$pdf = \PDF::loadView('pdf', ['categories' => $categories]);
     // $pdf->save('archive/menu.pdf');
 		return $pdf->stream();
@@ -67,18 +58,7 @@ class MenuController extends Controller
 
   public function save()
   {
-    $allCategories = $this->items->findAllBy('category', true);
-    foreach($allCategories as $category){
-      $categories[$category->position]['object'] = $category;
-      $items = $this->items->findAllBy('category', false, ['parent']);
-      $items = $items->sortBy('position');
-      foreach($items as $item){
-        if($item->parent->getObjectId() == $category->getObjectId()){
-          $categories[$category->position]['items'][] = $item;
-        }
-      }
-      
-    }
+    $categories = $this->prepareItems();
     $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
     $this->archives->create(['name'=> Carbon::now()->format('Y-m-d-H.i')]);
     $pdf->save('archive/menu'.Carbon::now()->format('Y-m-d-H.i').'.pdf');
@@ -88,36 +68,14 @@ class MenuController extends Controller
 
   public function download()
   {
-    $allCategories = $this->items->findAllBy('category', true);
-    foreach($allCategories as $category){
-      $categories[$category->position]['object'] = $category;
-      $items = $this->items->findAllBy('category', false, ['parent']);
-      $items = $items->sortBy('position');
-      foreach($items as $item){
-        if($item->parent->getObjectId() == $category->getObjectId()){
-          $categories[$category->position]['items'][] = $item;
-        }
-      }
-      
-    }
+    $categories = $this->prepareItems();
     $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
     return $pdf->download();
   }
 
   public function edit()
   {
-  	$allCategories = $this->items->findAllBy('category', true);
-  	foreach($allCategories as $category){
-  		$categories[$category->position]['object'] = $category;
-  		$items = $this->items->findAllBy('category', false, ['parent']);
-  		$items = $items->sortBy('position');
-  		foreach($items as $item){
-  			if($item->parent->getObjectId() == $category->getObjectId()){
-					$categories[$category->position]['items'][] = $item;
-  			}
-  		}
-  		
-  	}
+    $categories = $this->prepareItems();
 		return view('editable')->with('categories', $categories);
   }
 
@@ -134,54 +92,14 @@ class MenuController extends Controller
       $this->items->update($request->input('objectId'), [ 'relatedText' => $request->input('relatedText')]);
     }
     else{
-      $allItems = $this->items->all();
+      // $allItems = $this->items->all();
       foreach($newOrder as $key => $objectId){
-        $found = $allItems->filter(function($item) use ($objectId){
-          return $item->objectId == $objectId;
-        })->first();
-        $this->items->update($found->objectId, ['position' => intval($key)+1]);
+        // $found = $allItems->filter(function($item) use ($objectId){
+        //   return $item->objectId == $objectId;
+        // })->first();
+        $this->items->update($objectId, ['position' => intval($key)+1]);
       }
     }
-
-    // dd(13);
-    // $objectId = $request->input('objectId');
-    // $position = intval($request->input('position'));
-    // $parent = $request->input('parent');
-    // $relatedText = $request->input('relatedText');
-
-    // if(!$this->isCategory($objectId, $parent)){
-    //   $allItems = $this->items->findAllBy('category', false, ['parent'])->sortByDesc('position');
-    //   $allItems = $allItems->filter(function($item) use ($position){
-    //     if($item->position <= $position){
-    //       return true;
-    //     }
-    //   });
-    //   $allItems = $allItems->each(function($item) use ($parent, $position, $objectId){
-    //     if($item->parent->objectId == $parent && $item->position >= $position && $item->objectId != $objectId){
-    //       $this->items->update($item->objectId, ['position' => intval($item->position)+1]);
-    //     }
-
-    //   });
-    // }
-    // else{
-    // }
-
-    // $item['position'] = $position;
-    // $item['relatedText'] = $relatedText;
-    // $item = $this->items->findBy('objectId', $objectId, ['parent']);
-    // $allItems = $this->items->findAllBy('parent', $item->parent, ['parent']);
-
-
-
-
-    // dd($allItems);
-    // foreach($allItems as $it){
-    //   if($it->position >= $position && $it->getObjectId() != $objectId){
-    //     $this->items->update($it->getObjectId(), ['position' => $it->position+1]);
-    //   }
-    // }
-    
-  	// $this->items->update($objectId, $item);
 		return response()->json(['Message' => 'Item updated.'], 200);
   }
 

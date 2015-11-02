@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
-use LaraParse\Repositories\AbstractParseRepository;
 use App\Repositories\Contracts\ItemRepository;
+use App\Repositories\ParseBaseRepository;
+use LaraParse\Repositories\AbstractParseRepository;
 
-class ParseItemRepository extends AbstractParseRepository implements ItemRepository
+class ParseItemRepository extends ParseBaseRepository implements ItemRepository
 {
 
     /**
