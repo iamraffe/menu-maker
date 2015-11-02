@@ -70,9 +70,10 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show($menuName)
+  public function show(Menu $menu, $menuName)
   {
     $menu = $this->menu->findBy('name', $menuName);
+    
     return view('menu.show', compact('menu'));
   }
 
