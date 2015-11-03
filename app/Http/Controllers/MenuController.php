@@ -70,11 +70,11 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show(Menu $menu, $menuName)
+  public function show()
   {
-    $menu = $this->menu->findBy('name', $menuName);
-    
-    return view('menu.show', compact('menu'));
+    //$menu = $this->menu->findBy('name', str_replace('-', ' ', $menuName));
+    // dd($menu);
+    return view('menu.show');
   }
 
 
@@ -105,8 +105,9 @@ class MenuController extends Controller
 
   public function edit()
   {
-    $categories = $this->prepareItems();
-		return view('editable')->with('categories', $categories);
+  //   $categories = $this->prepareItems();
+		// return view('editable')->with('categories', $categories);
+    return view('menu.edit'); 
   }
 
   public function isCategory($objectId, $parentId)
