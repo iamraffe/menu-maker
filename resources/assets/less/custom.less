@@ -14,6 +14,81 @@ body, html{
 	padding: 0;
 }
 
+
+/*
+
+LANDSCAPE MENU
+
+ */
+body {
+  background: rgb(204,204,204); 
+}
+.wrapper-landscape{
+  background: white;
+  width: 27.94cm;
+  height: 21.5cm;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  padding: 7.5px;
+
+	.landscape-container{
+		border: 1px solid black;
+		width: 100%;
+		height: 100%;
+		display: flex;
+	}
+
+  .column{
+  	flex: 1;
+  	
+  	height: 21.5cm;
+  	width: 100%;
+  
+  	&.left-column{
+  		border-right: 1px #7AFFFF solid;
+  		// margin-left: 150px;
+  	}
+		&.right-column{
+			// margin-left: 125px;
+		}
+
+		.column-container{
+			padding: 50px;
+		}
+
+
+		#logo-main{
+			width: 75px;
+			margin: 0 auto;
+			display: block;
+		}
+
+		p{
+			font-family:  Avenir Next Condensed;
+			font-weight: normal;
+			font-style: normal;
+
+			font-size: 15px;
+			letter-spacing: 0.5px;
+			line-height: 1.5em;
+
+			strong{
+				font-family: Avenir Next Condensed Demi;
+				font-weight: 600;
+				font-style: normal;
+			}
+		}	
+  }
+}
+@media print {
+  body, .wrapper-landscape {
+    margin: 0;
+    box-shadow: 0;
+  }
+}
+
 //WRAPPER
 .wrapper{
 	margin: 0 auto;

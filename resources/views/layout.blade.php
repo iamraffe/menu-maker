@@ -10,7 +10,7 @@
     </head>
     <body>
         <header role="banner">
-            <img  id="logo-main" src="/img/logo.png" alt="Logo" class="logo">
+            <img  id="logo-main" src="/img/bufalina-logo.png" alt="Logo" class="logo">
         <nav id="navbar-primary" class="navbar navbar-default" role="navigation">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->

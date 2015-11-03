@@ -11164,6 +11164,70 @@ html {
   margin: 0;
   padding: 0;
 }
+/*
+
+LANDSCAPE MENU
+
+ */
+body {
+  background: #cccccc;
+}
+.wrapper-landscape {
+  background: white;
+  width: 27.94cm;
+  height: 21.5cm;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+  padding: 7.5px;
+}
+.wrapper-landscape .landscape-container {
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.wrapper-landscape .column {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 21.5cm;
+  width: 100%;
+}
+.wrapper-landscape .column.left-column {
+  border-right: 1px #7AFFFF solid;
+}
+.wrapper-landscape .column .column-container {
+  padding: 50px;
+}
+.wrapper-landscape .column #logo-main {
+  width: 75px;
+  margin: 0 auto;
+  display: block;
+}
+.wrapper-landscape .column p {
+  font-family: Avenir Next Condensed;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  line-height: 1.5em;
+}
+.wrapper-landscape .column p strong {
+  font-family: Avenir Next Condensed Demi;
+  font-weight: 600;
+  font-style: normal;
+}
+@media print {
+  body,
+  .wrapper-landscape {
+    margin: 0;
+    box-shadow: 0;
+  }
+}
 .wrapper {
   margin: 0 auto;
   display: block;
