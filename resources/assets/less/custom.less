@@ -3,6 +3,8 @@
 @import 'libs/bootswatch/yeti.less';
 @import (inline) 'libs/sweetalert.css';
 @import 'font-faces.less';
+@import (inline) 'libs/animate.css';
+
 *{
 	box-sizing: content-box;
 }
@@ -10,6 +12,81 @@ body, html{
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+
+/*
+
+LANDSCAPE MENU
+
+ */
+body {
+  background: rgb(204,204,204); 
+}
+.wrapper-landscape{
+  background: white;
+  width: 27.94cm;
+  height: 21.5cm;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  padding: 7.5px;
+
+	.landscape-container{
+		border: 1px solid black;
+		width: 100%;
+		height: 100%;
+		display: flex;
+	}
+
+  .column{
+  	flex: 1;
+  	
+  	height: 21.5cm;
+  	width: 100%;
+  
+  	&.left-column{
+  		border-right: 1px #7AFFFF solid;
+  		// margin-left: 150px;
+  	}
+		&.right-column{
+			// margin-left: 125px;
+		}
+
+		.column-container{
+			padding: 50px;
+		}
+
+
+		#logo-main{
+			width: 75px;
+			margin: 0 auto;
+			display: block;
+		}
+
+		p{
+			font-family:  Avenir Next Condensed;
+			font-weight: normal;
+			font-style: normal;
+
+			font-size: 15px;
+			letter-spacing: 0.5px;
+			line-height: 1.5em;
+
+			strong{
+				font-family: Avenir Next Condensed Demi;
+				font-weight: 600;
+				font-style: normal;
+			}
+		}	
+  }
+}
+@media print {
+  body, .wrapper-landscape {
+    margin: 0;
+    box-shadow: 0;
+  }
 }
 
 //WRAPPER
@@ -253,4 +330,64 @@ header[role="banner"] {
 		margin-top: 15%;
 
 	}
+}
+
+
+/*
+	
+	WELCOME SCREEN & LOGIN
+
+ */
+
+#no-nav-container{
+	background: #E9E7E0;
+	height: 100%;
+
+	h1{
+		display: none;
+	}
+	h2{
+		font-family: Pea Mystie;
+		text-transform: uppercase;
+		font-weight: 200;
+		font-size: 35px;
+		letter-spacing: 2.5px;
+		text-align: center;
+
+		a{
+			color: #bb5c50;
+
+			&:hover, &:focus{
+				text-decoration: none;
+			}
+		}
+	}
+	h2, form{
+		-moz-animation-duration: 1.5s !important;
+	  -webkit-animation-delay: 0.5s !important;
+	  animation-delay: 0.5s !important;
+	}
+	.bufalina-logo{
+		width: 250px;
+		margin: 75px auto;
+		display: block;
+		-moz-animation-duration: 1.5s !important;
+	  -webkit-animation-duration: 1.5s !important;
+	  animation-duration: 1.5s !important;
+	}
+
+	.row.menus div{
+		padding: 0;
+
+		&:first-child{
+			@media (min-width: 768px){
+				margin-left: 8.33333333%;
+			}
+		}
+	}
+}
+
+input {
+    box-sizing: border-box;
+    width: 100%;
 }

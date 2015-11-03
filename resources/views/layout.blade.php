@@ -6,11 +6,11 @@
         <meta name="_token" content="{!! csrf_token() !!}"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link href="css/all.css" rel="stylesheet" media="all">
+        <link href="/css/all.css" rel="stylesheet" media="all">
     </head>
     <body>
         <header role="banner">
-            <img  id="logo-main" src="img/logo.png" alt="Logo" class="logo">
+            <img  id="logo-main" src="/img/bufalina-logo.png" alt="Logo" class="logo">
         <nav id="navbar-primary" class="navbar navbar-default" role="navigation">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -37,7 +37,7 @@
         </header><!-- header role="banner" -->
 
         @yield('content')
-        <script src="js/all.js"></script>
+        <script src="/js/all.js"></script>
         @yield('scripts')
         @include('partials._flash')
     </body>
