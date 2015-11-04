@@ -36,6 +36,7 @@ return [
         '\App\ParseClasses\Item',
         '\App\ParseClasses\Archive',
         '\App\ParseClasses\Menu',
+        '\App\ParseClasses\Category',
     ],
 
 
@@ -55,6 +56,7 @@ return [
     |
     */
     'repositories' => [
+        '\App\Repositories\ParseCategoryRepository' => '\App\Repositories\Contracts\CategoryRepository',
         '\App\Repositories\ParseMenuRepository' => '\App\Repositories\Contracts\MenuRepository',
         '\App\Repositories\ParseArchiveRepository' => '\App\Repositories\Contracts\ArchiveRepository',
         '\App\Repositories\ParseItemRepository' => '\App\Repositories\Contracts\ItemRepository',

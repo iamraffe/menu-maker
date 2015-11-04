@@ -31,35 +31,19 @@ class MenuController extends Controller
     $this->middleware('auth');
 	}
 
-  public function prepareItems($value='')
-  {
-    $query = new ParseQuery('Item');
-    $allCategories = $this->items->findAllBy('category', true);
-    foreach($allCategories as $category){
-      $categories[$category->position]['object'] = $category;
-      $categories[$category->position]['items'] = Collection::make($query->equalTo('parent', $category)->ascending('position')->find());    
-    }
-    return $categories;
-  }
+  // public function prepareItems($value='')
+  // {
+  //   $query = new ParseQuery('Item');
+  //   $allCategories = $this->items->findAllBy('category', true);
+  //   foreach($allCategories as $category){
+  //     $categories[$category->position]['object'] = $category;
+  //     $categories[$category->position]['items'] = Collection::make($query->equalTo('parent', $category)->ascending('position')->find());    
+  //   }
+  //   return $categories;
+  // }
 
 	public function index()
 	{
-    //$categories = $this->prepareItems();
-    
-    // $allMenus = $this->archives->all();
-    // foreach($allMenus as $menu){
-    //   $name = Carbon::createFromFormat('Y-m-d-H.i', $menu->name)->toDateTimeString(); 
-
-    //   dd($name);
-    // }
-    // dd();
-    // 
-    // $query = new ParseQuery('Menu');
-    // $menu = $query->equalTo('name', 'menu')->first();
-    // $allCategories = $this->items->all();
-    // foreach ($allCategories as $key => $value) {
-    //   $this->items->update($value->objectId, ['menu' => $menu]);
-    // }
     $allMenus = $this->menu->all();
 		return view('menu.index', compact('allMenus'));
 	}
@@ -72,8 +56,6 @@ class MenuController extends Controller
    */
   public function show()
   {
-    //$menu = $this->menu->findBy('name', str_replace('-', ' ', $menuName));
-    // dd($menu);
     return view('menu.show');
   }
 
@@ -90,8 +72,8 @@ class MenuController extends Controller
   {
     $categories = $this->prepareItems();
     $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
-    $this->archives->create(['name'=> Carbon::now()->format('Y-m-d-H.i')]);
-    $pdf->save('archive/menu'.Carbon::now()->format('Y-m-d-H.i').'.pdf');
+    $this->archives->create(['name'=> Carbon::now()->format('Y-m-d')]);
+    $pdf->save('archive/menu'.Carbon::now()->format('Y-m-d').'.pdf');
     flash()->overlay('Your file has been saved correctly', 'This file will be displayed on the Archive section');
     return redirect('/');
   }

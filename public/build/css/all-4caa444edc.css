@@ -11155,6 +11155,7 @@ Copyright (c) 2015 Daniel Eden
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp;
 }
+
 * {
   box-sizing: content-box;
 }
@@ -11163,6 +11164,9 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+.tinymce-body {
+  background-color: white;
 }
 /*
 
@@ -11175,20 +11179,19 @@ body {
 .wrapper-landscape {
   background: white;
   width: 27.94cm;
-  height: 21.5cm;
+  height: 21.59cm;
   display: block;
   margin: 0 auto;
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
-  padding: 7.5px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 .wrapper-landscape .landscape-container {
   border: 1px solid black;
   width: 100%;
   height: 100%;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
 .wrapper-landscape .column {
   -webkit-flex: 1;
@@ -11199,9 +11202,6 @@ body {
 }
 .wrapper-landscape .column.left-column {
   border-right: 1px #7AFFFF solid;
-}
-.wrapper-landscape .column .column-container {
-  padding: 50px;
 }
 .wrapper-landscape .column #logo-main {
   width: 75px;
@@ -11229,25 +11229,35 @@ body {
   }
 }
 .wrapper {
-  margin: 0 auto;
+  background: white;
+  width: 21.59cm;
+  height: 27.94cm;
   display: block;
-  padding: 25px 62.5px;
-  width: 1000px;
-  height: 100%;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 .wrapper .column {
-  float: left;
-  width: 405px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 .wrapper .column div.menu-section {
   margin-bottom: 35px;
+}
+.wrapper .column div.menu-section div.item-container {
+  width: 8.664cm;
 }
 .wrapper .column div.menu-section h2.category {
   font-family: Pea Mystie;
   text-transform: uppercase;
   font-weight: 200;
-  font-size: 19px;
+  font-size: 12.861125946044922px;
   letter-spacing: 2.5px;
+  margin-left: 1.116cm;
 }
 .wrapper .column div.menu-section h2.category a,
 .wrapper .column div.menu-section h2.category button {
@@ -11276,8 +11286,9 @@ body {
   font-family: Avenir Next Condensed;
   font-weight: normal;
   font-style: normal;
-  font-size: 15px;
-  letter-spacing: 0.5px;
+  margin-left: 1.116cm;
+  font-size: 11.789375305175781px;
+  letter-spacing: 0px;
   line-height: 1em;
 }
 .wrapper .column div.menu-section p strong {
@@ -11292,27 +11303,36 @@ body {
   padding: 0;
   margin-left: -5px;
   line-height: 0;
+  position: relative;
 }
 .wrapper .column div.menu-section p a span.fa-arrows-v,
 .wrapper .column div.menu-section p button span.fa-arrows-v {
-  margin-left: -35px;
+  position: absolute;
+  left: -22.5px;
+  top: -5px;
 }
 .wrapper .column div.menu-section p a span.fa-times,
 .wrapper .column div.menu-section p button span.fa-times {
   color: red;
-  margin-left: -15px;
+  position: absolute;
+  left: -15px;
+  top: -5px;
 }
 .wrapper .column div.menu-section p a span.fa-pencil,
 .wrapper .column div.menu-section p button span.fa-pencil {
-  margin-left: 15px;
+  position: absolute;
+  right: -25px;
   color: #888;
 }
-.wrapper div.left-column {
-  margin-right: 150px;
-}
 .wrapper div.left-column img.logo {
-  width: 85px;
-  margin-bottom: 35px;
+  width: 66px;
+  height: 61px;
+  margin-left: 1.116cm;
+  margin-top: 2.006cm;
+  margin-bottom: 1.202cm;
+}
+.wrapper div.right-column {
+  margin-top: 2.791cm;
 }
 .modal {
   display: none;

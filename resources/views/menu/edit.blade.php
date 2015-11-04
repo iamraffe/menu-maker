@@ -28,32 +28,35 @@
         </div>
         <div class="wrapper">
              <div class="left-column column">
-                @foreach($categories as $position => $category)
-                    @if($position < 4)
+                <img src="/img/logo.png" alt="Logo" class="logo">
+                @foreach($categories as $category)
+                    @if($category->position < 4)
                         <div class="menu-section">
-                            <h2 class="category" data-id="{{ $category['object']->getObjectId() }}">
-                                {!!$category['object']->relatedText!!}
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category['object']->getObjectId() }}" data-id="{{ $category['object']->getObjectId() }}" data-position="{{ $category['object']->position }}" data-action="edit" class="btn btn-link" data-toggle="modal">
+                            <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                {!!$category->name!!}
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category['object']->getObjectId() }}" data-position="{{ count($category['items']) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-plus"></span>
                                 </a>
                             </h2>
-                            <div class="menu-contents">
-                                @foreach($category['items'] as $item)
-                                    <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                        <button class="btn btn-link">
-                                            <span class="fa fa-arrows-v"></span>
-                                        </button>
-                                        <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                            <span class="fa fa-times"></span>
-                                        </button>
-                                        {!! $item->relatedText !!}
-                                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category['object']->getObjectId() }}" data-toggle="modal">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-                                    </p>
+                            <div class="menu-contents item-container">
+                                @foreach($items as $item)
+                                    @if($item->category->objectId == $category->objectId)
+                                        <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                            <button class="btn btn-link">
+                                                <span class="fa fa-arrows-v"></span>
+                                            </button>
+                                            <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                                <span class="fa fa-times"></span>
+                                            </button>
+                                            {!! $item->relatedText !!}
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category->getObjectId() }}" data-toggle="modal">
+                                                <span class="fa fa-pencil"></span>
+                                            </a>
+                                        </p>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -61,24 +64,36 @@
                 @endforeach
             </div>
             <div class="right-column column">
-                @foreach($categories as $position => $category)
-                    @if($position > 3)
+                @foreach($categories as $category)
+                    @if($category->position > 3)
                         <div class="menu-section">
-                            <h2 class="category">{!!$category['object']->relatedText!!}</h2>
-                            @foreach($category['items'] as $item)
-                                    <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                        <button class="btn btn-link">
-                                            <span class="fa fa-arrows-v"></span>
-                                        </button>
-                                        <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                            <span class="fa fa-times"></span>
-                                        </button>
-                                        {!! $item->relatedText !!}
-                                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category['object']->getObjectId() }}" data-toggle="modal">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-                                    </p>
-                            @endforeach
+                            <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                {!!$category->name!!}
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit" class="btn btn-link" data-toggle="modal">
+                                    <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                                    <span class="fa fa-plus"></span>
+                                </a>
+                            </h2>
+                            <div class="menu-contents item-container">
+                                @foreach($items as $item)
+                                    @if($item->category->objectId == $category->objectId)
+                                        <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                            <button class="btn btn-link">
+                                                <span class="fa fa-arrows-v"></span>
+                                            </button>
+                                            <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                                <span class="fa fa-times"></span>
+                                            </button>
+                                            {!! $item->relatedText !!}
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category->getObjectId() }}" data-toggle="modal">
+                                                <span class="fa fa-pencil"></span>
+                                            </a>
+                                        </p>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     @endif
                 @endforeach
@@ -96,19 +111,19 @@
         $(window).load(function() {
             $(".ui-state-default").each(function(index){
                 var size = $(this).text().trim().length;
-                console.log(size)
+                // console.log(size)
                 if(size < 76){
                     $(this).addClass('force-one-line');
                 }
                 else if(size < 90){
                     var i = 60;
-                    console.log($(this).text().trim());
-                    console.log($(this).html());
+                    // console.log($(this).text().trim());
+                    // console.log($(this).html());
                     while ($(this).text().trim().slice(i-1, i) != ' '){
                         i--;
                     }
 
-                    console.log(i);
+                    // console.log(i);
                     
                     // $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
                 }
@@ -204,7 +219,7 @@
                 relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html()
             };
 
-            console.log(data);
+            // console.log(data);
 
             $.ajax({
               url: "{{ url('update') }}",
@@ -228,7 +243,9 @@
         });
         tinymce.init({
             selector:   "textarea",
-            content_css: "css/all.css",
+            body_class: "tinymce-body",
+            content_css: "/css/all.css",
+            skin_url: "/admin/menus/food-list/edit/js/skins/lightgray",
             width:      '100%',
             height:     50,
             statusbar:  false,
@@ -252,7 +269,7 @@
                     //Only occurs once each time sorting begins
                 },
                 activate: function(e,ui){
-                    console.log("start");
+                    // console.log("start");
                     $(this).addClass('draggin');
                     //After the start event and before all other events
                     //Occurs once for each connected list each time sorting begins
