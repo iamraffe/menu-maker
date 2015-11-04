@@ -23,9 +23,12 @@ Route::group(['prefix' => 'admin'], function()
 	Route::get('menus/{menu_name}', 'MenuController@show');
 	Route::get('menus/{menu_name}/edit', 'MenuController@edit');
 	Route::get('menus/{menu_name}/save', 'MenuController@storeOrUpdate');
+  Route::put('items/positions', 'ItemsController@positions');
 
   Route::resource('menus', 'MenuController');
   Route::resource('pdf', 'PDFController');
+  Route::resource('items', 'ItemsController');
+  Route::resource('categories', 'CategoriesController');
 
 });
 

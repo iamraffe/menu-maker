@@ -109,28 +109,28 @@
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
           }
         });
-        $(window).load(function() {
-            $(".ui-state-default").each(function(index){
-                var size = $(this).text().trim().length;
-                // console.log(size)
-                if(size < 76){
-                    $(this).addClass('force-one-line');
-                }
-                else if(size < 90){
-                    var i = 60;
-                    // console.log($(this).text().trim());
-                    // console.log($(this).html());
-                    while ($(this).text().trim().slice(i-1, i) != ' '){
-                        i--;
-                    }
+        // $(window).load(function() {
+        //     $(".ui-state-default").each(function(index){
+        //         var size = $(this).text().trim().length;
+        //         // console.log(size)
+        //         if(size < 76){
+        //             $(this).addClass('force-one-line');
+        //         }
+        //         else if(size < 90){
+        //             var i = 60;
+        //             // console.log($(this).text().trim());
+        //             // console.log($(this).html());
+        //             while ($(this).text().trim().slice(i-1, i) != ' '){
+        //                 i--;
+        //             }
 
-                    // console.log(i);
+        //             // console.log(i);
                     
-                    // $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
-                }
-            });
+        //             // $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
+        //         }
+        //     });
 
-        });
+        // });
 
         // $(document).ready(function(){
         //     $(".relatedText").lettering();     
@@ -144,7 +144,7 @@
                 relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
             };
             $.ajax({
-              url: "{{ url('store') }}",
+              url: "{{ url('/admin/menus/items/') }}",
               data: data,
               type        : 'POST',
               encode          : true,
@@ -155,7 +155,7 @@
               },
               success: function(response){
                 $('#loading').hide();
-                window.location.href = "{{ url('edit') }}";
+                // window.location.href = "{{ url('admin/menus/'.$menu->objectId.'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
@@ -171,14 +171,18 @@
             {
                 $.ajax({
                     type        : 'POST',
-                    url         : "{{ url('/delete') }}"+"/"+param,
+                    url         : "{{ url('admin/items/') }}"+"/"+param,
                     data : {_method : 'DELETE'},
                     encode          : true,
+                    beforeSend: function(){
+                      $('#loading').show().fadeIn('fast');
+                    },
                     error: function(xhr, textStatus, thrownError) {
                         alert('Se ha producido un error. Por favor, inténtelo más tarde..');
                     },
                     success: function(response) {
-                        window.location.href = "{{ url('edit') }}";
+                        $('#loading').hide();
+                        // window.location.href = "{{ url('edit') }}";
                     }
                 });
             }
@@ -186,9 +190,9 @@
         $('#myModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
           var modal = $(this)
-        var parent = button.data('parent');
-        // var position = button.data('position');
-        var id = button.data('id');
+          var parent = button.data('parent');
+          // var position = button.data('position');
+          var id = button.data('id');
 
           if(button.data('action') === 'add'){
             modal.find('h3').text('ADD ITEM');
@@ -217,13 +221,14 @@
                 objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
                 parent: $(this).parent().siblings('.modal-body').children('input[name=parent]').val(),
                 // position: parseInt($(this).parent().siblings('.modal-body').find('select[name=position]').val()),
-                relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html()
+                relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
+                _method: 'PUT'
             };
 
             // console.log(data);
 
             $.ajax({
-              url: "{{ url('update') }}",
+              url: "{{ url('/admin/items/') }}"+"/"+data[objectId],
               data: data,
               type        : 'POST',
               encode          : true,
@@ -234,7 +239,7 @@
               },
               success: function(response){
                 $('#loading').hide();
-                // $('#myModal').modal('hide');
+                $('#myModal').modal('hide');
                 window.location.href = "{{ url('edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
@@ -246,7 +251,7 @@
             selector:   "textarea",
             body_class: "tinymce-body",
             content_css: "/css/all.css",
-            skin_url: "/js/skins/lightgray",
+            // skin_url: "/js/skins/lightgray",
             width:      '100%',
             height:     50,
             statusbar:  false,
@@ -264,58 +269,21 @@
         $(function() {
             $( ".menu-contents" ).sortable({ 
                 placeholder: "ui-sortable-placeholder",
-                start: function(e,ui){
-                    
-                    //Before all other events
-                    //Only occurs once each time sorting begins
-                },
                 activate: function(e,ui){
-                    // console.log("start");
                     $(this).addClass('draggin');
-                    //After the start event and before all other events
-                    //Occurs once for each connected list each time sorting begins
-                },
-                change: function(e,ui){
-                    //After start/active but before over/sort/out events
-                    //Occurs every time the item position changes
-                    //Does not occur when item is outside of a connected list
-                },
-                over: function(e,ui){
-                    //After change but before sort/out events
-                    //Occurs while the item is hovering over a connected list
-                },
-                sort: function(e,ui){
-                    //After over but before out event
-                    //Occurs during sorting
-                    //Does not matter if the item is outside of a connected list or not
-                },
-                out: function(e,ui){
-                    //This one is unique
-                    //After sort event before all drop/ending events unless **see NOTE
-                    //Occurs, only once, the moment an item leaves a connected list
-                    //NOTE: Occurs again when the item is dropped/sorting stops 
-                    //--> EVEN IF the item never left the list
-                    //--> Called just before the stop event but after all other ending events
-                },
-                beforeStop: function(e,ui){
-                    //Before all other ending events: update,remove,receive,deactivate,stop
-                    //Occurs only once at the last possible moment before sorting stops
-                },
-                remove: function(e,ui){
-                    //After beforeStop and before all other ending events
-                    //Occurs only once when an item is removed from a list
-                },
-                receive: function(e,ui){
-                    //After remove and before all other ending events
-                    //Occurs only once when an item is added to a list
                 },
                 axis: "y",
                 update: function (event, ui) {
-                    var data = $(this).sortable('toArray');
-                    // $("#result").html("JSON:<pre>"+JSON.stringify(data)+"</pre>");
+                    var order = $(this).sortable('toArray');
+
+                    var data = {
+                      order: $(this).sortable('toArray'),
+                      _method: 'PUT'
+                    }
+
                     $.ajax({
-                      url: "{{ url('update') }}",
-                      data: JSON.stringify(data),
+                      url: "{{ url('admin/items/positions') }}",
+                      data: data,
                       type        : 'POST',
                       encode          : true,
                       async: true,
@@ -325,20 +293,12 @@
                       success: function(response){
                         $('#loading').hide();
                         // $('#myModal').modal('hide');
-                        window.location.href = "{{ url('edit') }}";
+                        //window.location.href = "{{ url('edit') }}";
                       },
                       error: function(xhr, textStatus, thrownError) {
                           alert('Se ha producido un error. Por favor, inténtelo más tarde..');
                       },
                     });
-                }, 
-                deactivate: function(e,ui){
-                    //After all other events but before out (kinda) and stop
-                    //Occurs once for each connected list each time sorting ends
-                },
-                stop: function(e,ui){
-                    //After all other events
-                    //Occurs only once when sorting ends
                 }
             });
         });
