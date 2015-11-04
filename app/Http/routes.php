@@ -1,9 +1,5 @@
 <?php
 
-// Route::get('/', function(){
-// 	return view('welcome');
-// });
-
 /**
  * Auth handling
  */
@@ -17,13 +13,19 @@ Route::controllers([
  */
 // Route::get('admin', ['middleware' => 'auth', 'uses' => 'AdminController@index']);
 
+
+Route::any('admin/pdf/{menu_name}/download', 'PDFController@download');
+
+Route::get('admin/menus/{menu_name}', 'MenuController@show');
+
 Route::group(['prefix' => 'admin'], function()
 {
     Route::resource('menus', 'MenuController');
     Route::resource('pdf', 'PDFController');
+    // Route::any('pdf/{menu-name}/download', 'PDFController@download');
+
 });
 
-Route::get('admin/menus/{menu-name}', 'MenuController@show');
 
 Route::get('/', 'Auth\AuthController@getLogin');
 

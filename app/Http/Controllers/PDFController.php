@@ -48,5 +48,11 @@ class PDFController extends Controller
         return ['categories' => $categories, 'items' => $items];
     }
 
+    public function download($menu)
+    {
+        $menu = $this->makeMenu($menu);   
+        $pdf = \PDF::loadView('pdf.show', $menu);
+        return $pdf->download();
+    }
 
 }
