@@ -5,6 +5,7 @@
 @import 'font-faces.less';
 @import (inline) 'libs/animate.css';
 @import (inline) 'libs/dataTables.bootstrap.min.css';
+// @import (inline) 'https://cdn.datatables.net/r/zf-5.5.2/dt-1.10.9,r-1.0.7/datatables.min.css';
 
 @doc-width: 27.94cm;
 @doc-height: 21.59cm;
@@ -111,7 +112,7 @@ body {
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
   display: flex;
-  
+
   img.logo{
     width: 66px;
     height: 61px;
@@ -430,4 +431,13 @@ input {
 	*{
 		box-sizing: border-box;
 	}
+
+  #example_filter{
+    float: right;
+    margin-bottom: 25px;
+  }
+
+  ul.pagination{
+    float: right;
+  }
 }

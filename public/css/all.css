@@ -11711,5 +11711,12 @@ input {
 #example_wrapper * {
   box-sizing: border-box;
 }
+#example_wrapper #example_filter {
+  float: right;
+  margin-bottom: 25px;
+}
+#example_wrapper ul.pagination {
+  float: right;
+}
 
 /*# sourceMappingURL=all.css.map */

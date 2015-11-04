@@ -6,7 +6,9 @@
         <meta name="_token" content="{!! csrf_token() !!}"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        @yield('css')
         <link href="/css/all.css" rel="stylesheet" media="all">
+
     </head>
     <body>
         <header role="banner">

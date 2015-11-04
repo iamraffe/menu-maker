@@ -1,10 +1,14 @@
 @extends('layout')
 
+@section('css')
+{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/zf-5.5.2/dt-1.10.9,r-1.0.7/datatables.min.css"/> --}}
+@stop
+
 @section('content')
     <div class="wrapper">
         @include('partials._columns', compact('categories', 'items'))           
     </div>
-    <div class="container-fluid" style="margin-top: 150px; background: #f8f8f8">
+    <div class="container-fluid" style="margin-top: 150px; background: #fff; padding: 50px;">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
                  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -26,7 +30,7 @@
                         @foreach($archives as $item)
                             <tr>
                                 <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->name)->format('l, jS \\of F, Y') }}</td>
-                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->name)->diffForHumans() }}</td>
+                                <td><a href="{{ url('admin/pdf/'.$item->objectId) }}" class="btn btn-default"><span class="ion ion-ios-paperplane-outline"></span></a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -37,6 +41,7 @@
 @stop
 
 @section('scripts')
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable();

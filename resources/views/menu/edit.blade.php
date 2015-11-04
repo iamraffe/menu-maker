@@ -1,5 +1,7 @@
 @extends('layout')
 
+
+
 @section('content')
         <div id="loading">
             <div class="container">
