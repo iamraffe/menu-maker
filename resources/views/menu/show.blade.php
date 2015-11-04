@@ -47,22 +47,14 @@
                     <thead>
                         <tr>
                             <th>Creation Date</th>
-                            <th>Options</th>{{-- 
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th> --}}
+                            <th>Options</th>
                         </tr>
                     </thead>
 
                     <tfoot>
                         <tr>
                             <th>Creation Date</th>
-                            <th>Options</th>{{-- 
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th> --}}
+                            <th>Options</th>
                         </tr>
                     </tfoot>
 

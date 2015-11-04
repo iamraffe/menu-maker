@@ -46,11 +46,7 @@ class MenuComposer
 
     $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
 
-  	// $items = $this->make($categories);
-    //
     $items = $this->items->all(['category'], 1000, true, 'position'); 
-
-    // dd($items);
 
 		$view->with([
       'categories' => $categories,

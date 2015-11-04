@@ -20,6 +20,7 @@ Route::controllers([
 Route::group(['prefix' => 'admin'], function()
 {
     Route::resource('menus', 'MenuController');
+    Route::resource('pdf', 'PDFController');
 });
 
 Route::get('admin/menus/{menu-name}', 'MenuController@show');
