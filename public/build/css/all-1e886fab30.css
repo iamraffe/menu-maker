@@ -11227,6 +11227,10 @@ body {
     margin: 0;
     box-shadow: 0;
   }
+  .column {
+    float: left;
+    width: 50%;
+  }
 }
 .wrapper {
   background: white;
@@ -11700,6 +11704,12 @@ header[role="banner"] #logo-main {
 input {
   box-sizing: border-box;
   width: 100%;
+}
+#example_wrapper {
+  box-sizing: border-box;
+}
+#example_wrapper * {
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=all.css.map */

@@ -14,20 +14,26 @@ Route::controllers([
 // Route::get('admin', ['middleware' => 'auth', 'uses' => 'AdminController@index']);
 
 
-Route::any('admin/pdf/{menu_name}/download', 'PDFController@download');
 
-Route::get('admin/menus/{menu_name}', 'MenuController@show');
 
 Route::group(['prefix' => 'admin'], function()
 {
-    Route::resource('menus', 'MenuController');
-    Route::resource('pdf', 'PDFController');
-    // Route::any('pdf/{menu-name}/download', 'PDFController@download');
+	Route::get('pdf/{menu_name}/download', 'PDFController@download');
+
+	Route::get('menus/{menu_name}', 'MenuController@show');
+	Route::get('menus/{menu_name}/edit', 'MenuController@edit');
+	Route::get('menus/{menu_name}/save', 'MenuController@storeOrUpdate');
+
+  Route::resource('menus', 'MenuController');
+  Route::resource('pdf', 'PDFController');
 
 });
 
+Route::get('/', function () {
+    return redirect('admin/menus');
+});
 
-Route::get('/', 'Auth\AuthController@getLogin');
+// Route::get('/', 'MenuController@index');
 
 // Route::get('create', 'MenuController@create');
 

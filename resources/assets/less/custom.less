@@ -89,10 +89,15 @@ body {
 		}	
   }
 }
+
 @media print {
   body, .wrapper-landscape {
     margin: 0;
     box-shadow: 0;
+  }
+  .column{
+  	float: left;
+  	width: 50%;
   }
 }
 
@@ -415,4 +420,12 @@ header[role="banner"] {
 input {
     box-sizing: border-box;
     width: 100%;
+}
+
+#example_wrapper{
+	box-sizing: border-box;
+
+	*{
+		box-sizing: border-box;
+	}
 }

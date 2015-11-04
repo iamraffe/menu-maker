@@ -2,43 +2,7 @@
 
 @section('content')
     <div class="wrapper">
-         <div class="left-column column">
-            <img src="/img/logo.png" alt="Logo" class="logo">
-            @foreach($categories as $category)
-                @if($category->position < 4)
-                    <div class="menu-section">
-                        <h2 class="category">{!! $category->name!!}</h2>
-                        <div class="item-container">
-                            @foreach($items as $item)
-                                @if($item->category->objectId == $category->objectId)
-                                    <p>
-                                        {!! $item->relatedText !!}
-                                    </p>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-            @endforeach
-        </div>
-        <div class="right-column column">
-            @foreach($categories as $category)
-                @if($category->position > 3)
-                    <div class="menu-section">
-                        <h2 class="category">{!! $category->name!!}</h2>
-                        <div class="item-container">
-                            @foreach($items as $item)
-                                @if($item->category->objectId == $category->objectId)
-                                    <p>
-                                        {!! $item->relatedText !!}
-                                    </p>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-            @endforeach
-        </div>           
+        @include('partials._columns', compact('categories', 'items'))           
     </div>
     <div class="container-fluid" style="margin-top: 150px; background: #f8f8f8">
         <div class="row">
@@ -61,7 +25,7 @@
                     <tbody>
                         @foreach($archives as $item)
                             <tr>
-                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->name)->format('l jS \\of F Y') }}</td>
+                                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->name)->format('l, jS \\of F, Y') }}</td>
                                 <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->name)->diffForHumans() }}</td>
                             </tr>
                         @endforeach
@@ -77,6 +41,25 @@
 $(document).ready(function() {
     $('#example').DataTable();
 } );
-</script>
 
+</script>
+    <script type="text/javascript">
+        $(window).load(function() {
+            $("p").each(function(index){
+                var size = $(this).text().trim().length;
+                if(size < 76){
+                    $(this).addClass('force-one-line');
+                }
+                else if(size < 90){
+                    var i = 5;
+                    while ($(this).text().trim().slice(i-1, i) != ' '){
+                        i--;
+                    }
+                    
+                    $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
+                }
+            });
+
+        });
+    </script>
 @stop

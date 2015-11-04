@@ -42,7 +42,8 @@ class MenuComposer
 
 	public function compose(View $view)
 	{
-		$menu = $this->menu->findBy('name', str_replace('-', ' ', $this->request->route('menus')));
+		
+		$menu = $this->menu->findBy('name', str_replace('-', ' ', $this->request->route('menu_name')));
 
     $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
 
