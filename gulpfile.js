@@ -6,7 +6,7 @@ elixir(function(mix) {
 
   mix.version(['public/css/all.css', 'public/css/pdf.css']);
 
-  mix.scripts(["libs/jquery.min.js", "libs/bootstrap.min.js", "libs/jquery-ui.min.js", "libs/tinymce.min.js", "libs/sweetalert.min.js", "libs/jquery.dataTables.min.js", "libs/dataTables.bootstrap.min.js"], "public/js", "resources/assets/js");
+  mix.scripts(["libs/jquery.min.js", "libs/bootstrap.min.js", "libs/jquery-ui.min.js", "libs/sweetalert.min.js", "libs/jquery.dataTables.min.js", "libs/dataTables.bootstrap.min.js"], "public/js", "resources/assets/js");
 
 
 /*    mix.less(["admin/admin.less"], "public/css/admin/all.css");

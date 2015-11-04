@@ -102,6 +102,7 @@
 @stop 
 
 @section('scripts')
+    <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
     <script type="text/javascript">
         $.ajaxSetup({
           headers: {
