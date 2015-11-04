@@ -30,7 +30,7 @@
                         @foreach($archives as $item)
                             <tr>
                                 <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->name)->format('l, jS \\of F, Y') }}</td>
-                                <td><a href="{{ url('admin/pdf/'.$item->objectId) }}" class="btn btn-default"><span class="ion ion-ios-paperplane-outline"></span></a></td>
+                                <td><a href="{{ url('admin/archives/'.$item->objectId) }}" class="btn btn-default"><span class="ion ion-ios-paperplane-outline"></span></a></td>
                             </tr>
                         @endforeach
                     </tbody>

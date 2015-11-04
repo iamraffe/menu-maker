@@ -20,6 +20,7 @@ class ArchivesController extends Controller
 
   public function show($objectId)
   {
+    // dd($objectId);
     $menu = $this->archives->find($objectId);
     $pdf = \PDF::loadView('archives.show', compact('menu'));
     return $pdf->stream();
