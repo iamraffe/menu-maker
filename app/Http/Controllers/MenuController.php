@@ -57,9 +57,9 @@ class MenuController extends Controller
     return view('menu.edit'); 
   }
 
-  public function store($menu)
+  public function store($content, $menu)
   {
-    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'menu' => $menu]); 
+    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]); 
   }
 
   public function storeOrUpdate($name)
@@ -71,9 +71,9 @@ class MenuController extends Controller
       $this->update($_menu); 
     }
     else{
-      $this->store($_menu);
+      $this->store($_menu, $menu['menu']);
     }
-    $this->handlePDFBackup($menu);
+    // $this->handlePDFBackup($menu);
     flash()->overlay('Your menu configuration has been saved correctly', 'This menu will be displayed on the Archive section');
     return redirect('/admin/menus/'.$name);
   }
@@ -98,7 +98,7 @@ class MenuController extends Controller
   {
     $menu = $this->archives->findBy('name', Carbon::now()->format('Y-m-d'));
     // dd($_menu);
-    return $this->archives->update($menu->objectId, ['menu' => $_menu]);
+    return $this->archives->update($menu->objectId, ['content' => $_menu]);
   }
 
   // public function download()

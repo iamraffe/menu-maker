@@ -245,7 +245,7 @@
             selector:   "textarea",
             body_class: "tinymce-body",
             content_css: "/css/all.css",
-            skin_url: "/admin/menus/food-list/edit/js/skins/lightgray",
+            skin_url: "/js/skins/lightgray",
             width:      '100%',
             height:     50,
             statusbar:  false,
