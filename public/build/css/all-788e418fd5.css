@@ -11175,20 +11175,19 @@ body {
 .wrapper-landscape {
   background: white;
   width: 27.94cm;
-  height: 21.5cm;
+  height: 21.59cm;
   display: block;
   margin: 0 auto;
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
-  padding: 7.5px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 .wrapper-landscape .landscape-container {
   border: 1px solid black;
   width: 100%;
   height: 100%;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
 .wrapper-landscape .column {
   -webkit-flex: 1;
@@ -11199,9 +11198,6 @@ body {
 }
 .wrapper-landscape .column.left-column {
   border-right: 1px #7AFFFF solid;
-}
-.wrapper-landscape .column .column-container {
-  padding: 50px;
 }
 .wrapper-landscape .column #logo-main {
   width: 75px;
