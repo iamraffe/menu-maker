@@ -11165,6 +11165,9 @@ html {
   margin: 0;
   padding: 0;
 }
+.tinymce-body {
+  background-color: white;
+}
 /*
 
 LANDSCAPE MENU

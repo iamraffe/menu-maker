@@ -29,7 +29,7 @@
         <div class="wrapper">
              <div class="left-column column">
                 @foreach($categories as $position => $category)
-                    @if($position < 4)
+                    @if($category['object']->position < 4)
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category['object']->getObjectId() }}">
                                 {!!$category['object']->relatedText!!}
@@ -62,7 +62,7 @@
             </div>
             <div class="right-column column">
                 @foreach($categories as $position => $category)
-                    @if($position > 3)
+                    @if($category['object']->position > 3)
                         <div class="menu-section">
                             <h2 class="category">{!!$category['object']->relatedText!!}</h2>
                             @foreach($category['items'] as $item)
@@ -228,7 +228,8 @@
         });
         tinymce.init({
             selector:   "textarea",
-            content_css: "css/all.css",
+            body_class: "tinymce-body",
+            content_css: "/css/all.css",
             width:      '100%',
             height:     50,
             statusbar:  false,
