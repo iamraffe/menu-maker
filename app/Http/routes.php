@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', function(){
-	return view('welcome');
-});
+// Route::get('/', function(){
+// 	return view('welcome');
+// });
 
 /**
  * Auth handling
@@ -24,7 +24,7 @@ Route::group(['prefix' => 'admin'], function()
 
 Route::get('admin/menus/{menu-name}', 'MenuController@show');
 
-// Route::get('/', 'Auth\AuthController@getLogin');
+Route::get('/', 'Auth\AuthController@getLogin');
 
 // Route::get('create', 'MenuController@create');
 

@@ -4,6 +4,7 @@
 @import (inline) 'libs/sweetalert.css';
 @import 'font-faces.less';
 @import (inline) 'libs/animate.css';
+@import (inline) 'libs/dataTables.bootstrap.min.css';
 
 @doc-width: 27.94cm;
 @doc-height: 21.59cm;
@@ -94,11 +95,14 @@ body {
 
 //WRAPPER
 .wrapper{
-	margin: 0 auto;
-	display: block;
-	padding: 25px 62.5px;
-	width: 1000px;
-	height: 100%;
+  background: white;
+  width: 21.59cm;
+  height: 27.94cm; 
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  display: flex;
 
 	//GENERAL COLUMN STYLES
 	.column{
