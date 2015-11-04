@@ -11244,6 +11244,13 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
+.wrapper img.logo {
+  width: 66px;
+  height: 61px;
+  margin-left: 1.116cm;
+  margin-top: 2.006cm;
+  margin-bottom: 1.202cm;
+}
 .wrapper .column {
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -11327,13 +11334,6 @@ body {
   position: absolute;
   right: -25px;
   color: #888;
-}
-.wrapper div.left-column img.logo {
-  width: 66px;
-  height: 61px;
-  margin-left: 1.116cm;
-  margin-top: 2.006cm;
-  margin-bottom: 1.202cm;
 }
 .wrapper div.right-column {
   margin-top: 2.791cm;

@@ -17,7 +17,8 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id">
-                <input type="hidden" name="parent">
+                <input type="hidden" name="category">
+                <input type="hidden" name="position">
                 <textarea name="content"></textarea>
             </div>
 
@@ -34,10 +35,10 @@
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
                                 {!!$category->name!!}
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit" class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-plus"></span>
                                 </a>
                             </h2>
@@ -52,7 +53,7 @@
                                                 <span class="fa fa-times"></span>
                                             </button>
                                             {!! $item->relatedText !!}
-                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category->getObjectId() }}" data-toggle="modal">
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
                                         </p>
@@ -69,10 +70,10 @@
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
                                 {!!$category->name!!}
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit" class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-plus"></span>
                                 </a>
                             </h2>
@@ -87,7 +88,7 @@
                                                 <span class="fa fa-times"></span>
                                             </button>
                                             {!! $item->relatedText !!}
-                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category->getObjectId() }}" data-toggle="modal">
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
                                         </p>
@@ -140,11 +141,11 @@
             e.preventDefault();
             var data = {
                 // position: parseInt($(this).parent().siblings('.modal-body').children('input[name=position]').val() ) + 1,
-                parent: $(this).parent().siblings('.modal-body').children('input[name=parent]').val(),
+                category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
                 relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
             };
             $.ajax({
-              url: "{{ url('/admin/menus/items/') }}",
+              url: "{{ url('/admin/items/') }}",
               data: data,
               type        : 'POST',
               encode          : true,
@@ -155,7 +156,7 @@
               },
               success: function(response){
                 $('#loading').hide();
-                // window.location.href = "{{ url('admin/menus/'.$menu->objectId.'/edit') }}";
+                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
@@ -182,7 +183,7 @@
                     },
                     success: function(response) {
                         $('#loading').hide();
-                        // window.location.href = "{{ url('edit') }}";
+                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                     }
                 });
             }
@@ -190,7 +191,7 @@
         $('#myModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
           var modal = $(this)
-          var parent = button.data('parent');
+          var category = button.data('category');
           // var position = button.data('position');
           var id = button.data('id');
 
@@ -199,16 +200,21 @@
             tinyMCE.activeEditor.setContent('');
             modal.find('button.item-action').addClass('add-item').text('Add Item');
           }
-          else{
+          else if(button.data('action') !== 'edit-category'){
             button.parent().find('button').addClass('hide');
             modal.find('h3').text('EDIT ITEM');
             tinyMCE.activeEditor.setContent(button.parent().html());
             modal.find('button.item-action').addClass('update-item').text('Update Item');
-            // modal.find('.modal-body select option[value='+position+']').prop("selected", true);
           }
-          modal.find('.modal-body input[name=parent]').val(parent);
+          else{
+            modal.find('h3').text('EDIT CATEGORY');
+            tinyMCE.activeEditor.setContent(button.parent().html());
+            button.parent().find('button').addClass('hide');
+            modal.find('button.item-action').addClass('update-category').text('Update Category');
+          }
+          modal.find('.modal-body input[name=category]').val(category);
           modal.find('.modal-body input[name="id"]').val(id);
-          // modal.find('.modal-body select option[value='+position+']').prop('selected', true);
+          // modal.find('.modal-body input[name="position"]').val(position);
         });
         $('#myModal').on('hide.bs.modal', function (event) {
             $('button').removeClass('hide add-item update-item');
@@ -219,16 +225,13 @@
 
             var data = {
                 objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
-                parent: $(this).parent().siblings('.modal-body').children('input[name=parent]').val(),
-                // position: parseInt($(this).parent().siblings('.modal-body').find('select[name=position]').val()),
+                category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
                 relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
                 _method: 'PUT'
             };
 
-            // console.log(data);
-
             $.ajax({
-              url: "{{ url('/admin/items/') }}"+"/"+data[objectId],
+              url: "{{ url('/admin/items/') }}"+"/"+data["objectId"],
               data: data,
               type        : 'POST',
               encode          : true,
@@ -240,13 +243,43 @@
               success: function(response){
                 $('#loading').hide();
                 $('#myModal').modal('hide');
-                window.location.href = "{{ url('edit') }}";
+                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
               },
             });
         });
+        $(document).on('click', '.update-category', function(e){
+            e.preventDefault();
+
+            var data = {
+                objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
+                name: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
+                _method: 'PUT'
+            };
+            
+            $.ajax({
+              url: "{{ url('/admin/categories/') }}"+"/"+data["objectId"],
+              data: data,
+              type        : 'POST',
+              encode          : true,
+              async: true,
+              beforeSend: function(){
+                $('#loading').show().fadeIn('fast');
+                $('#myModal').modal('hide');
+              },
+              success: function(response){
+                $('#loading').hide();
+                $('#myModal').modal('hide');
+                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+              },
+              error: function(xhr, textStatus, thrownError) {
+                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+              },
+            });
+        });
+
         tinymce.init({
             selector:   "textarea",
             body_class: "tinymce-body",
@@ -257,7 +290,6 @@
             statusbar:  false,
             menubar:    false,
             toolbar:    "bold",
-
         });
         // Prevent bootstrap dialog from blocking focusin
         $(document).on('focusin', function(e) {
@@ -292,8 +324,7 @@
                       },
                       success: function(response){
                         $('#loading').hide();
-                        // $('#myModal').modal('hide');
-                        //window.location.href = "{{ url('edit') }}";
+                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                       },
                       error: function(xhr, textStatus, thrownError) {
                           alert('Se ha producido un error. Por favor, inténtelo más tarde..');

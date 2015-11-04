@@ -28,4 +28,11 @@ class CategoriesController extends Controller
       $this->categories = $categories;
       $this->middleware('auth');
   }
+
+  public function update(Request $request, $objectId)
+  {
+    $this->categories->update($request->input('objectId'), [ 'name' => $request->input('name')]);
+    flash()->success('Your category has been updated correctly', '');
+    return response()->json(['Message' => 'Item updated.'], 200);
+  }
 }
