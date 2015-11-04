@@ -109,18 +109,22 @@ body {
 
 	//GENERAL COLUMN STYLES
 	.column{
-		float: left;
-		width: 405px;
+		flex: 1;
 
 		div.menu-section{
 			margin-bottom: 35px;
+
+      div.item-container{
+        width: 8.664cm;
+      }
 
 			h2.category{
 				font-family: Pea Mystie;
 				text-transform: uppercase;
 				font-weight: 200;
-				font-size: 19px;
+				font-size: 12.861125946044922px;
 				letter-spacing: 2.5px;
+        margin-left: 1.116cm;
 
 				a, button{
 					outline: none;
@@ -153,9 +157,10 @@ body {
 				font-family:  Avenir Next Condensed;
 				font-weight: normal;
 				font-style: normal;
+        margin-left: 1.116cm;
 
-				font-size: 15px;
-				letter-spacing: 0.5px;
+				font-size: 11.789375305175781px;
+				letter-spacing: 0px;
 				line-height: 1em;
 
 				strong{
@@ -171,17 +176,26 @@ body {
 					padding: 0;
 					margin-left: -5px;
 					line-height: 0;
+          position: relative;
 
 					span{
 						&.fa-arrows-v{
-							margin-left: -35px;
+							// margin-left: -35px;
+              position: absolute;
+              left: -22.5px;
+              top: -5px;
 						}
 						&.fa-times{
 							color: red;
-							margin-left: -15px;
+							// margin-left: -15px;
+              position: absolute;
+              left: -15px;
+              top: -5px;
 						}
 						&.fa-pencil{
-							margin-left: 15px;
+              position: absolute;
+              right: -25px;
+							// margin-left: 15px;
 							color: #888;
 						}
 					}
@@ -193,20 +207,21 @@ body {
 
 	//LEFT COLUMN
 	div.left-column{		
-		margin-right: 150px;
-
 		img.logo{
-			width: 85px;
-			margin-bottom: 35px;
+			width: 66px;
+      height: 61px;
+      margin-left: 1.116cm;
+      margin-top: 2.006cm;
+      margin-bottom: 1.202cm;
 		}
 
 	}
 
 	//RGHT COLUMN
 	div.right-column{
-
+    margin-top: 2.791cm;
 		div.menu-section{
-			// margin-top: 35px;
+			
 		}
 	}
 }
