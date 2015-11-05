@@ -71,7 +71,8 @@ class PDFController extends Controller
     public function download($menu)
     {
         if(strcmp($menu, 'wine-list')==0){
-            $menu = $this->makeWineMenu($menu);  
+            $menu = $this->makeWineMenu($menu); 
+            dd($menu); 
             $pdf = \PDF::loadView('wine.pdf', $menu); 
             return $pdf->setOrientation('landscape')->download();
         }
