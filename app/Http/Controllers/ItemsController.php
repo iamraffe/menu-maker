@@ -8,6 +8,7 @@ use App\Repositories\ParseArchiveRepository;
 use App\Repositories\ParseCategoryRepository;
 use App\Repositories\ParseItemRepository;
 use App\Repositories\ParseMenuRepository;
+use App\Repositories\ParseSubCategoryRepository;
 use Illuminate\Http\Request;
 
 class ItemsController extends Controller
@@ -20,8 +21,11 @@ class ItemsController extends Controller
 
   private $categories;
 
-  public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories)
+  private $subcategories;
+
+  public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories, ParseSubCategoryRepository $subcategories)
   {
+      $this->subcategories = $subcategories;
       $this->items = $items;
       $this->archives = $archives;
       $this->menu = $menu;
@@ -47,13 +51,30 @@ class ItemsController extends Controller
 
   public function store(Request $request)
   {
-    $category = $this->categories->find($request->input('category'));
-    $position = $this->items->findAllBy('category', $category)->count();
-    $item = [
-      'position' => $position,
-      'category' => $category,
-      'relatedText' => $request->input('relatedText'),
-    ];
+    // dd([$this->menu->find($request->input('menu')), $request->all(), $request->menu, strcmp($request->input('menu'), 'BeQYNaR0Gc') == 0]);
+    if(strcmp($request->input('menu'), 'BeQYNaR0Gc') == 0){
+      $subcategory = $this->subcategories->find($request->input('subcategory'));
+      $position = $this->items->findAllBy('subcategory', $subcategory)->count();
+      $item = [
+        'position' => $position,
+        'subcategory' => $subcategory,
+        'relatedText' => $request->input('relatedText'),
+        'menu' => $this->menu->find($request->input('menu')),
+      ];
+
+    }
+    else{
+      $category = $this->categories->find($request->input('category'));
+      $position = $this->items->findAllBy('category', $category)->count();
+      $item = [
+        'position' => $position,
+        'category' => $category,
+        'relatedText' => $request->input('relatedText'),
+        'menu' => $this->menu->find($request->input('menu')),
+      ];
+
+    }
+
 
     $this->items->create($item);
     flash()->success('Your item has been created correctly', '');

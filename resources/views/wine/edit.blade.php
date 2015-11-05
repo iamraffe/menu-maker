@@ -17,7 +17,9 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id">
+                <input type="hidden" name="menu">
                 <input type="hidden" name="category">
+                <input type="hidden" name="subcategory">
                 <input type="hidden" name="position">
                 <input type="hidden" name="type">
                 <textarea name="content"></textarea>
@@ -101,6 +103,9 @@
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-plus"></span>
+                          </a>
                         </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
@@ -163,6 +168,9 @@
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-plus"></span>
+                          </a>
                         </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
@@ -200,6 +208,9 @@
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
+                          </a>
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-plus"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -379,6 +390,9 @@
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-plus"></span>
+                          </a>
                         </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
@@ -411,6 +425,9 @@
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
+                          </a>
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-plus"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -479,9 +496,11 @@ $('#myModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this)
   var category = button.data('category');
+  var subcategory = button.data('subcategory');
   // var position = button.data('position');
   var id = button.data('id');
   var type = button.data('type');
+  var menu = button.data('menu');
 
   if(button.data('action') === 'add'){
     modal.find('h3').text('ADD ITEM');
@@ -506,13 +525,50 @@ $('#myModal').on('show.bs.modal', function (event) {
     button.parent().find('button').addClass('hide');
     modal.find('button.item-action').addClass('update-subcategory').text('Update Subcategory');
   }
+  modal.find('.modal-body input[name=menu]').val(menu);
   modal.find('.modal-body input[name=type]').val(type);
   modal.find('.modal-body input[name=category]').val(category);
+  modal.find('.modal-body input[name=subcategory]').val(subcategory);
   modal.find('.modal-body input[name=id]').val(id);
   // modal.find('.modal-body input[name="position"]').val(position);
 });
 $('#myModal').on('hide.bs.modal', function (event) {
   $('button').removeClass('hide add-item update-item');
+});
+/*
+ADD ITEM
+ */
+$(document).on('click', '.item-action.add-item', function(e){
+
+    e.preventDefault();
+    var data = {
+        menu: $(this).parent().siblings('.modal-body').children('input[name=menu]').val(),
+        category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
+        subcategory: $(this).parent().siblings('.modal-body').children('input[name=subcategory]').val(),
+        relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
+
+    };
+    console.log(data);
+    console.log("here comes the ajax call");
+    $.ajax({
+      url: "{{ url('/admin/items/') }}",
+      data: data,
+      type        : 'POST',
+      encode          : true,
+      async: true,
+      beforeSend: function(){
+        $('#loading').show().fadeIn('fast');
+        $('#myModal').modal('hide');
+      },
+      success: function(response){
+        $('#loading').hide();
+        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+      },
+      error: function(xhr, textStatus, thrownError) {
+          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+      },
+    });
+
 });
 
 /*
