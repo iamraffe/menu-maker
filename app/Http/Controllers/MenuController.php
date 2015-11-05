@@ -11,6 +11,7 @@ use App\Repositories\ParseArchiveRepository;
 use App\Repositories\ParseCategoryRepository;
 use App\Repositories\ParseItemRepository;
 use App\Repositories\ParseMenuRepository;
+use App\Repositories\ParseSubCategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Parse\ParseQuery;
@@ -53,7 +54,7 @@ class MenuController extends Controller
     if(strcmp($name, 'wine-list') == 0){
       return view('wine.show');
     }
-    
+
     return view('menu.show');
   }
 
@@ -72,14 +73,22 @@ class MenuController extends Controller
 
   public function storeOrUpdate($name)
   {
-    $menu = $this->makeMenu($name);  
-    $_menu = view()->make('partials._columns', $menu)->render();
-    $archives = $this->archives->all();
-    if($archives->contains('name', Carbon::now()->format('Y-m-d'))){
-      $this->update($_menu); 
+    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+    
+    if(strcmp($name, 'wine-list') == 0){
+      $menuData = $this->makeWineMenu($menu);
+      $_menuPartial = view()->make('partials._wine', $menuData)->render();
     }
     else{
-      $this->store($_menu, $menu['menu']);
+      $menuData = $this->makeMenu($menu);
+      $_menuPartial = view()->make('partials._columns', $menuData)->render();  
+    }
+    $archives = $this->archives->findAllBy('menu', $menu);
+    if($archives->contains('name', Carbon::now()->format('Y-m-d'))){
+      $this->update($_menuPartial); 
+    }
+    else{
+      $this->store($_menuPartial, $menuData['menu']);
     }
     // $this->handlePDFBackup($menu);
     flash()->overlay('Your menu configuration has been saved correctly', 'This menu will be displayed on the Archive section');
@@ -94,12 +103,20 @@ class MenuController extends Controller
     return $pdf->save($file);
   }
 
-  public function makeMenu($name)
+  public function makeMenu($menu)
   {
-      $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
       $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
-      $items = $this->items->all(['category'], 1000, true, 'position'); 
+      $items = $this->items->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
       return ['categories' => $categories, 'items' => $items, 'menu' => $menu];
+  }
+
+  public function makeWineMenu($menu)
+  {
+      $subcategoryRepo = new ParseSubCategoryRepository();
+      $subcategories = $subcategoryRepo->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
+      $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
+      $items = $this->items->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
+      return ['subcategories' => $subcategories, 'categories' => $categories, 'items' => $items, 'menu' => $menu];
   }
 
   public function update($_menu)
@@ -107,6 +124,14 @@ class MenuController extends Controller
     $menu = $this->archives->findBy('name', Carbon::now()->format('Y-m-d'));
     // dd($_menu);
     return $this->archives->update($menu->objectId, ['content' => $_menu]);
+  }
+
+  public function archive($name)
+  {
+    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+    // dd($menu);
+    $archives = $this->archives->findAllBy('menu', $menu, ['menu']);
+    return view('archives.index', compact('archives', 'menu'));
   }
 
   // public function download()

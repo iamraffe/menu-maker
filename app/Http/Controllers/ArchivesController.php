@@ -18,11 +18,23 @@ class ArchivesController extends Controller
       $this->middleware('auth');
   }
 
+  // public function index()
+  // {
+  //   $archives = $this->archives->all(['menu']);
+  //   return view('archives.index', compact('archives'));
+  // }
+
   public function show($objectId)
   {
     // dd($objectId);
-    $menu = $this->archives->find($objectId);
-    $pdf = \PDF::loadView('archives.show', compact('menu'));
+    $savedFile = $this->archives->find($objectId, ['menu']);
+    if(strcmp($savedFile->menu->objectId, 'BeQYNaR0Gc')==0){
+      $class = "wrapper-landscape";
+    }
+    else{
+      $class = "wrapper"; 
+    }    
+    $pdf = \PDF::loadView('archives.wine', compact('savedFile', 'class'));
     return $pdf->stream();
   }
 }

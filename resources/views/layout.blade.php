@@ -27,10 +27,11 @@
             <div class="collapse navbar-collapse" id="navbar-primary-collapse">
               <ul class="nav navbar-nav">
                 <li class="{{ \Request::is('/') ? 'active' : '' }}"><a href="{{ url('/admin/menus') }}"><span class="ion ion-ionic"></span> Home</a></li>
-                <li class="{{ \Request::is('edit') ? 'active' : '' }}"><a href="{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}"><span class="ion ion-ios-color-wand-outline"></span> Edit</a></li>
-                <li class="{{ \Request::is('create') ? 'active' : '' }}"><a href="{{ url('admin/pdf/'.str_slug($menu->name)) }}" target="_blank"><span class="ion ion-ios-eye-outline"></span> Preview</a></a></li> 
-                <li class="{{ \Request::is('save') ? 'active' : '' }}"><a href="{{ url('admin/menus/'.str_slug($menu->name).'/save') }}" ><span class="ion ion-ios-reload"></span> Save</a></li>
-                <li class="{{ \Request::is('download') ? 'active' : '' }}"><a href="{{ url('admin/pdf/'.str_slug($menu->name).'/download') }}" ><span class="ion ion-ios-cloud-download-outline"></span> Download</a></li>
+                <li class="{{ \Request::is('admin/menus/'.str_slug($menu->name).'/edit') ? 'active' : '' }}"><a href="{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}"><span class="ion ion-ios-color-wand-outline"></span> Edit</a></li>
+                <li><a href="{{ url('admin/pdf/'.str_slug($menu->name)) }}" target="_blank"><span class="ion ion-ios-eye-outline"></span> Preview</a></a></li> 
+                <li><a href="{{ url('admin/menus/'.str_slug($menu->name).'/save') }}" ><span class="ion ion-ios-reload"></span> Save</a></li>
+                <li><a href="{{ url('admin/pdf/'.str_slug($menu->name).'/download') }}" ><span class="ion ion-ios-cloud-download-outline"></span> Download</a></li>
+                <li class="{{ \Request::is('admin/menus/'.str_slug($menu->name).'/archive') ? 'active' : '' }}"><a href="{{ url('admin/menus/'.str_slug($menu->name).'/archive') }}"><span class="ion ion-ios-filing-outline"></span> Archive</a></li>
 {{--                 <li><a href="#">Link</a></li>--}}
               </ul>
             </div><!-- /.navbar-collapse -->

@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin'], function()
 	Route::get('menus/{menu_name}', 'MenuController@show');
 	Route::get('menus/{menu_name}/edit', 'MenuController@edit');
 	Route::get('menus/{menu_name}/save', 'MenuController@storeOrUpdate');
+  Route::get('menus/{menu_name}/archive', 'MenuController@archive');
+  
   Route::put('items/positions', 'ItemsController@positions');
 
   Route::get('archives/{menu}', 'ArchivesController@show');
