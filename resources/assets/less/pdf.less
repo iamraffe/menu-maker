@@ -1,184 +1,258 @@
 @import 'font-faces.less';
-
+@doc-width: 27.94cm;
+@doc-height: 21.59cm;
 body, html{
 	height: 100%;
 	margin: 0;
 	padding: 0;
+
 }
 /*
 
 LANDSCAPE MENU
 
  */
-// .wrapper-landscape{
-//   background: white;
-//   width: 27.94cm;
-//   height: 21.59cm;
-//   display: block;
-//   margin: 0 auto;
-//   margin-bottom: 0.5cm;
-//   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-//   display: flex;
-
-// 	.landscape-container{
-// 		border: 1px solid black;
-// 		width: 100%;
-// 		height: 100%;
-		
-// 	}
-
-//   .column{
-//   	flex: 1;
-  	
-//   	height: 21.5cm;
-//   	width: 100%;
-  
-//   	&.left-column{
-//   		border-right: 1px #7AFFFF solid;
-//   		// margin-left: 150px;
-//   	}
-// 		&.right-column{
-// 			// margin-left: 125px;
-// 		}
-
-// 		.column-container{
-// 			// padding: 50px;
-// 		}
-
-
-// 		#logo-main{
-// 			width: 75px;
-// 			margin: 0 auto;
-// 			display: block;
-// 		}
-
-// 		p{
-// 			font-family:  Avenir Next Condensed;
-// 			font-weight: normal;
-// 			font-style: normal;
-
-// 			font-size: 15px;
-// 			letter-spacing: 0.5px;
-// 			line-height: 1.5em;
-
-// 			strong{
-// 				font-family: Avenir Next Condensed Demi;
-// 				font-weight: 600;
-// 				font-style: normal;
-// 			}
-// 		}	
-//   }
-// }
-
-@media print {
-  body, .wrapper-landscape {
-    margin: 0;
-    box-shadow: 0;
+.wrapper-landscape{
+	page-break-after: always !important;
+  page-break-inside: avoid !important;
+  width: 100%;
+  height: 100%;
+	margin: 0;
+	padding: 0;
+  *{
+		margin: 0;
+		padding: 0;
+		page-break-after: always !important;
+	  page-break-inside: avoid !important;
   }
+
+
   .column{
   	float: left;
+  	// background-color: red;
   	width: 50%;
+		margin: 0;
+		padding: 0;
+  	height: 8.5in;
+		.column-container{
+      position: relative;
+      height: 8.5in;
+      &.text-container{
+        .separator{
+          margin-bottom: 0.632cm; 
+        }
+      }
+      h2.category{
+        font-family: Pea Mystie; 
+        margin-bottom: 0.432cm; 
+        text-align: center; 
+        font-size: 15px; 
+        letter-spacing: 0.5mm; 
+        font-weight: 200;    
+        margin-left: -15px; 
+      }
+      h2.by-the-bottle{
+        padding-bottom: 0.432cm;
+        text-align: left;
+        font-size: 14.5px;
+        letter-spacing: 0.5mm;
+        font-weight: 200;
+        font-family: Pea Mystie;
+        margin: auto;
+        width: 415px;
+      }
+      h2.subcategory{
+        padding-top: 0.532cm;
+        padding-bottom: 0.432cm;
+        text-align: left;
+        font-size: 13.5px;
+        letter-spacing: 0.5mm;
+        font-weight: 200;
+        font-family: Pea Mystie;
+        margin: auto;
+        width: 415px;
+      }
+      img.category-logo{
+        width: 82px;
+        height: 76px;
+        margin: auto; 
+        margin-top: 1.185cm;
+        margin-bottom: 0.632cm;
+        display: block;
+
+      }
+      .separator{       
+        height: 2px;
+        margin: 0 auto;
+        display: block;
+        width: 415px;
+
+        img{
+        	vertical-align: middle;
+        	margin-top: -10px;
+        	margin-bottom: 10px;
+        }
+
+      }
+      .big-separator{
+        background: url('/img/wine-list-separator-big.png') no-repeat;
+        height: 2px;
+        width: 924px;
+        position: absolute;
+        top: 140px;
+        left: 52.25px;     
+        img{
+        	vertical-align: middle;
+        	margin-top: -15px;
+        	margin-bottom: 15px;
+        }
+      }     
+      .logo-cover{
+        width: 129px;
+        height: 119px; 
+        position: absolute;
+        left: 8.716cm;
+        bottom: 1.522cm;
+      }
+
+      .logo-intro{
+        margin: auto; 
+        width: 82px;
+        height: 76px;
+        margin-top: 4.139cm;
+        margin-bottom: 0.632cm;
+        display: block;
+      }
+
+			p{
+        width: 10.143cm;
+        font-size: 15px;
+        display: block;
+        margin: auto;
+        margin-bottom: 0.636cm;
+        letter-spacing: 0.255mm;
+      }
+
+      p.ui-state-default{
+        font-family:  Avenir Next Condensed;
+        font-weight: normal;
+        font-style: normal;
+        margin-left: 1.45cm;
+        margin-bottom: 11.5px;
+        font-size: 11.789375305175781px;
+        letter-spacing: 0px;
+        line-height: 1em;
+
+        strong{
+          font-family: Avenir Next Condensed Demi;
+          font-weight: 600;
+          font-style: normal;
+        }
+      }
+		}
+
+
+		// #logo-main{
+		// 	width: 75px;
+		// 	margin: 0 auto;
+		// 	display: block;
+		// }
+
+		p{
+			font-family:  Avenir Next Condensed;
+			font-weight: normal;
+			font-style: normal;
+
+			// font-size: 15px;
+			// letter-spacing: 0.5px;
+			// line-height: 1.5em;
+
+			strong{
+				font-family: Avenir Next Condensed Demi;
+				font-weight: 600;
+				font-style: normal;
+			}
+		}	
   }
 }
 
-	//WRAPPER
-	.wrapper{
-	  background: white;
-	  // width: 21.59cm;
-	  // height: 27.94cm; 
-	  margin: 0;
-	  box-shadow: 0;
+// @media print {
+//   body, .wrapper-landscape {
+//     margin: 0;
+//     box-shadow: 0;
+//   }
+//   .column{
+//   	float: left;
+//   	width: 50%;
+//   }
+// }
 
-		//GENERAL COLUMN STYLES
-		.column{
-	  	float: left;
-	  	width: 50%;
+//WRAPPER
+.wrapper{
+  background: white;
+  // width: 21.59cm;
+  // height: 27.94cm; 
+  margin: 0;
+  box-shadow: 0;
 
-			div.menu-section{
-				margin-bottom: 35px;
+	//GENERAL COLUMN STYLES
+	.column{
+  	float: left;
+  	width: 50%;
 
-	      div.item-container{
-	        width: 8.664cm;
-	      }
+		div.menu-section{
+			margin-bottom: 35px;
 
-				h2.category{
-					font-family: Pea Mystie;
-					text-transform: uppercase;
-					font-weight: 200;
-					font-size: 12.861125946044922px;
-					letter-spacing: 2.5px;
-	        margin-left: 1.116cm;
-				}
+      div.item-container{
+        width: 8.664cm;
+      }
 
-				p{
-					font-family:  Avenir Next Condensed;
-					font-weight: normal;
+			h2.category{
+				font-family: Pea Mystie;
+				text-transform: uppercase;
+				font-weight: 200;
+				font-size: 12.861125946044922px;
+				letter-spacing: 2.5px;
+        margin-left: 1.116cm;
+			}
+
+			p{
+				font-family:  Avenir Next Condensed;
+				font-weight: normal;
+				font-style: normal;
+        margin-left: 1.116cm;
+
+				font-size: 11.789375305175781px;
+				letter-spacing: 0px;
+				line-height: 1em;
+
+				strong{
+					font-family: Avenir Next Condensed Demi;
+					font-weight: 600;
 					font-style: normal;
-	        margin-left: 1.116cm;
-
-					font-size: 11.789375305175781px;
-					letter-spacing: 0px;
-					line-height: 1em;
-
-					strong{
-						font-family: Avenir Next Condensed Demi;
-						font-weight: 600;
-						font-style: normal;
-					}
-				}	
-			}
-		}
-
-		//LEFT COLUMN
-		div.left-column{	
-			img.logo{
-				width: 66px;
-	      height: 61px;
-	      margin-left: 1.116cm;
-	      margin-top: 2.006cm;
-	      margin-bottom: 1.202cm;
-	      visibility: hidden;
-			}
-
-		}
-
-		//RGHT COLUMN
-		div.right-column{
-	    margin-top: 2.791cm;
-			div.menu-section{
-				
-			}
+				}
+			}	
 		}
 	}
 
-// p{
-// 	color:#000;
-// 	font-family:  'Avenir Next Condensed';
-// 	font-weight: normal;
-// 	font-style: normal;
+	//LEFT COLUMN
+	div.left-column{	
+		img.logo{
+			width: 66px;
+      height: 61px;
+      margin-left: 1.116cm;
+      margin-top: 2.006cm;
+      margin-bottom: 1.202cm;
+      visibility: hidden;
+		}
 
-// 	font-size: 15px;
-// 	letter-spacing: 0.5px;
-// 	line-height: 1em;
-// 	margin-left: 2.5px;
-// 	margin-top: 2.5px;
-// 	// margin:8px		
-// }
+	}
 
-// .kerning-one-line(@n, @i: 1) when (@i =< @n) {
-//   .char@{i} {
-//     letter-spacing: 0.5px;
-//   }
-//   .kerning-one-line(@n, (@i + 1));
-// }
-
-// .relatedText{
-// 	// 76 Chars
-// 	&.force-one-line{
-// 		.kerning-one-line(76);
-// 	}
-// 	&.force-two-lines{
-
-// 	}
-// }
-
+	//RGHT COLUMN
+	div.right-column{
+    margin-top: 2.791cm;
+		div.menu-section{
+			
+		}
+	}
+}
