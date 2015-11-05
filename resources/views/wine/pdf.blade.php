@@ -18,16 +18,17 @@
         </div>  
     </div>
 @foreach($categories as $category)
+{{ $category->position }}
     <div class="wrapper-landscape">
          <div class="left-column column">
             <div class="column-container">
                 
             </div>
         </div>
-        @if($category->position == 5)
-            <div class="right-column column">
-                <div class="column-container">
-                    <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
+        <div class="right-column column">
+            <div class="column-container">
+                @if($category->position == 5)
+                <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
                     @foreach($subcategories as $subcategory)
                         @if($subcategory->position > 5 && $subcategory->category->objectId == $category->objectId)
                             <h2 class="subcategory">{{$subcategory->name}}</h2>
@@ -40,34 +41,34 @@
                             @endforeach  
                         @endif
                     @endforeach
-                </div>
-            </div>        
-        @endif
+                @endif
+            </div>
+        </div>
     </div>
     <div class="wrapper-landscape">
-        @if($category->position == 5)
-             <div class="left-column column">
-                <div class="column-container">
-                    <h2 class="by-the-bottle" style="margin-top: 1.917cm;">{{ $category->name }}</h2>
-                    <div class="big-separator" style="top: 40px;"><img src="{{public_path('img/wine-list-separator-big.png') }}" alt="Content separator"></div>
-                    @foreach($subcategories as $subcategory)
-                        @if($subcategory->position < 6 && $subcategory->category->objectId == $category->objectId)
-                            <h2 class="subcategory">{{$subcategory->name}}</h2>
-                            @foreach($items as $item)
-                                @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                    <p class="ui-state-default">
-                                        {!! $item->relatedText !!}
-                                    </p>
-                                @endif 
-                            @endforeach  
-                        @endif
-                    @endforeach
-                </div>
-            </div>      
-        @endif
-        @if($category->position == 1)
-            <div class="right-column column">
-                <div class="column-container text-container">
+     <div class="left-column column">
+        <div class="column-container">
+                    @if($category->position == 5)
+                        <h2 class="by-the-bottle" style="margin-top: 1.917cm;">{{ $category->name }}</h2>
+                        <div class="big-separator" style="top: 40px;"><img src="{{public_path('img/wine-list-separator-big.png') }}" alt="Content separator"></div>
+                        @foreach($subcategories as $subcategory)
+                            @if($subcategory->position < 6 && $subcategory->category->objectId == $category->objectId)
+                                <h2 class="subcategory">{{$subcategory->name}}</h2>
+                                @foreach($items as $item)
+                                    @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
+                                        <p class="ui-state-default">
+                                            {!! $item->relatedText !!}
+                                        </p>
+                                    @endif 
+                                @endforeach  
+                            @endif
+                        @endforeach
+                    @endif
+            </div>
+        </div>      
+        <div class="right-column column">
+            <div class="column-container text-container">
+                @if($category->position == 1)
                     <img class="logo-intro" src="{{public_path('/img/bufalina-logo-simple-greyscale.png')}}" alt="Logo" class="logo">
                     <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
                     @foreach($items as $item)
@@ -75,14 +76,14 @@
                             {!! $item->relatedText !!}
                         @endif 
                     @endforeach
-                </div>
-            </div>      
-        @endif
+                @endif
+            </div>
+        </div> 
     </div> 
     <div class="wrapper-landscape">
-        @if($category->position == 2)
-             <div class="left-column column">
-                <div class="column-container text-container">
+         <div class="left-column column">
+            <div class="column-container text-container">
+                @if($category->position == 2)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="margin-top: 3.513cm;">
                     <h2 class="category">{!! $category->name !!}</h2>
                     <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
@@ -90,13 +91,13 @@
                         @if(null !== $item->category && $item->category->objectId == $category->objectId)
                             {!! $item->relatedText !!}
                         @endif 
-                    @endforeach             
-                </div>
+                    @endforeach  
+                @endif           
             </div>
-        @endif
-        @if($category->position == 4)
-            <div class="right-column column">
-                <div class="column-container">
+        </div>
+        <div class="right-column column">
+            <div class="column-container">
+                @if($category->position == 4)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden;">
                     <h2 class="by-the-bottle" style="visibility: hidden;">BY THE BOTTLE</h2>
                     <h2 class="subcategory">{!! $category->name !!}</h2>
@@ -112,14 +113,14 @@
                             @endforeach  
                         @endif
                     @endforeach
-                </div>
-            </div>        
-        @endif
+                @endif
+            </div>
+        </div>
     </div>
     <div class="wrapper-landscape">
-        @if($category->position == 4)
-             <div class="left-column column">
-                <div class="column-container">
+        <div class="left-column column">
+            <div class="column-container">
+                @if($category->position == 4)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden;">
                     <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                     <div class="big-separator"><img src="{{public_path('img/wine-list-separator-big.png') }}" alt="Content separator"></div>
@@ -136,12 +137,12 @@
                             @endforeach  
                         @endif
                     @endforeach
-                </div>
+                @endif
             </div>
-        @endif
-        @if($category->position == 2)
-            <div class="right-column column">
-                <div class="column-container">
+        </div>
+        <div class="right-column column">
+            <div class="column-container">
+                @if($category->position == 2)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                     <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                     <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
@@ -157,14 +158,14 @@
                             @endforeach  
                         @endif
                     @endforeach
-                </div>
-            </div>        
-        @endif
+                @endif
+            </div>
+        </div>
     </div>
     <div class="wrapper-landscape">
-        @if($category->position == 3)
-            <div class="left-column column">
-                <div class="column-container text-container">
+        <div class="left-column column">
+            <div class="column-container text-container">
+                @if($category->position == 3)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="">
                     <h2 class="category">{!! $category->name !!}</h2>
                     <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
@@ -172,13 +173,13 @@
                         @if(null !== $item->category && $item->category->objectId == $category->objectId)
                             {!! $item->relatedText !!}
                         @endif 
-                    @endforeach                
-                </div>
+                    @endforeach  
+                @endif              
             </div>
-        @endif
-        @if($category->position == 4)
-            <div class="right-column column">
-                <div class="column-container">
+        </div>
+        <div class="right-column column">
+            <div class="column-container">
+                @if($category->position == 4)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; ">
                     <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                     <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
@@ -195,14 +196,14 @@
                             @endforeach  
                         @endif
                     @endforeach
-                </div>
-            </div>        
-        @endif
+                @endif
+            </div>
+        </div>
     </div>
     <div class="wrapper-landscape">
-        @if($category->position == 4)
-            <div class="left-column column">
-                <div class="column-container text-container">
+        <div class="left-column column">
+            <div class="column-container text-container">
+                @if($category->position == 4)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="">
                     <h2 class="category">{!! $category->name !!}</h2>
                     <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
@@ -210,13 +211,13 @@
                         @if(null !== $item->category && $item->category->objectId == $category->objectId)
                             {!! $item->relatedText !!}
                         @endif 
-                    @endforeach                
-                </div>
+                    @endforeach     
+                @endif           
             </div>
-        @endif
-        @if($category->position == 3)
-            <div class="right-column column">
-                <div class="column-container">
+        </div>     
+        <div class="right-column column">
+            <div class="column-container">
+                @if($category->position == 3)
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; ">
                     <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                     <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
@@ -233,42 +234,39 @@
                             @endforeach  
                         @endif
                     @endforeach
-                </div>
-            </div>        
-        @endif
+                @endif
+            </div>
+        </div>        
     </div>
-    <div class="wrapper-landscape">
-        @if($category->position == 3)
+    <div class="wrapper-landscape">    
             <div class="left-column column">
                 <div class="column-container">
-                    <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
-                    <h2 class="by-the-bottle">BY THE BOTTLE</h2>
-                    <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
-                    <h2 class="subcategory">{!! $category->name !!}</h2>
-                    @foreach($subcategories as $subcategory)
-                        @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
-                            <h2  class="subcategory">{{$subcategory->name}}</h2>
-                            @foreach($items as $item)
-                                @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                    <p class="ui-state-default">
-                                        {!! $item->relatedText !!}
-                                    </p>
-                                @endif 
-                            @endforeach  
-                        @endif
-                    @endforeach
+                    @if($category->position == 3)
+                        <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
+                        <h2 class="by-the-bottle">BY THE BOTTLE</h2>
+                        <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
+                        <h2 class="subcategory">{!! $category->name !!}</h2>
+                        @foreach($subcategories as $subcategory)
+                            @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
+                                <h2  class="subcategory">{{$subcategory->name}}</h2>
+                                @foreach($items as $item)
+                                    @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
+                                        <p class="ui-state-default">
+                                            {!! $item->relatedText !!}
+                                        </p>
+                                    @endif 
+                                @endforeach  
+                            @endif
+                        @endforeach
+                    @endif
                 </div>
             </div>
-        @endif
         <div class="right-column column">
             <div class="column-container">
                 
             </div>
         </div>    
     </div>
-
-
-
 @endforeach
     </body>
 </html>
