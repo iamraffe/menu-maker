@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Repositories\ParseCategoryRepository;
 use App\Repositories\ParseItemRepository;
 use App\Repositories\ParseMenuRepository;
+use App\Repositories\ParseSubCategoryRepository;
 use Illuminate\Http\Request;
 
 class PDFController extends Controller
