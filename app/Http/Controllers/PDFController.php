@@ -38,12 +38,14 @@ class PDFController extends Controller
         if(strcmp($menu, 'wine-list')==0){
             //$menu = $this->makeMenu($menu);   
             $pdf = \PDF::loadView('wine.pdf'); 
+            return $pdf->setOrientation('landscape')->stream();
         }
         else{
             $menu = $this->makeMenu($menu);   
             $pdf = \PDF::loadView('pdf.show', $menu); 
+            return $pdf->setOrientation('portrait')->stream();
         }
-        return $pdf->setOrientation('landscape')->stream();
+        // return $pdf->setOrientation('landscape')->stream();
     }
 
     public function makeMenu($name)
