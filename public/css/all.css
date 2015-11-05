@@ -11203,6 +11203,37 @@ body {
 .wrapper-landscape .column .column-container.text-container .separator {
   margin-bottom: 0.632cm;
 }
+.wrapper-landscape .column .column-container .menu-text {
+  border: 2px dotted #a8a8a8;
+  margin: -15px 45px 25px;
+  padding-top: 15px;
+  position: relative;
+}
+.wrapper-landscape .column .column-container .menu-text a,
+.wrapper-landscape .column .column-container .menu-text button {
+  outline: none;
+  font-size: 12px;
+  padding: 0;
+  line-height: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.wrapper-landscape .column .column-container .menu-text a:hover,
+.wrapper-landscape .column .column-container .menu-text button:hover,
+.wrapper-landscape .column .column-container .menu-text a:focus,
+.wrapper-landscape .column .column-container .menu-text button:focus {
+  outline: none;
+  text-decoration: none;
+}
+.wrapper-landscape .column .column-container .menu-text a span.fa-plus,
+.wrapper-landscape .column .column-container .menu-text button span.fa-plus {
+  color: #888;
+}
+.wrapper-landscape .column .column-container .menu-text a span.fa-pencil,
+.wrapper-landscape .column .column-container .menu-text button span.fa-pencil {
+  color: #888;
+}
 .wrapper-landscape .column .column-container h2.category {
   font-family: Pea Mystie;
   margin-bottom: 0.632cm;
@@ -11254,6 +11285,29 @@ body {
   font-family: Pea Mystie;
   margin: auto;
   width: 415px;
+}
+.wrapper-landscape .column .column-container h2.subcategory a,
+.wrapper-landscape .column .column-container h2.subcategory button {
+  outline: none;
+  font-size: 12px;
+  padding: 0;
+  margin-left: -5px;
+  line-height: 0;
+}
+.wrapper-landscape .column .column-container h2.subcategory a:hover,
+.wrapper-landscape .column .column-container h2.subcategory button:hover,
+.wrapper-landscape .column .column-container h2.subcategory a:focus,
+.wrapper-landscape .column .column-container h2.subcategory button:focus {
+  outline: none;
+  text-decoration: none;
+}
+.wrapper-landscape .column .column-container h2.subcategory a span.fa-plus,
+.wrapper-landscape .column .column-container h2.subcategory button span.fa-plus {
+  color: #888;
+}
+.wrapper-landscape .column .column-container h2.subcategory a span.fa-pencil,
+.wrapper-landscape .column .column-container h2.subcategory button span.fa-pencil {
+  color: #888;
 }
 .wrapper-landscape .column .column-container img.category-logo {
   width: 82px;

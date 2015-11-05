@@ -70,6 +70,41 @@ body {
           margin-bottom: 0.632cm; 
         }
       }
+      .menu-text{
+        border: 2px dotted lighten(#888, 12.5%);
+        margin: -15px 45px 25px;
+        padding-top: 15px;
+        // border-radius: 15px;
+        position: relative;
+
+        a, button{
+          outline: none;
+          
+          font-size: 12px;
+          padding: 0;
+          line-height: 0;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+
+          &:hover, &:focus{
+            outline: none;
+            text-decoration: none;
+          }
+
+          span{
+            &.fa-plus{
+              color: #888;
+              
+            }
+            &.fa-pencil{
+              
+              color: #888;
+            }
+          }
+
+        }
+      }
       h2.category{
         font-family: Pea Mystie; 
         margin-bottom: 0.632cm; 
@@ -124,6 +159,32 @@ body {
         font-family: Pea Mystie;
         margin: auto;
         width: 415px;
+
+        a, button{
+          outline: none;
+          
+          font-size: 12px;
+          padding: 0;
+          margin-left: -5px;
+          line-height: 0;
+
+          &:hover, &:focus{
+            outline: none;
+            text-decoration: none;
+          }
+
+          span{
+            &.fa-plus{
+              color: #888;
+              
+            }
+            &.fa-pencil{
+              
+              color: #888;
+            }
+          }
+
+        }
       }
       img.category-logo{
         width: 82px;

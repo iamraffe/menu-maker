@@ -19,6 +19,7 @@
                 <input type="hidden" name="id">
                 <input type="hidden" name="category">
                 <input type="hidden" name="position">
+                <input type="hidden" name="type">
                 <textarea name="content"></textarea>
             </div>
 
@@ -52,9 +53,14 @@
                 <div class="separator"></div>
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
+                      <div class="item-container menu-text">
+                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
+                            <span class="fa fa-pencil"></span>
+                        </a>
                         {!! $item->relatedText !!}
+                      </div>
                     @endif 
-                @endforeach
+                @endforeach   
             </div>
         </div>      
     </div>
@@ -73,7 +79,12 @@
                 <div class="separator"></div>
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
+                      <div class="item-container menu-text">
+                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
+                            <span class="fa fa-pencil"></span>
+                        </a>
                         {!! $item->relatedText !!}
+                      </div>
                     @endif 
                 @endforeach             
             </div>
@@ -102,7 +113,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -129,9 +140,14 @@
                 <div class="separator"></div>
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
+                      <div class="item-container menu-text">
+                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
+                            <span class="fa fa-pencil"></span>
+                        </a>
                         {!! $item->relatedText !!}
+                      </div>
                     @endif 
-                @endforeach                
+                @endforeach                   
             </div>
         </div>
         <div class="right-column column">
@@ -142,7 +158,12 @@
                 <h2 class="subcategory">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -154,7 +175,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -175,7 +196,12 @@
                 <h2 class="subcategory">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -187,7 +213,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -219,9 +245,14 @@
                 <div class="separator"></div>
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
+                      <div class="item-container menu-text">
+                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
+                            <span class="fa fa-pencil"></span>
+                        </a>
                         {!! $item->relatedText !!}
+                      </div>
                     @endif 
-                @endforeach                
+                @endforeach                   
             </div>
         </div>
         <div class="right-column column">
@@ -232,7 +263,12 @@
                 <h2 class="subcategory">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -244,7 +280,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -265,7 +301,12 @@
                 <h2 class="subcategory">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 1 && $subcategory->position < 4 &&$subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -277,7 +318,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -295,7 +336,12 @@
                 <h2 class="subcategory">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 3 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -307,7 +353,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -328,7 +374,12 @@
                 <div class="big-separator" style="top: 40px;"></div>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 6 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -340,7 +391,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -356,7 +407,12 @@
                 <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 5 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -368,7 +424,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -425,6 +481,7 @@ $('#myModal').on('show.bs.modal', function (event) {
   var category = button.data('category');
   // var position = button.data('position');
   var id = button.data('id');
+  var type = button.data('type');
 
   if(button.data('action') === 'add'){
     modal.find('h3').text('ADD ITEM');
@@ -449,8 +506,9 @@ $('#myModal').on('show.bs.modal', function (event) {
     button.parent().find('button').addClass('hide');
     modal.find('button.item-action').addClass('update-subcategory').text('Update Subcategory');
   }
+  modal.find('.modal-body input[name=type]').val(type);
   modal.find('.modal-body input[name=category]').val(category);
-  modal.find('.modal-body input[name="id"]').val(id);
+  modal.find('.modal-body input[name=id]').val(id);
   // modal.find('.modal-body input[name="position"]').val(position);
 });
 $('#myModal').on('hide.bs.modal', function (event) {
@@ -528,15 +586,15 @@ UPDATE ITEM
  */
 $(document).on('click', '.update-item', function(e){
     e.preventDefault();
+    var type = $(this).parent().siblings('.modal-body').children('input[name=type]').val();
 
     var data = {
         objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
         category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
-        relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
+        relatedText: type === 'html' ? tinymce.activeEditor.getContent() : $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
         _method: 'PUT'
     };
     console.log(data);
-    console.log("here comes the ajax call");
 
     $.ajax({
       url: "{{ url('/admin/items/') }}"+"/"+data["objectId"],
