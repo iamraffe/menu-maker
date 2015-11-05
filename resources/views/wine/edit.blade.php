@@ -168,7 +168,7 @@
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-plus"></span>
                           </a>
                         </h2>
@@ -209,7 +209,7 @@
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-plus"></span>
                           </a>
                         </h2>
@@ -390,7 +390,7 @@
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-plus"></span>
                           </a>
                         </h2>
@@ -426,7 +426,7 @@
                           <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-plus"></span>
                           </a>
                         </h2>

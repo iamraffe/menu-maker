@@ -19,6 +19,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id">
+                <input type="hidden" name="menu">
                 <input type="hidden" name="category">
                 <input type="hidden" name="position">
                 <textarea name="content"></textarea>
@@ -40,7 +41,7 @@
                                 <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-plus"></span>
                                 </a>
                             </h2>
@@ -142,9 +143,9 @@
         $(document).on('click', '.item-action.add-item', function(e){
             e.preventDefault();
             var data = {
-                // position: parseInt($(this).parent().siblings('.modal-body').children('input[name=position]').val() ) + 1,
-                category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
-                relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
+              menu: $(this).parent().siblings('.modal-body').children('input[name=menu]').val(),
+              category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
+              relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
             };
             $.ajax({
               url: "{{ url('/admin/items/') }}",
@@ -196,6 +197,7 @@
           var category = button.data('category');
           // var position = button.data('position');
           var id = button.data('id');
+          var menu = button.data('menu');
 
           if(button.data('action') === 'add'){
             modal.find('h3').text('ADD ITEM');
@@ -214,6 +216,7 @@
             button.parent().find('button').addClass('hide');
             modal.find('button.item-action').addClass('update-category').text('Update Category');
           }
+          modal.find('.modal-body input[name=menu]').val(menu);
           modal.find('.modal-body input[name=category]').val(category);
           modal.find('.modal-body input[name="id"]').val(id);
           // modal.find('.modal-body input[name="position"]').val(position);
