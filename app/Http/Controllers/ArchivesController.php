@@ -28,13 +28,16 @@ class ArchivesController extends Controller
   {
     // dd($objectId);
     $savedFile = $this->archives->find($objectId, ['menu']);
+    $pdf = \PDF::loadView('archives.show', compact('savedFile', 'class'));
     if(strcmp($savedFile->menu->objectId, 'BeQYNaR0Gc')==0){
       $class = "wrapper-landscape";
+      $pdf->setOrientation('landscape');
     }
     else{
       $class = "wrapper"; 
+      $pdf->setOrientation('portrait');
     }    
-    $pdf = \PDF::loadView('archives.show', compact('savedFile', 'class'));
+    
     return $pdf->stream();
   }
 }
