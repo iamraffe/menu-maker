@@ -77,6 +77,32 @@ body {
         font-size: 17px; 
         letter-spacing: 2.5px; 
         font-weight: 200;    
+
+        a, button{
+          outline: none;
+          
+          font-size: 12px;
+          padding: 0;
+          margin-left: -5px;
+          line-height: 0;
+
+          &:hover, &:focus{
+            outline: none;
+            text-decoration: none;
+          }
+
+          span{
+            &.fa-plus{
+              color: #888;
+              
+            }
+            &.fa-pencil{
+              
+              color: #888;
+            }
+          }
+
+        }
       }
       h2.by-the-bottle{
         padding-bottom: 0.632cm;

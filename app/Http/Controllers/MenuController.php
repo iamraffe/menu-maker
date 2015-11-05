@@ -55,7 +55,7 @@ class MenuController extends Controller
     return view('menu.show');
   }
 
-  public function edit()
+  public function edit($name)
   {
     if(strcmp($name, 'wine-list')==0){
       return view('wine.edit');

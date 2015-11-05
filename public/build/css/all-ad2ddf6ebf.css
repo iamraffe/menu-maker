@@ -11211,6 +11211,29 @@ body {
   letter-spacing: 2.5px;
   font-weight: 200;
 }
+.wrapper-landscape .column .column-container h2.category a,
+.wrapper-landscape .column .column-container h2.category button {
+  outline: none;
+  font-size: 12px;
+  padding: 0;
+  margin-left: -5px;
+  line-height: 0;
+}
+.wrapper-landscape .column .column-container h2.category a:hover,
+.wrapper-landscape .column .column-container h2.category button:hover,
+.wrapper-landscape .column .column-container h2.category a:focus,
+.wrapper-landscape .column .column-container h2.category button:focus {
+  outline: none;
+  text-decoration: none;
+}
+.wrapper-landscape .column .column-container h2.category a span.fa-plus,
+.wrapper-landscape .column .column-container h2.category button span.fa-plus {
+  color: #888;
+}
+.wrapper-landscape .column .column-container h2.category a span.fa-pencil,
+.wrapper-landscape .column .column-container h2.category button span.fa-pencil {
+  color: #888;
+}
 .wrapper-landscape .column .column-container h2.by-the-bottle {
   padding-bottom: 0.632cm;
   text-align: left;
