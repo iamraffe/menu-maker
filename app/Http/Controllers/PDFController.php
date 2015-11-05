@@ -36,8 +36,9 @@ class PDFController extends Controller
     public function show($menu)
     {
         if(strcmp($menu, 'wine-list')==0){
-            //$menu = $this->makeMenu($menu);   
-            $pdf = \PDF::loadView('wine.pdf'); 
+            //$menu = $this->makeMenu($menu); 
+            $menu = $this->makeWineMenu($menu);  
+            $pdf = \PDF::loadView('wine.pdf', $menu); 
             return $pdf->setOrientation('landscape')->stream();
         }
         else{
@@ -56,11 +57,28 @@ class PDFController extends Controller
         return ['categories' => $categories, 'items' => $items];
     }
 
+    public function makeWineMenu($menu)
+    {
+      $menu = $this->menu->findBy('name', str_replace('-', ' ', $menu));
+      $subcategoryRepo = new ParseSubCategoryRepository();
+      $subcategories = $subcategoryRepo->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
+      $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
+      $items = $this->items->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
+      return ['subcategories' => $subcategories, 'categories' => $categories, 'items' => $items, 'menu' => $menu];
+    }
+
     public function download($menu)
     {
-        $menu = $this->makeMenu($menu);   
-        $pdf = \PDF::loadView('pdf.show', $menu);
-        return $pdf->download();
+        if(strcmp($menu, 'wine-list')==0){
+            $menu = $this->makeWineMenu($menu);  
+            $pdf = \PDF::loadView('wine.pdf'); 
+            return $pdf->setOrientation('landscape')->download();
+        }
+        else{
+            $menu = $this->makeMenu($menu);   
+            $pdf = \PDF::loadView('pdf.show', $menu); 
+            return $pdf->setOrientation('portrait')->download();
+        }
     }
 
 }
