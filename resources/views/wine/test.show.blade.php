@@ -13,8 +13,6 @@
             </div>
         </div>  
     </div>
-@foreach($categories as $category)
-@if($category->position == 1)
     <div class="wrapper-landscape">
          <div class="left-column column">
             <div class="column-container">
@@ -24,27 +22,21 @@
             <div class="column-container text-container">
                 <img class="logo-intro" src="/img/bufalina-logo-simple-greyscale.png" alt="Logo" class="logo">
                 <div class="separator"></div>
-                @foreach($items as $item)
-                    @if(null !== $item->category && $item->category->objectId == $category->objectId)
-                        {!! $item->relatedText !!}
-                    @endif 
-                @endforeach
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque. Aenean posuere justo nec augue finibus varius. Proin semper vulputate massa, quis faucibus libero aliquam sit amet. Aliquam in bibendum dui, sed laoreet purus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque. Aenean posuere justo nec augue finibus varius.</p>        
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque.</p>
             </div>
         </div>      
     </div>
-@endif
-@if($category->position == 2)
     <div class="wrapper-landscape">
          <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="margin-top: 3.513cm;">
-                <h2 class="category">{!! $category->name !!}</h2>
+                <h2 class="category">SPARKLINGS and ROSES</h2>
                 <div class="separator"></div>
-                @foreach($items as $item)
-                    @if(null !== $item->category && $item->category->objectId == $category->objectId)
-                        {!! $item->relatedText !!}
-                    @endif 
-                @endforeach             
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque. Aenean posuere justo nec augue finibus varius. Proin semper vulputate massa, quis faucibus libero aliquam sit amet. Aliquam in bibendum dui, sed laoreet purus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque. Aenean posuere justo nec augue finibus varius.</p>        
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque.</p>               
             </div>
         </div>
         <div class="right-column column">
@@ -52,19 +44,7 @@
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">{{$subcategory->name}}</h2>
-                        @foreach($items as $item)
-                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                <p class="ui-state-default">
-                                    {!! $item->relatedText !!}
-                                </p>
-                            @endif 
-                        @endforeach  
-                    @endif
-                @endforeach
-{{--                 <h2  class="subcategory">SPARKLING</h2>
+                <h2  class="subcategory">SPARKLING</h2>
                 <p class="ui-state-default">2014 donkey &amp; goat “lily’s cuvee” anderson valley pet nat chardonnay 62</p>
                 <p class="ui-state-default">nv jacques lassaigne “les vignes de montgueux” champagne chardonnay 95</p>        
                 <p class="ui-state-default">nv savart “l’ouverture” champagne pinot noir 95 </p> 
@@ -75,23 +55,19 @@
                 <p class="ui-state-default">2014 lieu dit santa barbara county pinot noir 50 </p>        
                 <p class="ui-state-default">2014 cep “hopkins ranch” russian river valley vin gris of pinot noir 50</p> 
                 <p class="ui-state-default">2014 robert sinskey carneros vin gris of pinot noir 50</p>
-                <p class="ui-state-default">2013 idlewild “gibson ranch” rosé grenache gris 52</p>  --}}
+                <p class="ui-state-default">2013 idlewild “gibson ranch” rosé grenache gris 52</p> 
             </div>
         </div>        
-    </div> 
-@endif
-@if($category->position == 3)
+    </div>   
     <div class="wrapper-landscape">
          <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
-                <h2 class="category">{!! $category->name !!}</h2>
+                <h2 class="category">WHITES</h2>
                 <div class="separator"></div>
-                @foreach($items as $item)
-                    @if(null !== $item->category && $item->category->objectId == $category->objectId)
-                        {!! $item->relatedText !!}
-                    @endif 
-                @endforeach                
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque. Aenean posuere justo nec augue finibus varius. Proin semper vulputate massa, quis faucibus libero aliquam sit amet. Aliquam in bibendum dui, sed laoreet purus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque. Aenean posuere justo nec augue finibus varius.</p>        
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque efficitur tempor. Suspendisse tincidunt, odio vulputate pulvinar auctor, mi leo mattis orci, ut rhoncus mauris neque a neque.</p>               
             </div>
         </div>
         <div class="right-column column">
@@ -99,20 +75,8 @@
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; ">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
-                <h2 class="subcategory">{!! $category->name !!}</h2>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">{{$subcategory->name}}</h2>
-                        @foreach($items as $item)
-                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                <p class="ui-state-default">
-                                    {!! $item->relatedText !!}
-                                </p>
-                            @endif 
-                        @endforeach  
-                    @endif
-                @endforeach
-{{--                 <h2  class="subcategory" style="padding-top:0;">FRANCE</h2>
+                <h2  class="subcategory">WHITE</h2>
+                <h2  class="subcategory" style="padding-top:0;">FRANCE</h2>
                 <p class="ui-state-default">2013 gérard duplessis chablis ac chardonnay 50 </p>
                 <p class="ui-state-default">2013 domaine huet “clos du bourg” sec chenin blanc 55 </p>        
                 <p class="ui-state-default">2011 domaine valette mâcon-villages chardonnay 55</p> 
@@ -130,7 +94,7 @@
                 <p class="ui-state-default"> 2012 edmond vatan “clos la néore” sancerre sauvignon blanc 165</p>
                 <p class="ui-state-default"> 2013 edmond vatan “clos la néore” sancerre sauvignon blanc 165 </p>
                 <p class="ui-state-default">2012 domaine roulot meursault chardonnay 225 </p>        
-                <p class="ui-state-default">2009 domaine raveneau montée de tonnerre chardonnay 230</p>      --}}     
+                <p class="ui-state-default">2009 domaine raveneau montée de tonnerre chardonnay 230</p>          
             </div>
         </div>        
     </div>
@@ -140,20 +104,8 @@
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
-                <h2 class="subcategory">{!! $category->name !!}</h2>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">{{$subcategory->name}}</h2>
-                        @foreach($items as $item)
-                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                <p class="ui-state-default">
-                                    {!! $item->relatedText !!}
-                                </p>
-                            @endif 
-                        @endforeach  
-                    @endif
-                @endforeach
-{{--                 <h2  class="subcategory" style="padding-top:0;">OTHER EUROPEAN</h2>
+                <h2  class="subcategory">WHITE</h2>
+                <h2  class="subcategory" style="padding-top:0;">OTHER EUROPEAN</h2>
                 <p class="ui-state-default"> 2011 clai bijele zemlji “sveti jakov” malvazija croatia 70 </p>
                 <p class="ui-state-default"> 2007 radikon ribolla gialla 75 (500ml) </p>
                 <p class="ui-state-default">2012 fx pichler federspiel loibner frauenweingarten grüner veltliner 75</p>        
@@ -162,7 +114,7 @@
                 <p class="ui-state-default"> 2013 sandhi santa rita hills chardonnay 55 </p>
                 <p class="ui-state-default"> 2013 donkey and goat “stone crusher” roussanne 62</p>
                 <p class="ui-state-default"> 2013 arnot-roberts “watson ranch” chardonnay 75 </p>        
-                <p class="ui-state-default">2013 scholium project “prince in his caves” sauvignon blanc 74 </p>  --}}  
+                <p class="ui-state-default">2013 scholium project “prince in his caves” sauvignon blanc 74 </p>   
             </div>
         </div>
         <div class="right-column column">
@@ -171,8 +123,6 @@
             </div>
         </div>          
     </div>
-@endif  
-@endforeach
 {{--     <div class="wrapper-landscape">
          <div class="left-column column">
             <div class="column-container text-container">
@@ -318,7 +268,6 @@
             </div>
         </div>        
     </div> --}}
-
 @stop
 
 @section('scripts')
