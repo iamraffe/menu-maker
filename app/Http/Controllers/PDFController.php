@@ -35,8 +35,14 @@ class PDFController extends Controller
      */
     public function show($menu)
     {
-        $menu = $this->makeMenu($menu);   
-        $pdf = \PDF::loadView('pdf.show', $menu);
+        if(strcmp($name, 'wine-list')==0){
+            //$menu = $this->makeMenu($menu);   
+            $pdf = \PDF::loadView('wine.show'); 
+        }
+        else{
+            $menu = $this->makeMenu($menu);   
+            $pdf = \PDF::loadView('pdf.show', $menu); 
+        }
         return $pdf->stream();
     }
 

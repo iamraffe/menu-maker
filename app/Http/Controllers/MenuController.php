@@ -47,13 +47,19 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show()
+  public function show($name)
   {
+    if(strcmp($name, 'wine-list')==0){
+      return view('wine.show');
+    }
     return view('menu.show');
   }
 
   public function edit()
   {
+    if(strcmp($name, 'wine-list')==0){
+      return view('wine.edit');
+    }
     return view('menu.edit'); 
   }
 
