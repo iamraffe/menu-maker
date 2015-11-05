@@ -710,5 +710,32 @@ $(function() {
         }
     });
 });
+/*
+DELETE ITEM
+ */
+$('button.delete-item').on('click', function(e){
+    e.preventDefault();
+    var param = $(this).attr("data-id");
+    var answer = confirm('Are you sure you want to delete this item?');
+    if (answer)
+    {
+        $.ajax({
+            type        : 'POST',
+            url         : "{{ url('admin/items/') }}"+"/"+param,
+            data : {_method : 'DELETE'},
+            encode          : true,
+            beforeSend: function(){
+              $('#loading').show().fadeIn('fast');
+            },
+            error: function(xhr, textStatus, thrownError) {
+                alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+            },
+            success: function(response) {
+                $('#loading').hide();
+                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+            }
+        });
+    }
+});
 </script>
 @stop
