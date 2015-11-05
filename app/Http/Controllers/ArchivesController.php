@@ -34,7 +34,7 @@ class ArchivesController extends Controller
     else{
       $class = "wrapper"; 
     }    
-    $pdf = \PDF::loadView('archives.wine', compact('savedFile', 'class'));
+    $pdf = \PDF::loadView('archives.show', compact('savedFile', 'class'));
     return $pdf->stream();
   }
 }
