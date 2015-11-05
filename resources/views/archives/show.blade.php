@@ -7,7 +7,7 @@
     </head>
     <body>
     <div class="{{ $class }}">
-      {!! $menu->content !!}         
+      {!! $savedFile->content !!}         
     </div>
     <script type="text/javascript">
         // $(window).load(function() {
