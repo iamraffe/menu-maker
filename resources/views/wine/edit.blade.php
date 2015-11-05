@@ -85,7 +85,12 @@
                 <div class="separator"></div>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">{{$subcategory->name}}</h2>
+                        <h2  class="subcategory">
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="fa fa-pencil"></span>
+                          </a>
+                        </h2>
                         <div class="menu-contents item-container">
                           @foreach($items as $item)
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
@@ -426,7 +431,7 @@ $('#myModal').on('show.bs.modal', function (event) {
     tinyMCE.activeEditor.setContent('');
     modal.find('button.item-action').addClass('add-item').text('Add Item');
   }
-  else if(button.data('action') !== 'edit-category'){
+  else if(button.data('action') === 'edit'){
     button.parent().find('button').addClass('hide');
     modal.find('h3').text('EDIT ITEM');
     tinyMCE.activeEditor.setContent(button.parent().html());
@@ -437,6 +442,12 @@ $('#myModal').on('show.bs.modal', function (event) {
     tinyMCE.activeEditor.setContent(button.parent().html());
     button.parent().find('button').addClass('hide');
     modal.find('button.item-action').addClass('update-category').text('Update Category');
+  }
+  else if(button.data('action') === 'edit-subcategory'){
+    modal.find('h3').text('EDIT SUBCATEGORY');
+    tinyMCE.activeEditor.setContent(button.parent().html());
+    button.parent().find('button').addClass('hide');
+    modal.find('button.item-action').addClass('update-subcategory').text('Update Subcategory');
   }
   modal.find('.modal-body input[name=category]').val(category);
   modal.find('.modal-body input[name="id"]').val(id);
@@ -460,6 +471,39 @@ $(document).on('click', '.update-category', function(e){
     
     $.ajax({
       url: "{{ url('/admin/categories/') }}"+"/"+data["objectId"],
+      data: data,
+      type        : 'POST',
+      encode          : true,
+      async: true,
+      beforeSend: function(){
+        $('#loading').show().fadeIn('fast');
+        $('#myModal').modal('hide');
+      },
+      success: function(response){
+        $('#loading').hide();
+        $('#myModal').modal('hide');
+        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+      },
+      error: function(xhr, textStatus, thrownError) {
+          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+      },
+    });
+});
+
+/*
+UPDATE SUBCATEGORY
+ */
+$(document).on('click', '.update-subcategory', function(e){
+    e.preventDefault();
+
+    var data = {
+        objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
+        name: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
+        _method: 'PUT'
+    };
+    
+    $.ajax({
+      url: "{{ url('/admin/subcategories/') }}"+"/"+data["objectId"],
       data: data,
       type        : 'POST',
       encode          : true,

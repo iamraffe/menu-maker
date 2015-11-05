@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function()
   Route::resource('pdf', 'PDFController');
   Route::resource('items', 'ItemsController');
   Route::resource('categories', 'CategoriesController');
+  Route::resource('subcategories', 'SubCategoriesController');
 
 });
 
