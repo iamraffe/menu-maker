@@ -49,9 +49,11 @@ class MenuController extends Controller
    */
   public function show($name)
   {
-    if(strcmp($name, 'wine-list')==0){
+
+    if(strcmp($name, 'wine-list') == 0){
       return view('wine.show');
     }
+    
     return view('menu.show');
   }
 

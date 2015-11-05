@@ -48,7 +48,7 @@ class MenuComposer
 
     $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
 
-     
+     // dd([$menu, $categories, strcmp($this->request->route('menu_name'), 'wine-list')==0]);
 
 		if(strcmp($this->request->route('menu_name'), 'wine-list')==0){
 			$subcategoryRepo = new ParseSubCategoryRepository();
@@ -63,7 +63,8 @@ class MenuComposer
 			]);		
 		}
 		else{
-			$items = $this->items->all(['category'], 1000, true, 'position');
+			// $items = $this->items->all(['category'], 1000, true, 'position');
+      $items = $this->items->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
 			$view->with([
 	      'categories' => $categories,
 				'items' => $items,
