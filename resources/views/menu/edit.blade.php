@@ -1,5 +1,7 @@
 @extends('layout')
 
+
+
 @section('content')
         <div id="loading">
             <div class="container">
@@ -17,7 +19,9 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id">
-                <input type="hidden" name="parent">
+                <input type="hidden" name="menu">
+                <input type="hidden" name="category">
+                <input type="hidden" name="position">
                 <textarea name="content"></textarea>
             </div>
 
@@ -28,32 +32,35 @@
         </div>
         <div class="wrapper">
              <div class="left-column column">
-                @foreach($categories as $position => $category)
-                    @if($position < 4)
+                <img src="/img/logo.png" alt="Logo" class="logo">
+                @foreach($categories as $category)
+                    @if($category->position < 4)
                         <div class="menu-section">
-                            <h2 class="category" data-id="{{ $category['object']->getObjectId() }}">
-                                {!!$category['object']->relatedText!!}
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category['object']->getObjectId() }}" data-id="{{ $category['object']->getObjectId() }}" data-position="{{ $category['object']->position }}" data-action="edit" class="btn btn-link" data-toggle="modal">
+                            <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                {!!$category->name!!}
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-pencil"></span>
                                 </a>
-                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category['object']->getObjectId() }}" data-position="{{ count($category['items']) }}" data-action="add"  class="btn btn-link" data-toggle="modal">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                                     <span class="fa fa-plus"></span>
                                 </a>
                             </h2>
-                            <div class="menu-contents">
-                                @foreach($category['items'] as $item)
-                                    <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                        <button class="btn btn-link">
-                                            <span class="fa fa-arrows-v"></span>
-                                        </button>
-                                        <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                            <span class="fa fa-times"></span>
-                                        </button>
-                                        {!! $item->relatedText !!}
-                                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category['object']->getObjectId() }}" data-toggle="modal">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-                                    </p>
+                            <div class="menu-contents item-container">
+                                @foreach($items as $item)
+                                    @if($item->category->objectId == $category->objectId)
+                                        <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                            <button class="btn btn-link">
+                                                <span class="fa fa-arrows-v"></span>
+                                            </button>
+                                            <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                                <span class="fa fa-times"></span>
+                                            </button>
+                                            {!! $item->relatedText !!}
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                                <span class="fa fa-pencil"></span>
+                                            </a>
+                                        </p>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -61,24 +68,36 @@
                 @endforeach
             </div>
             <div class="right-column column">
-                @foreach($categories as $position => $category)
-                    @if($position > 3)
+                @foreach($categories as $category)
+                    @if($category->position > 3)
                         <div class="menu-section">
-                            <h2 class="category">{!!$category['object']->relatedText!!}</h2>
-                            @foreach($category['items'] as $item)
-                                    <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                        <button class="btn btn-link">
-                                            <span class="fa fa-arrows-v"></span>
-                                        </button>
-                                        <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                            <span class="fa fa-times"></span>
-                                        </button>
-                                        {!! $item->relatedText !!}
-                                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-parent="{{ $category['object']->getObjectId() }}" data-toggle="modal">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-                                    </p>
-                            @endforeach
+                            <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                {!!$category->name!!}
+                                <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
+                                    <span class="fa fa-pencil"></span>
+                                </a>
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}" class="btn btn-link" data-toggle="modal">
+                                    <span class="fa fa-plus"></span>
+                                </a>
+                            </h2>
+                            <div class="menu-contents item-container">
+                                @foreach($items as $item)
+                                    @if($item->category->objectId == $category->objectId)
+                                        <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                            <button class="btn btn-link">
+                                                <span class="fa fa-arrows-v"></span>
+                                            </button>
+                                            <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                                <span class="fa fa-times"></span>
+                                            </button>
+                                            {!! $item->relatedText !!}
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                                <span class="fa fa-pencil"></span>
+                                            </a>
+                                        </p>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     @endif
                 @endforeach
@@ -87,34 +106,35 @@
 @stop 
 
 @section('scripts')
+    <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
     <script type="text/javascript">
         $.ajaxSetup({
           headers: {
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
           }
         });
-        $(window).load(function() {
-            $(".ui-state-default").each(function(index){
-                var size = $(this).text().trim().length;
-                console.log(size)
-                if(size < 76){
-                    $(this).addClass('force-one-line');
-                }
-                else if(size < 90){
-                    var i = 60;
-                    console.log($(this).text().trim());
-                    console.log($(this).html());
-                    while ($(this).text().trim().slice(i-1, i) != ' '){
-                        i--;
-                    }
+        // $(window).load(function() {
+        //     $(".ui-state-default").each(function(index){
+        //         var size = $(this).text().trim().length;
+        //         // console.log(size)
+        //         if(size < 76){
+        //             $(this).addClass('force-one-line');
+        //         }
+        //         else if(size < 90){
+        //             var i = 60;
+        //             // console.log($(this).text().trim());
+        //             // console.log($(this).html());
+        //             while ($(this).text().trim().slice(i-1, i) != ' '){
+        //                 i--;
+        //             }
 
-                    console.log(i);
+        //             // console.log(i);
                     
-                    // $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
-                }
-            });
+        //             // $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
+        //         }
+        //     });
 
-        });
+        // });
 
         // $(document).ready(function(){
         //     $(".relatedText").lettering();     
@@ -123,12 +143,12 @@
         $(document).on('click', '.item-action.add-item', function(e){
             e.preventDefault();
             var data = {
-                // position: parseInt($(this).parent().siblings('.modal-body').children('input[name=position]').val() ) + 1,
-                parent: $(this).parent().siblings('.modal-body').children('input[name=parent]').val(),
-                relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
+              menu: $(this).parent().siblings('.modal-body').children('input[name=menu]').val(),
+              category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
+              relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
             };
             $.ajax({
-              url: "{{ url('store') }}",
+              url: "{{ url('/admin/items/') }}",
               data: data,
               type        : 'POST',
               encode          : true,
@@ -139,7 +159,7 @@
               },
               success: function(response){
                 $('#loading').hide();
-                window.location.href = "{{ url('edit') }}";
+                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
@@ -155,14 +175,18 @@
             {
                 $.ajax({
                     type        : 'POST',
-                    url         : "{{ url('/delete') }}"+"/"+param,
+                    url         : "{{ url('admin/items/') }}"+"/"+param,
                     data : {_method : 'DELETE'},
                     encode          : true,
+                    beforeSend: function(){
+                      $('#loading').show().fadeIn('fast');
+                    },
                     error: function(xhr, textStatus, thrownError) {
                         alert('Se ha producido un error. Por favor, inténtelo más tarde..');
                     },
                     success: function(response) {
-                        window.location.href = "{{ url('edit') }}";
+                        $('#loading').hide();
+                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                     }
                 });
             }
@@ -170,25 +194,32 @@
         $('#myModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
           var modal = $(this)
-        var parent = button.data('parent');
-        // var position = button.data('position');
-        var id = button.data('id');
+          var category = button.data('category');
+          // var position = button.data('position');
+          var id = button.data('id');
+          var menu = button.data('menu');
 
           if(button.data('action') === 'add'){
             modal.find('h3').text('ADD ITEM');
             tinyMCE.activeEditor.setContent('');
             modal.find('button.item-action').addClass('add-item').text('Add Item');
           }
-          else{
+          else if(button.data('action') !== 'edit-category'){
             button.parent().find('button').addClass('hide');
             modal.find('h3').text('EDIT ITEM');
             tinyMCE.activeEditor.setContent(button.parent().html());
             modal.find('button.item-action').addClass('update-item').text('Update Item');
-            // modal.find('.modal-body select option[value='+position+']').prop("selected", true);
           }
-          modal.find('.modal-body input[name=parent]').val(parent);
+          else{
+            modal.find('h3').text('EDIT CATEGORY');
+            tinyMCE.activeEditor.setContent(button.parent().html());
+            button.parent().find('button').addClass('hide');
+            modal.find('button.item-action').addClass('update-category').text('Update Category');
+          }
+          modal.find('.modal-body input[name=menu]').val(menu);
+          modal.find('.modal-body input[name=category]').val(category);
           modal.find('.modal-body input[name="id"]').val(id);
-          // modal.find('.modal-body select option[value='+position+']').prop('selected', true);
+          // modal.find('.modal-body input[name="position"]').val(position);
         });
         $('#myModal').on('hide.bs.modal', function (event) {
             $('button').removeClass('hide add-item update-item');
@@ -199,15 +230,13 @@
 
             var data = {
                 objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
-                parent: $(this).parent().siblings('.modal-body').children('input[name=parent]').val(),
-                // position: parseInt($(this).parent().siblings('.modal-body').find('select[name=position]').val()),
-                relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html()
+                category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
+                relatedText: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
+                _method: 'PUT'
             };
 
-            console.log(data);
-
             $.ajax({
-              url: "{{ url('update') }}",
+              url: "{{ url('/admin/items/') }}"+"/"+data["objectId"],
               data: data,
               type        : 'POST',
               encode          : true,
@@ -218,23 +247,54 @@
               },
               success: function(response){
                 $('#loading').hide();
-                // $('#myModal').modal('hide');
-                window.location.href = "{{ url('edit') }}";
+                $('#myModal').modal('hide');
+                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
               },
             });
         });
+        $(document).on('click', '.update-category', function(e){
+            e.preventDefault();
+
+            var data = {
+                objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
+                name: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
+                _method: 'PUT'
+            };
+            
+            $.ajax({
+              url: "{{ url('/admin/categories/') }}"+"/"+data["objectId"],
+              data: data,
+              type        : 'POST',
+              encode          : true,
+              async: true,
+              beforeSend: function(){
+                $('#loading').show().fadeIn('fast');
+                $('#myModal').modal('hide');
+              },
+              success: function(response){
+                $('#loading').hide();
+                $('#myModal').modal('hide');
+                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+              },
+              error: function(xhr, textStatus, thrownError) {
+                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+              },
+            });
+        });
+
         tinymce.init({
             selector:   "textarea",
-            content_css: "css/all.css",
+            body_class: "tinymce-body",
+            content_css: "/css/all.css",
+            // skin_url: "/js/skins/lightgray",
             width:      '100%',
             height:     50,
             statusbar:  false,
             menubar:    false,
             toolbar:    "bold",
-
         });
         // Prevent bootstrap dialog from blocking focusin
         $(document).on('focusin', function(e) {
@@ -246,58 +306,21 @@
         $(function() {
             $( ".menu-contents" ).sortable({ 
                 placeholder: "ui-sortable-placeholder",
-                start: function(e,ui){
-                    
-                    //Before all other events
-                    //Only occurs once each time sorting begins
-                },
                 activate: function(e,ui){
-                    console.log("start");
                     $(this).addClass('draggin');
-                    //After the start event and before all other events
-                    //Occurs once for each connected list each time sorting begins
-                },
-                change: function(e,ui){
-                    //After start/active but before over/sort/out events
-                    //Occurs every time the item position changes
-                    //Does not occur when item is outside of a connected list
-                },
-                over: function(e,ui){
-                    //After change but before sort/out events
-                    //Occurs while the item is hovering over a connected list
-                },
-                sort: function(e,ui){
-                    //After over but before out event
-                    //Occurs during sorting
-                    //Does not matter if the item is outside of a connected list or not
-                },
-                out: function(e,ui){
-                    //This one is unique
-                    //After sort event before all drop/ending events unless **see NOTE
-                    //Occurs, only once, the moment an item leaves a connected list
-                    //NOTE: Occurs again when the item is dropped/sorting stops 
-                    //--> EVEN IF the item never left the list
-                    //--> Called just before the stop event but after all other ending events
-                },
-                beforeStop: function(e,ui){
-                    //Before all other ending events: update,remove,receive,deactivate,stop
-                    //Occurs only once at the last possible moment before sorting stops
-                },
-                remove: function(e,ui){
-                    //After beforeStop and before all other ending events
-                    //Occurs only once when an item is removed from a list
-                },
-                receive: function(e,ui){
-                    //After remove and before all other ending events
-                    //Occurs only once when an item is added to a list
                 },
                 axis: "y",
                 update: function (event, ui) {
-                    var data = $(this).sortable('toArray');
-                    // $("#result").html("JSON:<pre>"+JSON.stringify(data)+"</pre>");
+                    var order = $(this).sortable('toArray');
+
+                    var data = {
+                      order: $(this).sortable('toArray'),
+                      _method: 'PUT'
+                    }
+
                     $.ajax({
-                      url: "{{ url('update') }}",
-                      data: JSON.stringify(data),
+                      url: "{{ url('admin/items/positions') }}",
+                      data: data,
                       type        : 'POST',
                       encode          : true,
                       async: true,
@@ -306,21 +329,12 @@
                       },
                       success: function(response){
                         $('#loading').hide();
-                        // $('#myModal').modal('hide');
-                        window.location.href = "{{ url('edit') }}";
+                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                       },
                       error: function(xhr, textStatus, thrownError) {
                           alert('Se ha producido un error. Por favor, inténtelo más tarde..');
                       },
                     });
-                }, 
-                deactivate: function(e,ui){
-                    //After all other events but before out (kinda) and stop
-                    //Occurs once for each connected list each time sorting ends
-                },
-                stop: function(e,ui){
-                    //After all other events
-                    //Occurs only once when sorting ends
                 }
             });
         });

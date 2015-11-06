@@ -8,8 +8,10 @@ use App\ParseClasses\Archive;
 use App\ParseClasses\Item;
 use App\ParseClasses\Menu;
 use App\Repositories\ParseArchiveRepository;
+use App\Repositories\ParseCategoryRepository;
 use App\Repositories\ParseItemRepository;
 use App\Repositories\ParseMenuRepository;
+use App\Repositories\ParseSubCategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Parse\ParseQuery;
@@ -23,43 +25,19 @@ class MenuController extends Controller
 
   private $menu;
 
-	public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu)
+  private $categories;
+
+	public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories)
 	{
     $this->items = $items;
     $this->archives = $archives;
     $this->menu = $menu;
+    $this->categories = $categories;
     $this->middleware('auth');
 	}
 
-  public function prepareItems($value='')
-  {
-    $query = new ParseQuery('Item');
-    $allCategories = $this->items->findAllBy('category', true);
-    foreach($allCategories as $category){
-      $categories[$category->position]['object'] = $category;
-      $categories[$category->position]['items'] = Collection::make($query->equalTo('parent', $category)->ascending('position')->find());    
-    }
-    return $categories;
-  }
-
 	public function index()
 	{
-    //$categories = $this->prepareItems();
-    
-    // $allMenus = $this->archives->all();
-    // foreach($allMenus as $menu){
-    //   $name = Carbon::createFromFormat('Y-m-d-H.i', $menu->name)->toDateTimeString(); 
-
-    //   dd($name);
-    // }
-    // dd();
-    // 
-    // $query = new ParseQuery('Menu');
-    // $menu = $query->equalTo('name', 'menu')->first();
-    // $allCategories = $this->items->all();
-    // foreach ($allCategories as $key => $value) {
-    //   $this->items->update($value->objectId, ['menu' => $menu]);
-    // }
     $allMenus = $this->menu->all();
 		return view('menu.index', compact('allMenus'));
 	}
@@ -70,85 +48,134 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show()
+  public function show($name)
   {
-    //$menu = $this->menu->findBy('name', str_replace('-', ' ', $menuName));
-    // dd($menu);
+
+    if(strcmp($name, 'wine-list') == 0){
+      return view('wine.show');
+    }
+
     return view('menu.show');
   }
 
-
-  public function create()
+  public function edit($name)
   {
-    $categories = $this->prepareItems();
-		$pdf = \PDF::loadView('pdf', ['categories' => $categories]);
-    // $pdf->save('archive/menu.pdf');
-		return $pdf->stream();
-  }
-
-  public function save()
-  {
-    $categories = $this->prepareItems();
-    $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
-    $this->archives->create(['name'=> Carbon::now()->format('Y-m-d-H.i')]);
-    $pdf->save('archive/menu'.Carbon::now()->format('Y-m-d-H.i').'.pdf');
-    flash()->overlay('Your file has been saved correctly', 'This file will be displayed on the Archive section');
-    return redirect('/');
-  }
-
-  public function download()
-  {
-    $categories = $this->prepareItems();
-    $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
-    return $pdf->download();
-  }
-
-  public function edit()
-  {
-  //   $categories = $this->prepareItems();
-		// return view('editable')->with('categories', $categories);
+    if(strcmp($name, 'wine-list')==0){
+      return view('wine.edit');
+    }
     return view('menu.edit'); 
   }
 
-  public function isCategory($objectId, $parentId)
+  public function store($content, $menu)
   {
-    return $parentId == $objectId;
+    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]); 
   }
 
-  public function update(Request $request)
+  public function storeOrUpdate($name)
   {
-
-    $newOrder = $request->json()->all();
-    if(empty($newOrder)){
-      $this->items->update($request->input('objectId'), [ 'relatedText' => $request->input('relatedText')]);
+    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+    
+    if(strcmp($name, 'wine-list') == 0){
+      $menuData = $this->makeWineMenu($menu);
+      $_menuPartial = view()->make('partials._wine', $menuData)->render();
     }
     else{
-      // $allItems = $this->items->all();
-      foreach($newOrder as $key => $objectId){
-        // $found = $allItems->filter(function($item) use ($objectId){
-        //   return $item->objectId == $objectId;
-        // })->first();
-        $this->items->update($objectId, ['position' => intval($key)+1]);
-      }
+      $menuData = $this->makeMenu($menu);
+      $_menuPartial = view()->make('partials._columns', $menuData)->render();  
     }
-		return response()->json(['Message' => 'Item updated.'], 200);
+    $archives = $this->archives->findAllBy('menu', $menu);
+    if($archives->contains('name', Carbon::now()->format('Y-m-d'))){
+      $this->update($_menuPartial); 
+    }
+    else{
+      $this->store($_menuPartial, $menuData['menu']);
+    }
+    // $this->handlePDFBackup($menu);
+    flash()->overlay('Your menu configuration has been saved correctly', 'This menu will be displayed on the Archive section');
+    return redirect('/admin/menus/'.$name);
   }
 
-  public function store(Request $request)
+  public function handlePDFBackup($menu)
   {
-
-    $item = [
-      'position' => intval($request->input('position')),
-      'parent' => $this->items->find($request->input('parent')),
-      'relatedText' => $request->input('relatedText'),
-      'category' => false
-    ];
-
-    $this->items->create($item);
+    $file = 'archive/menu'.Carbon::now()->format('Y-m-d').'.pdf';
+    $pdf = \PDF::loadView('pdf.show', $menu);
+    if (\File::exists($file)) \File::delete($file);
+    return $pdf->save($file);
   }
 
-  public function delete($objectId)
+  public function makeMenu($menu)
   {
-    $this->items->delete($objectId);
+      $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
+      $items = $this->items->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
+      return ['categories' => $categories, 'items' => $items, 'menu' => $menu];
   }
+
+  public function makeWineMenu($menu)
+  {
+      $subcategoryRepo = new ParseSubCategoryRepository();
+      $subcategories = $subcategoryRepo->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
+      $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
+      $items = $this->items->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
+      return ['subcategories' => $subcategories, 'categories' => $categories, 'items' => $items, 'menu' => $menu];
+  }
+
+  public function update($_menu)
+  {
+    $menu = $this->archives->findBy('name', Carbon::now()->format('Y-m-d'));
+    // dd($_menu);
+    return $this->archives->update($menu->objectId, ['content' => $_menu]);
+  }
+
+  public function archive($name)
+  {
+    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+    // dd($menu);
+    $archives = $this->archives->findAllBy('menu', $menu, ['menu']);
+    return view('archives.index', compact('archives', 'menu'));
+  }
+
+  // public function download()
+  // {
+  //   $categories = $this->prepareItems();
+  //   $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
+  //   // $pdf->setOption('user-style-sheet', '/your/file.css');
+  //   return $pdf->download();
+  // }
+
+  // public function update(Request $request)
+  // {
+
+  //   $newOrder = $request->json()->all();
+  //   if(empty($newOrder)){
+  //     $this->items->update($request->input('objectId'), [ 'relatedText' => $request->input('relatedText')]);
+  //   }
+  //   else{
+  //     // $allItems = $this->items->all();
+  //     foreach($newOrder as $key => $objectId){
+  //       // $found = $allItems->filter(function($item) use ($objectId){
+  //       //   return $item->objectId == $objectId;
+  //       // })->first();
+  //       $this->items->update($objectId, ['position' => intval($key)+1]);
+  //     }
+  //   }
+		// return response()->json(['Message' => 'Item updated.'], 200);
+  // }
+
+  // public function store(Request $request)
+  // {
+
+  //   $item = [
+  //     'position' => intval($request->input('position')),
+  //     'parent' => $this->items->find($request->input('parent')),
+  //     'relatedText' => $request->input('relatedText'),
+  //     'category' => false
+  //   ];
+
+  //   $this->items->create($item);
+  // }
+
+  // public function delete($objectId)
+  // {
+  //   $this->items->delete($objectId);
+  // }
 }

@@ -96,21 +96,16 @@
         $(window).load(function() {
             $(".ui-state-default").each(function(index){
                 var size = $(this).text().trim().length;
-                console.log(size)
                 if(size < 76){
                     $(this).addClass('force-one-line');
                 }
                 else if(size < 90){
                     var i = 60;
-                    console.log($(this).text().trim());
-                    console.log($(this).html());
                     while ($(this).text().trim().slice(i-1, i) != ' '){
                         i--;
                     }
-
-                    console.log(i);
                     
-                    // $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
+                    $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
                 }
             });
 

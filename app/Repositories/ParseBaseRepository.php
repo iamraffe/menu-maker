@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Repositories\Contracts\ReviewRepository;
 use Illuminate\Support\Collection;
 use LaraParse\Repositories\AbstractParseRepository;
+use Parse\ParseQuery;
 
 abstract class ParseBaseRepository extends AbstractParseRepository
 {
@@ -13,6 +14,7 @@ abstract class ParseBaseRepository extends AbstractParseRepository
      */
     public function all($includeKeys = [], $limit = 1000, $ascending = true, $sortKey = 'createdAt')
     {
+        $this->query = new ParseQuery($this->getParseClass());
         if($ascending){
             $this->query->ascending($sortKey);
         }
@@ -47,21 +49,6 @@ abstract class ParseBaseRepository extends AbstractParseRepository
         return Collection::make($this->query->find($this->useMasterKey));
     }
 
-    public function toArray()
-    {
-        $collection = $this->all();
-        foreach ($collection as $parseObject) {
-            $results[] = json_decode($parseObject->_encode(), true);
-        }
-        return Collection::make($results);
-    }
-
-    public function paginate($limit = 4, $skip = 0)
-    {
-        $results = $this->query->skip($skip)->limit($limit)->find();
-        return Collection::make($results);
-    }
-
     /**
      * @param       $field
      * @param       $value
@@ -69,9 +56,9 @@ abstract class ParseBaseRepository extends AbstractParseRepository
      *
      * @return ParseObject
      */
-   /* public function findAllBy($field, $value, $includeKeys = [], $limit = 1000, $ascending = true, $sortKey = 'createdAt')
+    public function findAllBy($field, $value, $includeKeys = [], $limit = 1000, $ascending = true, $sortKey = 'createdAt')
     {
-        
+        $this->query = new ParseQuery($this->getParseClass());
         if($ascending){
             $this->query->ascending($sortKey);
         }
@@ -95,7 +82,7 @@ abstract class ParseBaseRepository extends AbstractParseRepository
             return Collection::make($this->query->find($this->useMasterKey));
         }
 
-    }*/
+    }
 
     public function handleThousand($includeKeys)
     {

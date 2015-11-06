@@ -13,7 +13,7 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['menu.show', 'menu.edit'], 'App\Http\Composers\MenuComposer');
+        view()->composer(['menu.show', 'menu.edit', 'wine.show', 'wine.edit'], 'App\Http\Composers\MenuComposer');
     }
 
     /**

@@ -61,6 +61,7 @@ html {
 .wrapper div.left-column img.logo {
   width: 52.5px;
   margin-bottom: 20px;
+  visibility: hidden;
 }
 .wrapper div.right-column div.menu-section {
   margin-top: 5px;

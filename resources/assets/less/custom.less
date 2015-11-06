@@ -4,6 +4,11 @@
 @import (inline) 'libs/sweetalert.css';
 @import 'font-faces.less';
 @import (inline) 'libs/animate.css';
+@import (inline) 'libs/dataTables.bootstrap.min.css';
+// @import (inline) 'https://cdn.datatables.net/r/zf-5.5.2/dt-1.10.9,r-1.0.7/datatables.min.css';
+
+@doc-width: 27.94cm;
+@doc-height: 21.59cm;
 
 *{
 	box-sizing: content-box;
@@ -14,6 +19,9 @@ body, html{
 	padding: 0;
 }
 
+.tinymce-body{
+	background-color: white;
+}
 
 /*
 
@@ -26,25 +34,25 @@ body {
 .wrapper-landscape{
   background: white;
   width: 27.94cm;
-  height: 21.5cm;
+  height: 21.59cm;
   display: block;
   margin: 0 auto;
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-  padding: 7.5px;
+  display: flex;
 
-	.landscape-container{
-		border: 1px solid black;
-		width: 100%;
-		height: 100%;
-		display: flex;
-	}
+	// .landscape-container{
+	// 	border: 1px solid black;
+	// 	width: 100%;
+	// 	height: 100%;
+		
+	// }
 
   .column{
-  	flex: 1;
+  	float: left;
   	
   	height: 21.5cm;
-  	width: 100%;
+  	width: 50%;
   
   	&.left-column{
   		border-right: 1px #7AFFFF solid;
@@ -55,7 +63,228 @@ body {
 		}
 
 		.column-container{
-			padding: 50px;
+      position: relative;
+      height: @doc-height;
+      &.text-container{
+        .separator{
+          margin-bottom: 0.632cm; 
+        }
+      }
+      .menu-text{
+        border: 2px dotted lighten(#888, 12.5%);
+        margin: -15px 45px 25px;
+        padding-top: 15px;
+        // border-radius: 15px;
+        position: relative;
+
+        a, button{
+          outline: none;
+          
+          font-size: 12px;
+          padding: 0;
+          line-height: 0;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+
+          &:hover, &:focus{
+            outline: none;
+            text-decoration: none;
+          }
+
+          span{
+            &.fa-plus{
+              color: #888;
+              
+            }
+            &.fa-pencil{
+              
+              color: #888;
+            }
+          }
+
+        }
+      }
+      h2.category{
+        font-family: Pea Mystie; 
+        margin-bottom: 0.632cm; 
+        text-align: center; 
+        font-size: 17px; 
+        letter-spacing: 2.5px; 
+        font-weight: 200;    
+
+        a, button{
+          outline: none;
+          
+          font-size: 12px;
+          padding: 0;
+          margin-left: -5px;
+          line-height: 0;
+
+          &:hover, &:focus{
+            outline: none;
+            text-decoration: none;
+          }
+
+          span{
+            &.fa-plus{
+              color: #888;
+              
+            }
+            &.fa-pencil{
+              
+              color: #888;
+            }
+          }
+
+        }
+      }
+      h2.by-the-bottle{
+        padding-bottom: 0.632cm;
+        text-align: left;
+        font-size: 17px;
+        letter-spacing: 2.5px;
+        font-weight: 200;
+        font-family: Pea Mystie;
+        margin: auto;
+        width: 415px;
+      }
+      h2.subcategory{
+        padding-top: 0.632cm;
+        padding-bottom: 0.432cm;
+        text-align: left;
+        font-size: 15px;
+        letter-spacing: 2.5px;
+        font-weight: 200;
+        font-family: Pea Mystie;
+        margin: auto;
+        width: 415px;
+
+        a, button{
+          outline: none;
+          
+          font-size: 12px;
+          padding: 0;
+          margin-left: -5px;
+          line-height: 0;
+
+          &:hover, &:focus{
+            outline: none;
+            text-decoration: none;
+          }
+
+          span{
+            &.fa-plus{
+              color: #888;
+              
+            }
+            &.fa-pencil{
+              
+              color: #888;
+            }
+          }
+
+        }
+      }
+      img.category-logo{
+        width: 82px;
+        height: 76px;
+        margin: auto; 
+        margin-top: 1.385cm;
+        margin-bottom: 0.632cm;
+        display: block;
+
+      }
+      .separator{
+        background: url('/img/wine-list-separator.png') no-repeat;
+        
+        height: 2px;
+        margin: 0 auto;
+        display: block;
+        width: 415px;
+
+      }
+      .big-separator{
+        background: url('/img/wine-list-separator-big.png') no-repeat;
+        height: 2px;
+        width: 924px;
+        position: absolute;
+        top: 140px;
+        left: 52.25px;        
+      }     
+      .logo-cover{
+        width: 129px;
+        height: 119px; 
+        position: absolute;
+        left: 8.716cm;
+        bottom: 1.522cm;
+      }
+
+      .logo-intro{
+        margin: auto; 
+        width: 82px;
+        height: 76px;
+        margin-top: 4.139cm;
+        margin-bottom: 0.632cm;
+        display: block;
+      }
+
+			p{
+        width: 10.743cm;
+        display: block;
+        margin: auto;
+        margin-bottom: 0.736cm;
+      }
+
+      p.ui-state-default{
+        font-family:  Avenir Next Condensed;
+        font-weight: normal;
+        font-style: normal;
+        margin-left: 1.45cm;
+        margin-bottom: 11.5px;
+        font-size: 11.789375305175781px;
+        letter-spacing: 0px;
+        line-height: 1em;
+
+        strong{
+          font-family: Avenir Next Condensed Demi;
+          font-weight: 600;
+          font-style: normal;
+        }
+
+        a, button{
+          outline: none;
+          
+          font-size: 12px;
+          padding: 0;
+          margin-left: -5px;
+          line-height: 0;
+          position: relative;
+
+          span{
+            &.fa-arrows-v{
+              // margin-left: -35px;
+              position: absolute;
+              left: -22.5px;
+              top: -5px;
+            }
+            &.fa-times{
+              color: red;
+              // margin-left: -15px;
+              position: absolute;
+              left: -15px;
+              top: -5px;
+            }
+            &.fa-pencil{
+              position: absolute;
+              right: -25px;
+              // margin-left: 15px;
+              color: #888;
+            }
+          }
+
+        }
+      }
 		}
 
 
@@ -82,35 +311,54 @@ body {
 		}	
   }
 }
+
 @media print {
   body, .wrapper-landscape {
     margin: 0;
     box-shadow: 0;
   }
+  .column{
+  	float: left;
+  	width: 50%;
+  }
 }
 
 //WRAPPER
 .wrapper{
-	margin: 0 auto;
-	display: block;
-	padding: 25px 62.5px;
-	width: 1000px;
-	height: 100%;
+  background: white;
+  width: 21.59cm;
+  height: 27.94cm; 
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  display: flex;
 
+  img.logo{
+    width: 66px;
+    height: 61px;
+    margin-left: 1.116cm;
+    margin-top: 2.006cm;
+    margin-bottom: 1.202cm;
+  }
 	//GENERAL COLUMN STYLES
 	.column{
-		float: left;
-		width: 405px;
+		flex: 1;
 
 		div.menu-section{
 			margin-bottom: 35px;
+
+      div.item-container{
+        width: 8.664cm;
+      }
 
 			h2.category{
 				font-family: Pea Mystie;
 				text-transform: uppercase;
 				font-weight: 200;
-				font-size: 19px;
+				font-size: 12.861125946044922px;
 				letter-spacing: 2.5px;
+        margin-left: 1.116cm;
 
 				a, button{
 					outline: none;
@@ -143,9 +391,10 @@ body {
 				font-family:  Avenir Next Condensed;
 				font-weight: normal;
 				font-style: normal;
+        margin-left: 1.116cm;
 
-				font-size: 15px;
-				letter-spacing: 0.5px;
+				font-size: 11.789375305175781px;
+				letter-spacing: 0px;
 				line-height: 1em;
 
 				strong{
@@ -161,17 +410,26 @@ body {
 					padding: 0;
 					margin-left: -5px;
 					line-height: 0;
+          position: relative;
 
 					span{
 						&.fa-arrows-v{
-							margin-left: -35px;
+							// margin-left: -35px;
+              position: absolute;
+              left: -22.5px;
+              top: -5px;
 						}
 						&.fa-times{
 							color: red;
-							margin-left: -15px;
+							// margin-left: -15px;
+              position: absolute;
+              left: -15px;
+              top: -5px;
 						}
 						&.fa-pencil{
-							margin-left: 15px;
+              position: absolute;
+              right: -25px;
+							// margin-left: 15px;
 							color: #888;
 						}
 					}
@@ -183,23 +441,19 @@ body {
 
 	//LEFT COLUMN
 	div.left-column{		
-		margin-right: 150px;
 
-		img.logo{
-			width: 85px;
-			margin-bottom: 35px;
-		}
 
 	}
 
 	//RGHT COLUMN
 	div.right-column{
-
+    margin-top: 2.791cm;
 		div.menu-section{
-			// margin-top: 35px;
+			
 		}
 	}
 }
+
 
 .modal{
 	display: none;
@@ -390,4 +644,21 @@ header[role="banner"] {
 input {
     box-sizing: border-box;
     width: 100%;
+}
+
+#example_wrapper{
+	box-sizing: border-box;
+
+	*{
+		box-sizing: border-box;
+	}
+
+  #example_filter{
+    float: right;
+    margin-bottom: 25px;
+  }
+
+  ul.pagination{
+    float: right;
+  }
 }
