@@ -194,12 +194,12 @@
                     },
                     error: function(xhr, textStatus, thrownError) {
                       swal({
-                    title: 'ERROR',
-                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
-                    timer: 2500,
-                    showConfirmButton: false
-                });
+                          title: 'ERROR',
+                          text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                          type: error,
+                          timer: 2500,
+                          showConfirmButton: false
+                      });
                     },
                     success: function(response) {
                         $('#loading').hide();
@@ -267,7 +267,7 @@
                 $('#loading').hide();
                 $('#myModal').modal('hide');
                 // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
-                var template = '<button class="btn btn-link"><span class="fa fa-arrows-v"></span></button><button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="fa fa-times"></span></button>'+data['relatedText']+'<a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
+                var template = '<button class="btn btn-link"><span class="fa fa-arrows-v"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="fa fa-times"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
 
                 $('p#'+data["objectId"]).html(template);
               },
@@ -305,7 +305,9 @@
                 $('#loading').hide();
                 $('#myModal').modal('hide');
                 // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
-                $('h2[data-id='+data["objectId"]+']').html(data['name']);
+                var template = data["name"]+' <a href="#myModal" role="button" class="open-modal" data-parent="'+data["objectId"]+'" data-id="'+data["objectId"]+'" data-action="edit-category" class="btn btn-link" data-toggle="modal"><span class="fa fa-pencil"></span></a> <a href="#myModal" role="button" class="open-modal" data-category="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="fa fa-plus"></span></a>';
+
+                $('h2[data-id='+data["objectId"]+']').html(template);
               },
               error: function(xhr, textStatus, thrownError) {
                 swal({

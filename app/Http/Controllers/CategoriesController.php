@@ -32,7 +32,7 @@ class CategoriesController extends Controller
   public function update(Request $request, $objectId)
   {
     $this->categories->update($request->input('objectId'), [ 'name' => $request->input('name')]);
-    flash()->success('Your category has been updated correctly', '');
+    // flash()->success('Your category has been updated correctly', '');
     return response()->json(['Message' => 'Category updated.'], 200);
   }
 }
