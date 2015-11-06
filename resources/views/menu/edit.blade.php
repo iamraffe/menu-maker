@@ -166,12 +166,19 @@
                 // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
-                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
               },
             });
 
         });
-        $('button.delete-item').on('click', function(e){
+        $(document).on('click', 'button.delete-item', function(e){
+        // $('button.delete-item').on('click', function(e){
             e.preventDefault();
             var param = $(this).attr("data-id");
             var answer = confirm('Are you sure you want to delete this item?');
@@ -186,10 +193,17 @@
                       $('#loading').show().fadeIn('fast');
                     },
                     error: function(xhr, textStatus, thrownError) {
-                        alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                      swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
                     },
                     success: function(response) {
                         $('#loading').hide();
+                        $('p#'+param).remove();
                         // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                     }
                 });
@@ -253,9 +267,18 @@
                 $('#loading').hide();
                 $('#myModal').modal('hide');
                 // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                var template = '<button class="btn btn-link"><span class="fa fa-arrows-v"></span></button><button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="fa fa-times"></span></button>'+data['relatedText']+'<a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
+
+                $('p#'+data["objectId"]).html(template);
               },
               error: function(xhr, textStatus, thrownError) {
-                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
               },
             });
         });
@@ -282,9 +305,16 @@
                 $('#loading').hide();
                 $('#myModal').modal('hide');
                 // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                $('h2[data-id='+data["objectId"]+']').html(data['name']);
               },
               error: function(xhr, textStatus, thrownError) {
-                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
               },
             });
         });
@@ -336,7 +366,13 @@
                         // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                       },
                       error: function(xhr, textStatus, thrownError) {
-                          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                        swal({
+                            title: 'ERROR',
+                            text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                            type: error,
+                            timer: 2500,
+                            showConfirmButton: false
+                        });
                       },
                     });
                 }
