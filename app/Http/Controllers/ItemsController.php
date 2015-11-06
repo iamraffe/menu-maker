@@ -38,14 +38,14 @@ class ItemsController extends Controller
     foreach($request->order as $key => $objectId){
       $this->items->update($objectId, ['position' => intval($key)+1]);
     }
-    flash()->success('Your items order has been updated correctly', '');
+    // flash()->success('Your items order has been updated correctly', '');
     return response()->json(['Message' => 'Item order updated.'], 200);
   }
 
   public function update(Request $request, $objectId)
   {
     $this->items->update($request->input('objectId'), [ 'relatedText' => $request->input('relatedText')]);
-    flash()->success('Your item has been updated correctly', '');
+    // flash()->success('Your item has been updated correctly', '');
     return response()->json(['Message' => 'Item updated.'], 200);
   }
 
@@ -72,19 +72,19 @@ class ItemsController extends Controller
         'relatedText' => $request->input('relatedText'),
         'menu' => $this->menu->find($request->input('menu')),
       ];
-
     }
+    $item = $this->items->create($item);
 
+    return view()->make('partials._menu_item', compact('item'));
 
-    $this->items->create($item);
-    flash()->success('Your item has been created correctly', '');
-    return response()->json(['Message' => 'Item created.'], 200);
+    // flash()->success('Your item has been created correctly', '');
+    // return response()->json(['Message' => 'Item created.'], 200);
   }
 
   public function destroy($objectId)
   {
     $this->items->delete($objectId);
-    flash()->success('Your item has been deleted correctly', '');
+    // flash()->success('Your item has been deleted correctly', '');
     return response()->json(['Message' => 'Item deleted.'], 200);
   }
 

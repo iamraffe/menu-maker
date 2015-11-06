@@ -56,7 +56,7 @@
                                                 <span class="fa fa-times"></span>
                                             </button>
                                             {!! $item->relatedText !!}
-                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-toggle="modal">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
                                         </p>
@@ -91,7 +91,7 @@
                                                 <span class="fa fa-times"></span>
                                             </button>
                                             {!! $item->relatedText !!}
-                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-toggle="modal">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
                                         </p>
@@ -147,6 +147,9 @@
               category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
               relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
             };
+            // console.log(data);
+            // console.log($('h2.category[data-id='+data["category"]+']').siblings('.item-container').append(response));
+
             $.ajax({
               url: "{{ url('/admin/items/') }}",
               data: data,
@@ -159,7 +162,8 @@
               },
               success: function(response){
                 $('#loading').hide();
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                $('h2.category[data-id='+data["category"]+']').siblings('.item-container').append(response);
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
@@ -186,7 +190,7 @@
                     },
                     success: function(response) {
                         $('#loading').hide();
-                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                     }
                 });
             }
@@ -248,7 +252,7 @@
               success: function(response){
                 $('#loading').hide();
                 $('#myModal').modal('hide');
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
@@ -277,7 +281,7 @@
               success: function(response){
                 $('#loading').hide();
                 $('#myModal').modal('hide');
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
                   alert('Se ha producido un error. Por favor, inténtelo más tarde..');
@@ -329,7 +333,7 @@
                       },
                       success: function(response){
                         $('#loading').hide();
-                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                       },
                       error: function(xhr, textStatus, thrownError) {
                           alert('Se ha producido un error. Por favor, inténtelo más tarde..');
