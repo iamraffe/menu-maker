@@ -3,7 +3,7 @@
     <head>
         <title>Menu Maker</title>
         <link rel="icon" type="image/png" href="/img/favicon.png">
-        <meta name="_token" content="{!! csrf_token() !!}"/>
+        <meta id="token" name="_token" content="{!! csrf_token() !!}"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         @yield('css')
