@@ -52,6 +52,9 @@
         <div class="right-column column">
             <div class="column-container text-container">
                 <img class="logo-intro" src="/img/bufalina-logo-simple-greyscale.png" alt="Logo" class="logo">
+                <h2 class="category" data-id="{{$category->getObjectId()}}" style="visibility:hidden; height: 0px;">
+                {{--{!! $category->name !!}--}}
+                </h2>
                 <div class="separator"></div>
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
