@@ -74,7 +74,6 @@ class ItemsController extends Controller
       ];
     }
     $item = $this->items->create($item);
-
     return view()->make('partials._menu_item', compact('item'));
 
     // flash()->success('Your item has been created correctly', '');

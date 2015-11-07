@@ -6,7 +6,7 @@
           <span class="fa fa-times"></span>
       </button>
       {!! $item->relatedText !!}
-      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-toggle="modal">
+      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-action="edit" data-type="text" data-toggle="modal">
           <span class="fa fa-pencil"></span>
       </a>
   </p>

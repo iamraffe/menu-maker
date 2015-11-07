@@ -24,7 +24,7 @@ class SubCategoriesController extends Controller
   public function update(Request $request, $objectId)
   {
     $this->subcategories->update($request->input('objectId'), [ 'name' => $request->input('name')]);
-    flash()->success('Your subcategory has been updated correctly', '');
+    // flash()->success('Your subcategory has been updated correctly', '');
     return response()->json(['Message' => 'Sub category updated.'], 200);
   }
 }

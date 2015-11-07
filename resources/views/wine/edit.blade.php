@@ -56,7 +56,7 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                       <div class="item-container menu-text">
-                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
+                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
                             <span class="fa fa-pencil"></span>
                         </a>
                         {!! $item->relatedText !!}
@@ -72,9 +72,9 @@
          <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="margin-top: 3.513cm;">
-                <h2 class="category">
+                <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
-                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
+                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                         <span class="fa fa-pencil"></span>
                     </a>
                 </h2>
@@ -98,9 +98,9 @@
                 <div class="separator"></div>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                           <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
@@ -118,7 +118,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -136,9 +136,9 @@
         <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
-                <h2 class="category">
+                <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
-                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
+                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                         <span class="fa fa-pencil"></span>
                     </a>
                 </h2>
@@ -160,12 +160,12 @@
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; ">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
-                <h2 class="subcategory">{!! $category->name !!}</h2>
+                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                           <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
@@ -183,7 +183,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -201,12 +201,12 @@
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
-                <h2 class="subcategory">{!! $category->name !!}</h2>
+                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                           <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
@@ -224,7 +224,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -247,9 +247,9 @@
         <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
-                <h2 class="category">
+                <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
-                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
+                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                         <span class="fa fa-pencil"></span>
                     </a>
                 </h2>
@@ -271,12 +271,12 @@
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; ">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
-                <h2 class="subcategory">{!! $category->name !!}</h2>
+                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">
+                        <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                         </h2>
@@ -291,7 +291,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -309,12 +309,12 @@
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden;">
                 <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="big-separator"></div>
-                <h2 class="subcategory">{!! $category->name !!}</h2>
+                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 1 && $subcategory->position < 4 &&$subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">
+                        <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                         </h2>
@@ -329,7 +329,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -344,12 +344,12 @@
             <div class="column-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden;">
                 <h2 class="by-the-bottle" style="visibility: hidden;">BY THE BOTTLE</h2>
-                <h2 class="subcategory">{!! $category->name !!}</h2>
+                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 3 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;">
+                        <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                         </h2>
@@ -364,7 +364,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -385,9 +385,9 @@
                 <div class="big-separator" style="top: 40px;"></div>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 6 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">
+                        <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                           <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
@@ -405,7 +405,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -421,9 +421,9 @@
                 <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 5 && $subcategory->category->objectId == $category->objectId)
-                        <h2  class="subcategory">
+                        <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $subcategory->getObjectId() }}" data-position="{{ $subcategory->position }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="fa fa-pencil"></span>
                           </a>
                           <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
@@ -441,7 +441,7 @@
                                           <span class="fa fa-times"></span>
                                       </button>
                                       {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-type="text" data-action="edit" data-toggle="modal">
                                           <span class="fa fa-pencil"></span>
                                       </a>
                                   </p>
@@ -548,8 +548,8 @@ $(document).on('click', '.item-action.add-item', function(e){
         relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
 
     };
-    console.log(data);
-    console.log("here comes the ajax call");
+    console.log($('*[data-id='+data["subcategory"]+']').siblings('.menu-contents'));
+
     $.ajax({
       url: "{{ url('/admin/items/') }}",
       data: data,
@@ -562,10 +562,18 @@ $(document).on('click', '.item-action.add-item', function(e){
       },
       success: function(response){
         $('#loading').hide();
-        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+        console.log(response);
+        $('*[data-id='+data["subcategory"]+']').siblings('.menu-contents').append(response);
+        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
       error: function(xhr, textStatus, thrownError) {
-          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+          swal({
+              title: 'ERROR',
+              text: 'There was an error with your request. If this error persists please contact your webmaster.',
+              type: error,
+              timer: 2500,
+              showConfirmButton: false
+          });
       },
     });
 
@@ -596,10 +604,18 @@ $(document).on('click', '.update-category', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+        var html = data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-category" class="btn btn-link" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
+         $('h2[data-id='+data["objectId"]+']').html(html);
+        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
       error: function(xhr, textStatus, thrownError) {
-          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+          swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
       },
     });
 });
@@ -629,10 +645,18 @@ $(document).on('click', '.update-subcategory', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+        var html = data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal"><span class="fa fa-pencil"></span></a> <a href="#myModal" role="button" class="open-modal" data-subcategory="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="fa fa-plus"></span></a>';
+        $('h2[data-id='+data["objectId"]+']').html(html);
+        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
       error: function(xhr, textStatus, thrownError) {
-          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+          swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
       },
     });
 });
@@ -650,7 +674,15 @@ $(document).on('click', '.update-item', function(e){
         relatedText: type === 'html' ? tinymce.activeEditor.getContent() : $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
         _method: 'PUT'
     };
-    console.log(data);
+    var html = '<a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data["objectId"]+'" data-category="'+data["category"]+'" data-action="edit" data-type="html" data-toggle="modal"><span class="fa fa-pencil"></span></a>'+data["relatedText"];
+
+    
+    // // console.log(html);
+    // console.log(data["category"]);
+    // console.log($('h2.category[data-id='+data["category"]+']').html());
+    // console.log($('h2.category[data-id='+data["category"]+']').siblings('.menu-text').html());
+
+
 
     $.ajax({
       url: "{{ url('/admin/items/') }}"+"/"+data["objectId"],
@@ -665,10 +697,23 @@ $(document).on('click', '.update-item', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+        var text = '<button class="btn btn-link"><span class="fa fa-arrows-v"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="fa fa-times"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
+        if(type === 'text'){
+          $('p#'+data["objectId"]).html(text);
+        }
+        else{
+          $('h2.category[data-id='+data["category"]+']').siblings('.menu-text').html(html);
+        }
+        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
       error: function(xhr, textStatus, thrownError) {
-          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+          swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
       },
     });
 });
@@ -701,10 +746,16 @@ $(function() {
               },
               success: function(response){
                 $('#loading').hide();
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
-                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                  swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
               },
             });
         }
@@ -713,7 +764,7 @@ $(function() {
 /*
 DELETE ITEM
  */
-$('button.delete-item').on('click', function(e){
+$(document).on('click', 'button.delete-item', function(e){
     e.preventDefault();
     var param = $(this).attr("data-id");
     var answer = confirm('Are you sure you want to delete this item?');
@@ -728,11 +779,18 @@ $('button.delete-item').on('click', function(e){
               $('#loading').show().fadeIn('fast');
             },
             error: function(xhr, textStatus, thrownError) {
-                alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: error,
+                    timer: 2500,
+                    showConfirmButton: false
+                });
             },
             success: function(response) {
                 $('#loading').hide();
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                $('p#'+param).remove();
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
             }
         });
     }
