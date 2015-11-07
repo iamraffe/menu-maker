@@ -478,7 +478,7 @@ TYNYMCE INIT
 tinymce.init({
     selector:   "textarea",
     body_class: "tinymce-body",
-    content_css: "/css/all.css",
+    // content_css: "/css/all.css",
     // skin_url: "/js/skins/lightgray",
     width:      '100%',
     height:     50,
@@ -544,6 +544,7 @@ ADD ITEM
 $(document).on('click', '.item-action.add-item', function(e){
 
     e.preventDefault();
+
     var data = {
         menu: $(this).parent().siblings('.modal-body').children('input[name=menu]').val(),
         category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
@@ -573,9 +574,8 @@ $(document).on('click', '.item-action.add-item', function(e){
           swal({
               title: 'ERROR',
               text: 'There was an error with your request. If this error persists please contact your webmaster.',
-              type: error,
-              timer: 2500,
-              showConfirmButton: false
+              type: "error",
+              showConfirmButton: true
           });
       },
     });
@@ -613,12 +613,11 @@ $(document).on('click', '.update-category', function(e){
       },
       error: function(xhr, textStatus, thrownError) {
           swal({
-                    title: 'ERROR',
-                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
-                    timer: 2500,
-                    showConfirmButton: false
-                });
+              title: 'ERROR',
+              text: 'There was an error with your request. If this error persists please contact your webmaster.',
+              type: "error",
+              showConfirmButton: true
+          });
       },
     });
 });
@@ -654,23 +653,38 @@ $(document).on('click', '.update-subcategory', function(e){
       },
       error: function(xhr, textStatus, thrownError) {
           swal({
-                    title: 'ERROR',
-                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
-                    timer: 2500,
-                    showConfirmButton: false
-                });
+              title: 'ERROR',
+              text: 'There was an error with your request. If this error persists please contact your webmaster.',
+              type: "error",
+              showConfirmButton: true
+          });
       },
     });
 });
+function getStats(id) {
+    var body = tinymce.get(id).getBody(), text = tinymce.trim(body.innerText || body.textContent);
 
+    return {
+        chars: text.length,
+        words: text.split(/[\w\u2019\'-]+/).length
+    };
+}
 /*
 UPDATE ITEM
  */
 $(document).on('click', '.update-item', function(e){
     e.preventDefault();
     var type = $(this).parent().siblings('.modal-body').children('input[name=type]').val();
-
+    var chars_num = getStats('content').chars;
+    if (chars_num > 1000) {
+        swal({
+            title: 'ERROR',
+            text: "The text is too large. This section can only house 1000 characters. You are trying to enter "+chars_num+".",
+            type: "error",
+            showConfirmButton: true
+        });
+        return;
+    }
     var data = {
         objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
         category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
@@ -711,12 +725,11 @@ $(document).on('click', '.update-item', function(e){
       },
       error: function(xhr, textStatus, thrownError) {
           swal({
-                    title: 'ERROR',
-                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
-                    timer: 2500,
-                    showConfirmButton: false
-                });
+              title: 'ERROR',
+              text: 'There was an error with your request. If this error persists please contact your webmaster.',
+              type: "error",
+              showConfirmButton: true
+          });
       },
     });
 });
@@ -753,12 +766,11 @@ $(function() {
               },
               error: function(xhr, textStatus, thrownError) {
                   swal({
-                    title: 'ERROR',
-                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
-                    timer: 2500,
-                    showConfirmButton: false
-                });
+                      title: 'ERROR',
+                      text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                      type: "error",
+                      showConfirmButton: true
+                  });
               },
             });
         }
@@ -785,9 +797,8 @@ $(document).on('click', 'button.delete-item', function(e){
                 swal({
                     title: 'ERROR',
                     text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
-                    timer: 2500,
-                    showConfirmButton: false
+                    type: "error",
+                    showConfirmButton: true
                 });
             },
             success: function(response) {
