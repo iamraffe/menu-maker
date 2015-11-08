@@ -60,7 +60,7 @@
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                       <div class="item-container menu-text">
                         <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="fa fa-pencil"></span>
+                            <span class="ion ion-ios-compose-outline"></span>
                         </a>
                         {!! $item->relatedText !!}
                       </div>
@@ -78,7 +78,7 @@
                 <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
                     <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                        <span class="fa fa-pencil"></span>
+                        <span class="ion ion-ios-compose-outline"></span>
                     </a>
                 </h2>
                 <div class="separator"></div>
@@ -86,7 +86,7 @@
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                       <div class="item-container menu-text">
                         <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="fa fa-pencil"></span>
+                            <span class="ion ion-ios-compose-outline"></span>
                         </a>
                         {!! $item->relatedText !!}
                       </div>
@@ -102,12 +102,12 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
-                          </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-plus"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -115,14 +115,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -142,7 +142,7 @@
                 <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
                     <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                        <span class="fa fa-pencil"></span>
+                        <span class="ion ion-ios-compose-outline"></span>
                     </a>
                 </h2>
                 <div class="separator"></div>
@@ -150,7 +150,7 @@
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                       <div class="item-container menu-text">
                         <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="fa fa-pencil"></span>
+                            <span class="ion ion-ios-compose-outline"></span>
                         </a>
                         {!! $item->relatedText !!}
                       </div>
@@ -167,12 +167,12 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
-                          </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-plus"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -180,14 +180,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -208,12 +208,12 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
-                          </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-plus"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -221,14 +221,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -253,7 +253,7 @@
                 <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
                     <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                        <span class="fa fa-pencil"></span>
+                        <span class="ion ion-ios-compose-outline"></span>
                     </a>
                 </h2>
                 <div class="separator"></div>
@@ -261,7 +261,7 @@
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                       <div class="item-container menu-text">
                         <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="fa fa-pencil"></span>
+                            <span class="ion ion-ios-compose-outline"></span>
                         </a>
                         {!! $item->relatedText !!}
                       </div>
@@ -280,7 +280,7 @@
                         <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -288,14 +288,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -318,7 +318,7 @@
                         <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -326,14 +326,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -353,7 +353,7 @@
                         <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -361,14 +361,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -389,12 +389,12 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 6 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
-                          </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-plus"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -402,14 +402,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -425,12 +425,12 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 5 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-pencil"></span>
-                          </a>
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="fa fa-plus"></span>
+                              <span class="ion ion-ios-compose-outline"></span>
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
@@ -438,14 +438,14 @@
                               @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
                                   <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                       <button class="btn btn-link">
-                                          <span class="fa fa-arrows-v"></span>
+                                          <span class="ion ion-ios-shuffle"></span>
                                       </button>
                                       <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="fa fa-times"></span>
+                                          <span class="ion ion-ios-close-outline"></span>
                                       </button>
                                       {!! $item->relatedText !!}
                                       <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="fa fa-pencil"></span>
+                                          <span class="ion ion-ios-compose-outline"></span>
                                       </a>
                                   </p>
                               @endif 
@@ -513,6 +513,7 @@ $('#myModal').on('show.bs.modal', function (event) {
   else if(button.data('action') === 'edit'){
     button.parent().find('button').addClass('hide');
     modal.find('h3').text('EDIT ITEM');
+    button.parent().find('button').addClass('hide');
     tinyMCE.activeEditor.setContent(button.parent().html());
     modal.find('button.item-action').addClass('update-item').text('Update Item');
   }
@@ -607,7 +608,7 @@ $(document).on('click', '.update-category', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        var html = data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-category" class="btn btn-link" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
+        var html = data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-category" class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
          $('h2[data-id='+data["objectId"]+']').html(html);
         // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
@@ -647,7 +648,7 @@ $(document).on('click', '.update-subcategory', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        var html = data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal"><span class="fa fa-pencil"></span></a> <a href="#myModal" role="button" class="open-modal" data-subcategory="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="fa fa-plus"></span></a>';
+        var html = '<a href="#myModal" role="button" class="open-modal" data-subcategory="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-plus-outline"></span></a> '+data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
         $('h2[data-id='+data["objectId"]+']').html(html);
         // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
@@ -691,7 +692,7 @@ $(document).on('click', '.update-item', function(e){
         relatedText: type === 'html' ? tinymce.activeEditor.getContent() : $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
         _method: 'PUT'
     };
-    var html = '<a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data["objectId"]+'" data-category="'+data["category"]+'" data-action="edit" data-type="html" data-toggle="modal"><span class="fa fa-pencil"></span></a>'+data["relatedText"];
+    var html = '<a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data["objectId"]+'" data-category="'+data["category"]+'" data-action="edit" data-type="html" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>'+data["relatedText"];
 
     
     // // console.log(html);
@@ -714,7 +715,7 @@ $(document).on('click', '.update-item', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        var text = '<button class="btn btn-link"><span class="fa fa-arrows-v"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="fa fa-times"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
+        var text = '<button class="btn btn-link"><span class="ion ion-ios-shuffle"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="ion ion-ios-close-outline"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
         if(type === 'text'){
           $('p#'+data["objectId"]).html(text);
         }

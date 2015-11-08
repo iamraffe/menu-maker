@@ -5,7 +5,8 @@
 @import 'font-faces.less';
 @import (inline) 'libs/animate.css';
 @import (inline) 'libs/dataTables.bootstrap.min.css';
-// @import (inline) 'https://cdn.datatables.net/r/zf-5.5.2/dt-1.10.9,r-1.0.7/datatables.min.css';
+@import (inline) 'libs/ionicons.min.css';
+// @import (inline) 'libs/font-awesome.min.css';
 
 @doc-width: 27.94cm;
 @doc-height: 21.59cm;
@@ -93,13 +94,14 @@ body {
           }
 
           span{
-            &.fa-plus{
-              color: #888;
+            &.ion-ios-plus-outline{
+              font-size: 1.75em;
+              margin-left: -25px;
               
             }
-            &.fa-pencil{
-              
-              color: #888;
+            &.ion-ios-compose-outline{
+              font-size: 1.75em;
+              margin-left: 5px;
             }
           }
 
@@ -127,13 +129,14 @@ body {
           }
 
           span{
-            &.fa-plus{
-              color: #888;
+            &.ion-ios-plus-outline{
+              font-size: 1.75em;
+              margin-left: -25px;
               
             }
-            &.fa-pencil{
-              
-              color: #888;
+            &.ion-ios-compose-outline{
+              font-size: 1.75em;
+              margin-left: 5px;
             }
           }
 
@@ -174,13 +177,14 @@ body {
           }
 
           span{
-            &.fa-plus{
-              color: #888;
+            &.ion-ios-plus-outline{
+              font-size: 1.75em;
+              margin-left: -25px;
               
             }
-            &.fa-pencil{
-              
-              color: #888;
+            &.ion-ios-compose-outline{
+              font-size: 1.75em;
+              margin-left: 5px;
             }
           }
 
@@ -262,24 +266,28 @@ body {
           position: relative;
 
           span{
-            &.fa-arrows-v{
+            &.ion-ios-shuffle{
               // margin-left: -35px;
               position: absolute;
-              left: -22.5px;
-              top: -5px;
+              left: -27.5px;
+              top: -8.5px;
+              font-size: 1.25em;
             }
-            &.fa-times{
+            &.ion-ios-close-outline{
               color: red;
               // margin-left: -15px;
               position: absolute;
-              left: -15px;
-              top: -5px;
+              left: -12.5px;
+              top: -8.5px;
+              font-size: 1.25em;
             }
-            &.fa-pencil{
+            &.ion-ios-compose-outline{
               position: absolute;
               right: -25px;
               // margin-left: 15px;
               color: #888;
+              top: 0px;
+              font-size: 1.25em;
             }
           }
 
@@ -373,16 +381,17 @@ body {
 						text-decoration: none;
 					}
 
-					span{
-						&.fa-plus{
-							color: #888;
-							
-						}
-						&.fa-pencil{
-							
-							color: #888;
-						}
-					}
+          span{
+            &.ion-ios-plus-outline{
+              font-size: 1.75em;
+              margin-left: -25px;
+              
+            }
+            &.ion-ios-compose-outline{
+              font-size: 1.75em;
+              margin-left: 5px;
+            }
+          }
 
 				}
 			}
@@ -413,24 +422,24 @@ body {
           position: relative;
 
 					span{
-						&.fa-arrows-v{
+						&.ion-ios-shuffle{
 							// margin-left: -35px;
               position: absolute;
               left: -22.5px;
-              top: -5px;
+              top: -7.5px;
 						}
-						&.fa-times{
+						&.ion-ios-close-outline{
 							color: red;
 							// margin-left: -15px;
               position: absolute;
-              left: -15px;
-              top: -5px;
+              left: -10px;
+              top: -7.5px;
 						}
-						&.fa-pencil{
+						&.ion-ios-compose-outline{
               position: absolute;
               right: -25px;
 							// margin-left: 15px;
-							color: #888;
+							// color: #888;
 						}
 					}
 
