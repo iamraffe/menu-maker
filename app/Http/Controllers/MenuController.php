@@ -38,8 +38,7 @@ class MenuController extends Controller
 
 	public function index()
 	{
-    $allMenus = $this->menu->all();
-		return view('menu.index', compact('allMenus'));
+		return view('menu.index');
 	}
 
   /**
@@ -50,20 +49,12 @@ class MenuController extends Controller
    */
   public function show($name)
   {
-
-    if(strcmp($name, 'wine-list') == 0){
-      return view('wine.show');
-    }
-
-    return view('menu.show');
+    return strcmp($name, 'wine-list') == 0 ? view('wine.show') : view('menu.show');    
   }
 
   public function edit($name)
   {
-    if(strcmp($name, 'wine-list')==0){
-      return view('wine.edit');
-    }
-    return view('menu.edit'); 
+    return strcmp($name, 'wine-list') == 0 ? view('wine.edit') : view('menu.edit');
   }
 
   public function store($content, $menu)
@@ -122,60 +113,13 @@ class MenuController extends Controller
   public function update($_menu)
   {
     $menu = $this->archives->findBy('name', Carbon::now()->format('Y-m-d'));
-    // dd($_menu);
     return $this->archives->update($menu->objectId, ['content' => $_menu]);
   }
 
   public function archive($name)
   {
     $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
-    // dd($menu);
     $archives = $this->archives->findAllBy('menu', $menu, ['menu']);
     return view('archives.index', compact('archives', 'menu'));
   }
-
-  // public function download()
-  // {
-  //   $categories = $this->prepareItems();
-  //   $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
-  //   // $pdf->setOption('user-style-sheet', '/your/file.css');
-  //   return $pdf->download();
-  // }
-
-  // public function update(Request $request)
-  // {
-
-  //   $newOrder = $request->json()->all();
-  //   if(empty($newOrder)){
-  //     $this->items->update($request->input('objectId'), [ 'relatedText' => $request->input('relatedText')]);
-  //   }
-  //   else{
-  //     // $allItems = $this->items->all();
-  //     foreach($newOrder as $key => $objectId){
-  //       // $found = $allItems->filter(function($item) use ($objectId){
-  //       //   return $item->objectId == $objectId;
-  //       // })->first();
-  //       $this->items->update($objectId, ['position' => intval($key)+1]);
-  //     }
-  //   }
-		// return response()->json(['Message' => 'Item updated.'], 200);
-  // }
-
-  // public function store(Request $request)
-  // {
-
-  //   $item = [
-  //     'position' => intval($request->input('position')),
-  //     'parent' => $this->items->find($request->input('parent')),
-  //     'relatedText' => $request->input('relatedText'),
-  //     'category' => false
-  //   ];
-
-  //   $this->items->create($item);
-  // }
-
-  // public function delete($objectId)
-  // {
-  //   $this->items->delete($objectId);
-  // }
 }

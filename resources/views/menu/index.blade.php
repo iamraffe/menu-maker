@@ -2,11 +2,12 @@
 
 @section('content')
   <div class="row menus">
-    @foreach($allMenus as $menu)
+    <div class="col-sm-5">
+      <h2 class="animated fadeIn"><a href="{{ url('admin/menus/wine-list') }}">wine list</a></h2>
+    </div>
         <div class="col-sm-5">
-          <h2 class="animated fadeIn"><a href="{{ url('admin/menus/'.str_slug($menu->name)) }}">{{ $menu->name }}</a></h2>
-        </div>       
-    @endforeach
+          <h2 class="animated fadeIn"><a href="{{ url('admin/menus/food-list') }}">food list</a></h2>
+        </div>
   </div>
 @stop
 
