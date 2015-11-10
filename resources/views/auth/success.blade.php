@@ -16,8 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <h2>Your password has been reset correctly</h2>
-        <p>Click <a href="http://menustyler.com">here</a> to go back to the site.</p>
+        <h2>Click <a href="http://menustyler.com" target="_blank">here</a> to go back to the site.</h2>
     </div>
   </div>
 </div>
