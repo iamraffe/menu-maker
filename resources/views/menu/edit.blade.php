@@ -37,12 +37,12 @@
                     @if($category->position < 4)
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                                    <span class="ion ion-ios-plus-outline"></span>
+                                </a>
                                 {!!$category->name!!}
                                 <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-pencil"></span>
-                                </a>
-                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-plus"></span>
+                                    <span class="ion ion-ios-compose-outline"></span>
                                 </a>
                             </h2>
                             <div class="menu-contents item-container">
@@ -50,14 +50,14 @@
                                     @if($item->category->objectId == $category->objectId)
                                         <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                             <button class="btn btn-link">
-                                                <span class="fa fa-arrows-v"></span>
+                                                <span class="ion ion-ios-shuffle"></span>
                                             </button>
                                             <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                                <span class="fa fa-times"></span>
+                                                <span class="ion ion-ios-close-outline"></span>
                                             </button>
                                             {!! $item->relatedText !!}
                                             <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-toggle="modal">
-                                                <span class="fa fa-pencil"></span>
+                                                <span class="ion ion-ios-compose-outline"></span>
                                             </a>
                                         </p>
                                     @endif
@@ -72,12 +72,12 @@
                     @if($category->position > 3)
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}" class="btn btn-link" data-toggle="modal">
+                                    <span class="ion ion-ios-plus-outline"></span>
+                                </a>
                                 {!!$category->name!!}
                                 <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-pencil"></span>
-                                </a>
-                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}" class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-plus"></span>
+                                    <span class="ion ion-ios-compose-outline"></span>
                                 </a>
                             </h2>
                             <div class="menu-contents item-container">
@@ -85,14 +85,14 @@
                                     @if($item->category->objectId == $category->objectId)
                                         <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                             <button class="btn btn-link">
-                                                <span class="fa fa-arrows-v"></span>
+                                                <span class="ion ion-ios-shuffle"></span>
                                             </button>
                                             <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                                <span class="fa fa-times"></span>
+                                                <span class="ion ion-ios-close-outline"></span>
                                             </button>
                                             {!! $item->relatedText !!}
                                             <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-toggle="modal">
-                                                <span class="fa fa-pencil"></span>
+                                                <span class="ion ion-ios-compose-outline"></span>
                                             </a>
                                         </p>
                                     @endif
@@ -178,36 +178,41 @@
 
         });
         $(document).on('click', 'button.delete-item', function(e){
-        // $('button.delete-item').on('click', function(e){
             e.preventDefault();
             var param = $(this).attr("data-id");
-            var answer = confirm('Are you sure you want to delete this item?');
-            if (answer)
-            {
-                $.ajax({
-                    type        : 'POST',
-                    url         : "{{ url('admin/items/') }}"+"/"+param,
-                    data : {_method : 'DELETE'},
-                    encode          : true,
-                    beforeSend: function(){
-                      $('#loading').show().fadeIn('fast');
-                    },
-                    error: function(xhr, textStatus, thrownError) {
-                      swal({
-                          title: 'ERROR',
-                          text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                          type: error,
-                          timer: 2500,
-                          showConfirmButton: false
-                      });
-                    },
-                    success: function(response) {
-                        $('#loading').hide();
-                        $('p#'+param).remove();
-                        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
-                    }
-                });
-            }
+            swal({
+              title: "Are you sure you want to delete this item?",
+              text: "You will not be able to undo this action!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              closeOnConfirm: true 
+            }, function(){
+              $.ajax({
+                  type        : 'POST',
+                  url         : "{{ url('admin/items/') }}"+"/"+param,
+                  data : {_method : 'DELETE'},
+                  encode          : true,
+                  beforeSend: function(){
+                    $('#loading').show().fadeIn('fast');
+                  },
+                  error: function(xhr, textStatus, thrownError) {
+                    swal({
+                        title: 'ERROR',
+                        text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                        type: error,
+                        timer: 2500,
+                        showConfirmButton: false
+                    });
+                  },
+                  success: function(response) {
+                      $('#loading').hide();
+                      $('p#'+param).remove();
+                      // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                  }
+              });
+            });
         });
         $('#myModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
@@ -267,7 +272,7 @@
                 $('#loading').hide();
                 $('#myModal').modal('hide');
                 // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
-                var template = '<button class="btn btn-link"><span class="fa fa-arrows-v"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="fa fa-times"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="fa fa-pencil"></span></a>';
+                var template = '<button class="btn btn-link"><span class="ion ion-ios-shuffle"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="ion ion-ios-close-outline"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
 
                 $('p#'+data["objectId"]).html(template);
               },
@@ -305,7 +310,7 @@
                 $('#loading').hide();
                 $('#myModal').modal('hide');
                 // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
-                var template = data["name"]+' <a href="#myModal" role="button" class="open-modal" data-parent="'+data["objectId"]+'" data-id="'+data["objectId"]+'" data-action="edit-category" class="btn btn-link" data-toggle="modal"><span class="fa fa-pencil"></span></a> <a href="#myModal" role="button" class="open-modal" data-category="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="fa fa-plus"></span></a>';
+                var template = '<a href="#myModal" role="button" class="open-modal" data-category="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-plus-outline"></span></a> ' + data["name"]+' <a href="#myModal" role="button" class="open-modal" data-parent="'+data["objectId"]+'" data-id="'+data["objectId"]+'" data-action="edit-category" class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a> ';
 
                 $('h2[data-id='+data["objectId"]+']').html(template);
               },

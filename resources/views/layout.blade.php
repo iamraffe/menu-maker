@@ -5,7 +5,7 @@
         <link rel="icon" type="image/png" href="/img/favicon.png">
         <meta name="_token" content="{!! csrf_token() !!}"/>
         @yield('css')
-        <link href="/css/all.css" rel="stylesheet" media="all">
+        <link  href="{{ elixir('css/all.css') }}" rel="stylesheet" media="all">
 
     </head>
     <body>

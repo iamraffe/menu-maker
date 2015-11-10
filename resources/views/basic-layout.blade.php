@@ -4,7 +4,7 @@
         <title>Menu Maker</title>
         <link rel="icon" type="image/png" href="/img/favicon.png">
         <meta name="_token" content="{!! csrf_token() !!}"/>
-        <link href="/css/all.css" rel="stylesheet" media="all">
+        <link href="{{ elixir('css/all.css') }}" rel="stylesheet" media="all">
     </head>
     <body>
       <div id="no-nav-container" class="container-fluid">

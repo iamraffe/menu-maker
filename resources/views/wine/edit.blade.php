@@ -102,7 +102,7 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
                           </a>
                           {{$subcategory->name}}
@@ -167,7 +167,7 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
                           </a>
                           {{$subcategory->name}}
@@ -208,7 +208,7 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
                           </a>
                           {{$subcategory->name}}
@@ -278,6 +278,9 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                            <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-compose-outline"></span>
@@ -316,6 +319,9 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 1 && $subcategory->position < 4 &&$subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                            <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-compose-outline"></span>
@@ -351,6 +357,9 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 3 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                            <span class="ion ion-ios-plus-outline"></span>
+                          </a>
                           {{$subcategory->name}}
                           <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-compose-outline"></span>
@@ -389,7 +398,7 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position < 6 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
                           </a>
                           {{$subcategory->name}}
@@ -425,7 +434,7 @@
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 5 && $subcategory->category->objectId == $category->objectId)
                         <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
                           </a>
                           {{$subcategory->name}}
@@ -473,26 +482,6 @@ $.ajaxSetup({
 });
 
 /*
-TYNYMCE INIT
- */
-tinymce.init({
-    selector:   "textarea",
-    body_class: "tinymce-body",
-    // content_css: "/css/all.css",
-    // skin_url: "/js/skins/lightgray",
-    width:      '100%',
-    height:     50,
-    statusbar:  false,
-    menubar:    false,
-    toolbar:    "bold",
-});
-// Prevent bootstrap dialog from blocking focusin
-$(document).on('focusin', function(e) {
-    if ($(e.target).closest(".mce-window").length) {
-        e.stopImmediatePropagation();
-    }
-});
-/*
 MODAL CONFIG & INIT VALUES
  */
 $('#myModal').on('show.bs.modal', function (event) {
@@ -508,26 +497,25 @@ $('#myModal').on('show.bs.modal', function (event) {
   if(button.data('action') === 'add'){
     modal.find('h3').text('ADD ITEM');
     tinyMCE.activeEditor.setContent('');
-    modal.find('button.item-action').addClass('add-item').text('Add Item');
+    modal.find('button.item-action').removeClass().addClass('btn btn-info item-action add-item').text('Add Item');
   }
   else if(button.data('action') === 'edit'){
     button.parent().find('button').addClass('hide');
     modal.find('h3').text('EDIT ITEM');
-    button.parent().find('button').addClass('hide');
     tinyMCE.activeEditor.setContent(button.parent().html());
-    modal.find('button.item-action').addClass('update-item').text('Update Item');
+    modal.find('button.item-action').removeClass().addClass('btn btn-info item-action update-item').text('Update Item');
   }
   else if(button.data('action') === 'edit-category'){
     modal.find('h3').text('EDIT CATEGORY');
     tinyMCE.activeEditor.setContent(button.parent().html());
-    button.parent().find('button').addClass('hide');
-    modal.find('button.item-action').addClass('update-category').text('Update Category');
+    // button.parent().find('button').addClass('hide');
+    modal.find('button.item-action').removeClass().addClass('btn btn-info item-action update-category').text('Update Category');
   }
   else if(button.data('action') === 'edit-subcategory'){
     modal.find('h3').text('EDIT SUBCATEGORY');
     tinyMCE.activeEditor.setContent(button.parent().html());
-    button.parent().find('button').addClass('hide');
-    modal.find('button.item-action').addClass('update-subcategory').text('Update Subcategory');
+    // button.parent().find('button').addClass('hide');
+    modal.find('button.item-action').removeClass().addClass('btn btn-info item-action update-subcategory').text('Update Subcategory');
   }
   modal.find('.modal-body input[name=menu]').val(menu);
   modal.find('.modal-body input[name=type]').val(type);
@@ -539,6 +527,28 @@ $('#myModal').on('show.bs.modal', function (event) {
 $('#myModal').on('hide.bs.modal', function (event) {
   $('button').removeClass('hide add-item update-item');
 });
+
+/*
+TYNYMCE INIT
+ */
+tinymce.init({
+    selector:   "textarea",
+    body_class: "tinymce-body",
+    content_css: "/css/all.css",
+    // skin_url: "/js/skins/lightgray",
+    width:      '100%',
+    height:     50,
+    statusbar:  false,
+    menubar:    false,
+    toolbar:    "bold",
+});
+// Prevent bootstrap dialog from blocking focusin
+$(document).on('focusin', function(e) {
+    if ($(e.target).closest(".mce-window").length) {
+        e.stopImmediatePropagation();
+    }
+});
+
 /*
 ADD ITEM
  */
@@ -553,7 +563,6 @@ $(document).on('click', '.item-action.add-item', function(e){
         relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
 
     };
-    console.log($('*[data-id='+data["subcategory"]+']').siblings('.menu-contents'));
 
     $.ajax({
       url: "{{ url('/admin/items/') }}",
@@ -568,7 +577,7 @@ $(document).on('click', '.item-action.add-item', function(e){
       success: function(response){
         $('#loading').hide();
         console.log(response);
-        $('*[data-id='+data["subcategory"]+']').siblings('.menu-contents').append(response);
+        $('*[data-id='+data["subcategory"]+']').next('.menu-contents').append(response);
         // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
       error: function(xhr, textStatus, thrownError) {
@@ -630,6 +639,7 @@ $(document).on('click', '.update-subcategory', function(e){
     e.preventDefault();
 
     var data = {
+        category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
         objectId: $(this).parent().siblings('.modal-body').children('input[name=id]').val(),
         name: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
         _method: 'PUT'
@@ -648,7 +658,7 @@ $(document).on('click', '.update-subcategory', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        var html = '<a href="#myModal" role="button" class="open-modal" data-subcategory="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-plus-outline"></span></a> '+data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
+        var html = '<a href="#myModal" role="button" class="open-modal" data-category="'+data["category"]+'" data-subcategory="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-plus-outline"></span></a> '+data["name"]+' <a href="#myModal" role="button" class="open-modal" data-id="'+data["objectId"]+'" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
         $('h2[data-id='+data["objectId"]+']').html(html);
         // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
       },
@@ -675,6 +685,7 @@ UPDATE ITEM
  */
 $(document).on('click', '.update-item', function(e){
     e.preventDefault();
+    console.log("click")
     var type = $(this).parent().siblings('.modal-body').children('input[name=type]').val();
     var chars_num = getStats('content').chars;
     if (chars_num > 1000) {
@@ -694,14 +705,6 @@ $(document).on('click', '.update-item', function(e){
     };
     var html = '<a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data["objectId"]+'" data-category="'+data["category"]+'" data-action="edit" data-type="html" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>'+data["relatedText"];
 
-    
-    // // console.log(html);
-    // console.log(data["category"]);
-    // console.log($('h2.category[data-id='+data["category"]+']').html());
-    // console.log($('h2.category[data-id='+data["category"]+']').siblings('.menu-text').html());
-
-
-
     $.ajax({
       url: "{{ url('/admin/items/') }}"+"/"+data["objectId"],
       data: data,
@@ -715,7 +718,7 @@ $(document).on('click', '.update-item', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        var text = '<button class="btn btn-link"><span class="ion ion-ios-shuffle"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="ion ion-ios-close-outline"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
+        var text = '<button class="btn btn-link"><span class="ion ion-ios-shuffle"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="ion ion-ios-close-outline"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-action="edit" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
         if(type === 'text'){
           $('p#'+data["objectId"]).html(text);
         }
@@ -783,32 +786,38 @@ DELETE ITEM
 $(document).on('click', 'button.delete-item', function(e){
     e.preventDefault();
     var param = $(this).attr("data-id");
-    var answer = confirm('Are you sure you want to delete this item?');
-    if (answer)
-    {
-        $.ajax({
-            type        : 'POST',
-            url         : "{{ url('admin/items/') }}"+"/"+param,
-            data : {_method : 'DELETE'},
-            encode          : true,
-            beforeSend: function(){
-              $('#loading').show().fadeIn('fast');
-            },
-            error: function(xhr, textStatus, thrownError) {
-                swal({
-                    title: 'ERROR',
-                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: "error",
-                    showConfirmButton: true
-                });
-            },
-            success: function(response) {
-                $('#loading').hide();
-                $('p#'+param).remove();
-                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
-            }
-        });
-    }
+    swal({
+      title: "Are you sure you want to delete this item?",
+      text: "You will not be able to undo this action!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: true 
+    }, function(){
+      $.ajax({
+          type        : 'POST',
+          url         : "{{ url('admin/items/') }}"+"/"+param,
+          data : {_method : 'DELETE'},
+          encode          : true,
+          beforeSend: function(){
+            $('#loading').show().fadeIn('fast');
+          },
+          error: function(xhr, textStatus, thrownError) {
+              swal({
+                  title: 'ERROR',
+                  text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                  type: "error",
+                  showConfirmButton: true
+              });
+          },
+          success: function(response) {
+              $('#loading').hide();
+              $('p#'+param).remove();
+              // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+          }
+      });
+    });
 });
 </script>
 @stop
