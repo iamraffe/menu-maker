@@ -1,6 +1,8 @@
 @extends('layout')
 
-
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/1.2.8/css/froala_editor.min.css">
+@stop
 
 @section('content')
         <div id="loading">
@@ -106,7 +108,7 @@
 @stop 
 
 @section('scripts')
-    <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script type="text/javascript">
         $.ajaxSetup({
           headers: {
@@ -330,12 +332,23 @@
             selector:   "textarea",
             body_class: "tinymce-body",
             content_css: "/css/all.css",
-            // skin_url: "/js/skins/lightgray",
+            skin_url: "/skins/light",
             width:      '100%',
             height:     50,
             statusbar:  false,
             menubar:    false,
-            toolbar:    "bold",
+            toolbar:    "bold | BR",
+            theme: "modern",
+            skin: 'light',
+            setup: function(editor) {
+                editor.addButton('BR', {
+                    text: 'Insert breakline',
+                    icon: false,
+                    onclick: function() {
+                        editor.insertContent('<br>');
+                    }
+                });
+            }
         });
         // Prevent bootstrap dialog from blocking focusin
         $(document).on('focusin', function(e) {
