@@ -11,7 +11,7 @@
 @stop
 
 @section('scripts')
-<script type="text/javascript">
+{{--<script type="text/javascript">
     $(window).load(function() {
         $("p").each(function(index){
             var size = $(this).text().trim().length;
@@ -29,5 +29,5 @@
         });
 
     });
-</script>
+</script>--}}
 @stop
