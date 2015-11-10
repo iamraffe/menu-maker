@@ -28,7 +28,7 @@
             </ul>
           </div>
         @endif
-        <form class="form-horizontal" role="form" method="POST" action="{{ https://www.parse.com/.$id./request_password_reset }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ 'https://www.parse.com/'.$id.'/request_password_reset' }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <input type="hidden" name="username" value="{{ $username }}">
           <input type="hidden" name="token" value="{{ $token }}">
