@@ -16,8 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <h2>Forgot your password?</h2>
-        <p>Enter your email address below and we'll send you instructions on how to change your password.</p>
+        <h2>Reset your password for your Menu Styler account</h2>
         @if (count($errors) > 0)
           <div class="alert alert-danger">
             <strong>Whoops!</strong> Por favor, revise los siguientes errores:<br><br>
@@ -28,15 +27,15 @@
             </ul>
           </div>
         @endif
-        <form class="form-horizontal" role="form" method="POST" action="{{ 'https://www.parse.com/'.$id.'/request_password_reset' }}">
+        <form class="form-horizontal" role="form" method="POST" action="https://www.parse.com/apps/menu-maker--2/request_password_reset">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <input type="hidden" name="username" value="{{ $username }}">
           <input type="hidden" name="token" value="{{ $token }}">
           <input name='utf-8' type='hidden' value='âœ“' />
          <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon"><i class="ion ion-ios-email-outline"></i></span>
-                <input type="password" class="form-control" name="new_password" value="" placeholder="E-mail">                                        
+                <span class="input-group-addon"><i class="ion ion-ios-locked-outline"></i></span>
+                <input type="password" class="form-control" name="new_password" value="" placeholder="New password...">                                        
             </div>  
          </div>
           <div class="form-group">
