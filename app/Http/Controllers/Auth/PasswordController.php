@@ -66,7 +66,7 @@ class PasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function resetSuccess()
+    public function getResetSuccess()
     {
         flash()->overlay('Your password has been reset succesfully!', '', 'success');
         return redirect('/');
