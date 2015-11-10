@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Parse\ParseException;
 use Parse\ParseUser;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -42,7 +43,12 @@ class PasswordController extends Controller
     {
         $this->validate($request, ['email' => 'required|email']);
 
-        ParseUser::requestPasswordReset($request->input('email'));
+        try {
+            ParseUser::requestPasswordReset($request->input('email'));
+        } catch(ParseException $ex) {
+            flash()->error('There is no user registered with the email '.$request->input('email'), 'Please check your input and try again.');
+            return redirect()->back();
+        } 
 
         flash()->overlay('An email has been sent to '.$request->input('email'), 'Please follow instructions in the email to change your password.', 'success');
 
