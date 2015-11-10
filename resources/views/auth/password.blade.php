@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <h2>Forgot your password?</h2>
-        <p>Enter your email address below and we'll send you instructions on how to change your password.</p>
+        <p class="text-center">Enter your email address below and we'll send you instructions on how to change your password.</p>
         @if (count($errors) > 0)
           <div class="alert alert-danger">
             <strong>Whoops!</strong> Por favor, revise los siguientes errores:<br><br>
@@ -37,7 +37,7 @@
             </div>  
          </div>
           <div class="form-group">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary pull-right">
                 Send
                 <i class="ion ion-ios-paperplane-outline"></i>
               </button>

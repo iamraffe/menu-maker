@@ -39,7 +39,7 @@
             </div>  
          </div>
           <div class="form-group">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary pull-right">
                 Reset
                 <i class="ion ion-ios-reload"></i>
               </button>
