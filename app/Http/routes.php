@@ -1,5 +1,7 @@
 <?php
 
+Route::get('password/reset', 'Auth\PasswordController@getReset')
+
 /**
  * Auth handling
  */
@@ -7,6 +9,8 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+
+
 
 Route::group(['prefix' => 'admin'], function()
 {
