@@ -1,5 +1,5 @@
 <?php
-Route::get('password/reset/success', 'Auth\PasswordController@resetSuccess');
+Route::get('password/success', 'Auth\PasswordController@resetSuccess');
 Route::get('password/reset', 'Auth\PasswordController@getReset');
 
 
