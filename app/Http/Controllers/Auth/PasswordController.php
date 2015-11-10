@@ -57,11 +57,11 @@ class PasswordController extends Controller
     public function getReset($token = null, Request $request)
     {
         dd($request->all());
-        if (is_null($token)) {
-            throw new NotFoundHttpException;
-        }
+        // if (is_null($token)) {
+        //     throw new NotFoundHttpException;
+        // }
 
-        return view('auth.reset')->with('token', $token);
+        // return view('auth.reset')->with('token', $token);
     }
 
     /**
