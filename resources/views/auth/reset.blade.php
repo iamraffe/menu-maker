@@ -28,18 +28,21 @@
             </ul>
           </div>
         @endif
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ https://www.parse.com/.$id./request_password_reset }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="username" value="{{ $username }}">
+          <input type="hidden" name="token" value="{{ $token }}">
+          <input name='utf-8' type='hidden' value='âœ“' />
          <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="ion ion-ios-email-outline"></i></span>
-                <input type="text" class="form-control" name="email" value="" placeholder="E-mail">                                        
+                <input type="password" class="form-control" name="new_password" value="" placeholder="E-mail">                                        
             </div>  
          </div>
           <div class="form-group">
               <button type="submit" class="btn btn-primary">
-                Send
-                <i class="ion ion-ios-paperplane-outline"></i>
+                Reset
+                <i class="ion ion-ios-reload"></i>
               </button>
           </div>
         </form>

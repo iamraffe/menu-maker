@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Parse\ParseUser;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PasswordController extends Controller
 {
@@ -54,14 +55,9 @@ class PasswordController extends Controller
      * @param  string  $token
      * @return \Illuminate\Http\Response
      */
-    public function getReset($token = null, Request $request)
+    public function getReset()
     {
-        dd($request->all());
-        // if (is_null($token)) {
-        //     throw new NotFoundHttpException;
-        // }
-
-        // return view('auth.reset')->with('token', $token);
+        return view('auth.reset', compact(\Input::all()));
     }
 
     /**
