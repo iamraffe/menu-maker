@@ -342,10 +342,12 @@
             skin: 'light',
             setup: function(editor) {
                 editor.addButton('BR', {
-                    text: 'Insert breakline',
+                    text: 'Insert Breakline',
                     icon: false,
                     onclick: function() {
                         editor.insertContent('<br>');
+                        editor.selection.select(editor.getBody(), true);
+                        editor.selection.collapse(false);
                     }
                 });
             }

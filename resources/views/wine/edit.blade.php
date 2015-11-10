@@ -535,12 +535,25 @@ tinymce.init({
     selector:   "textarea",
     body_class: "tinymce-body",
     content_css: "/css/all.css",
-    // skin_url: "/js/skins/lightgray",
+    skin_url: "/skins/light",
     width:      '100%',
     height:     50,
     statusbar:  false,
     menubar:    false,
-    toolbar:    "bold",
+    toolbar:    "bold | BR",
+    theme: "modern",
+    skin: 'light',
+    setup: function(editor) {
+        editor.addButton('BR', {
+            text: 'Insert Breakline',
+            icon: false,
+            onclick: function() {
+                editor.insertContent('<br>');
+                editor.selection.select(editor.getBody(), true);
+                editor.selection.collapse(false);
+            }
+        });
+    }
 });
 // Prevent bootstrap dialog from blocking focusin
 $(document).on('focusin', function(e) {
