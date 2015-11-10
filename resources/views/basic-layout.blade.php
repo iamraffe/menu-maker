@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <h1>Bufalina</h1>
-            <img src="/img/bufalina-logo.png" alt="Bufalina Logo" class="bufalina-logo animated fadeIn">
+            <a href="{{ url('/') }}"><img src="/img/bufalina-logo.png" alt="Bufalina Logo" class="logo animated fadeIn"></a>
           </div> 
         </div>
         @yield('content')
