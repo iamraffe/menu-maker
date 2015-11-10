@@ -18,5 +18,6 @@
       </div>
       <script src="/js/all.js"></script>
       @yield('scripts')
+      @include('partials._flash')
     </body>
 </html>
