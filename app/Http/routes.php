@@ -1,6 +1,6 @@
 <?php
 
-Route::get('password/reset', 'Auth\PasswordController@getReset')
+Route::get('password/reset', 'Auth\PasswordController@getReset');
 
 /**
  * Auth handling
