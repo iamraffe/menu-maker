@@ -2,6 +2,8 @@
 
 Route::get('password/reset', 'Auth\PasswordController@getReset');
 
+Route::get('password/reset/success', 'Auth\PasswordController@getResetSuccess');
+
 /**
  * Auth handling
  */
