@@ -27,7 +27,7 @@
       </div>  
       <div class="form-group">
         <div class="col-sm-10 col-sm-offset-1">
-          <a href="{{ url('password/email') }}" class="btn btn-link pull-right">Forgot password?</a>
+          <a href="{{ url('password/email') }}" class="btn btn-link pull-right">Forgot password? <span class="ion ion-ios-help-outline"></span></a>
         </div>
       </div>                                                                
      </div>
