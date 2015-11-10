@@ -57,7 +57,7 @@ class PasswordController extends Controller
      */
     public function getReset()
     {
-        return view('auth.reset', compact(\Input::all()));
+        return view('auth.reset')->with(['username' => \Input::get('username'), 'token' => \Input::get('token')]);
     }
 
     /**
