@@ -69,6 +69,6 @@ class PasswordController extends Controller
     public function getResetSuccess()
     {
         flash()->overlay('Your password has been reset succesfully!', '', 'success');
-        return redirect('/');
+        return redirect('/admin/menus');
     }
 }
