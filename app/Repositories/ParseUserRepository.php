@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use LaraParse\Repositories\AbstractParseRepository;
-use App\Repositories\Contracts\MenuRepository;
+use App\Repositories\Contracts\UserRepository;
 
-class ParseMenuRepository extends ParseBaseRepository implements MenuRepository
+class ParseUserRepository extends ParseBaseRepository implements UserRepository
 {
 
     /**
@@ -15,6 +15,6 @@ class ParseMenuRepository extends ParseBaseRepository implements MenuRepository
      */
     public function getParseClass()
     {
-        return 'Menu';
+        return '_User';
     }
 }

@@ -24,7 +24,12 @@
       <div class="input-group">
           <span class="input-group-addon"><i class="ion ion-ios-locked-outline"></i></span>
           <input type="password" class="form-control" name="password" placeholder="Password">
-      </div>                                                                  
+      </div>  
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-1">
+          <a href="{{ url('password/email') }}" class="btn btn-link pull-right">Forgot password?</a>
+        </div>
+      </div>                                                                
      </div>
       <div class="form-group">
         <button type="submit" href="#" class="btn btn-default pull-right">Log in <i class="ion ion-ios-arrow-thin-right"></i></button>
