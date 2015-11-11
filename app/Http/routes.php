@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin'], function()
   Route::resource('items', 'ItemsController');
   Route::resource('categories', 'CategoriesController');
   Route::resource('subcategories', 'SubCategoriesController');
+  Route::resource('users', 'UsersController');
+  Route::resource('groups', 'GroupsController');
 
 });
 

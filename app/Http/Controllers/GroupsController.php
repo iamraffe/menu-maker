@@ -2,21 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Repositories\ParseUserRepository;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class GroupsController extends Controller
 {
-    private $users;
-
-    public function __construct(ParseUserRepository $users)
-    {
-      $this->users = $users;
-      $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -54,10 +46,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($objectId)
+    public function show($id)
     {
-        $user = $this->users->find($objectId);
-        return view()->make('users.show', compact('user'));
+        //
     }
 
     /**

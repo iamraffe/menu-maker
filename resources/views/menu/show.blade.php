@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('css')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/zf-5.5.2/dt-1.10.9,r-1.0.7/datatables.min.css"/> --}}
 @stop
 
 @section('content')
@@ -11,23 +10,39 @@
 @stop
 
 @section('scripts')
-{{--<script type="text/javascript">
-    $(window).load(function() {
-        $("p").each(function(index){
-            var size = $(this).text().trim().length;
-            if(size < 76){
-                $(this).addClass('force-one-line');
-            }
-            else if(size < 90){
-                var i = 5;
-                while ($(this).text().trim().slice(i-1, i) != ' '){
-                    i--;
-                }
-                
-                $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
-            }
+<script type="text/javascript">
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+      }
+    });
+    $('#user').on('show.bs.modal', function (event) {
+        var user = '{{ \Auth::user()->objectId }}';
+        $.ajax({
+          url: "{{ url('admin/users/') }}"+"/"+user,
+          type: 'GET',
+          encode          : true,
+          async: true,
+          beforeSend: function(){
+          },
+          success: function(response){
+            $('.tab-pane#profile').html(response);
+          },
+          error: function(xhr, textStatus, thrownError) {
+            swal({
+                title: 'ERROR',
+                text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                type: 'error',
+                timer: 2500,
+                showConfirmButton: false
+            });
+          },
         });
+    });
+    $('#user').on('hide.bs.modal', function (event) {
+        // $('button').removeClass('hide add-item update-item');
 
     });
-</script>--}}
+
+</script>
 @stop

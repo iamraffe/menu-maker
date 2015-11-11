@@ -15,23 +15,6 @@
             </div>
 
         </div>
-        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <h3 id="myModalLabel"></h3>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" name="id">
-                <input type="hidden" name="menu">
-                <input type="hidden" name="category">
-                <input type="hidden" name="position">
-                <textarea name="content"></textarea>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Discard</button>
-                <button class="btn btn-info item-action"></button>
-            </div>
-        </div>
         <div class="wrapper">
              <div class="left-column column">
                 <img src="/img/logo.png" alt="Logo" class="logo">
@@ -171,7 +154,7 @@
                 swal({
                     title: 'ERROR',
                     text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
+                    type: 'error',
                     timer: 2500,
                     showConfirmButton: false
                 });
@@ -203,7 +186,7 @@
                     swal({
                         title: 'ERROR',
                         text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                        type: error,
+                        type: 'error',
                         timer: 2500,
                         showConfirmButton: false
                     });
@@ -282,7 +265,7 @@
                 swal({
                     title: 'ERROR',
                     text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
+                    type: 'error',
                     timer: 2500,
                     showConfirmButton: false
                 });
@@ -320,7 +303,7 @@
                 swal({
                     title: 'ERROR',
                     text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                    type: error,
+                    type: 'error',
                     timer: 2500,
                     showConfirmButton: false
                 });
@@ -391,7 +374,7 @@
                         swal({
                             title: 'ERROR',
                             text: 'There was an error with your request. If this error persists please contact your webmaster.',
-                            type: error,
+                            type: 'error',
                             timer: 2500,
                             showConfirmButton: false
                         });
