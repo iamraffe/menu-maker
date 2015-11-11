@@ -3,8 +3,6 @@
 Route::get('password/reset/success', 'Auth\PasswordController@getResetSuccess');
 Route::get('password/reset', 'Auth\PasswordController@getReset');
 
-
-
 /**
  * Auth handling
  */

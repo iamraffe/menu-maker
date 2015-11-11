@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Validator;
-use \LaraParse\Auth\Registrar as Registrar;
+use App\Http\Registrar as Registrar;
 use \LaraParse\Subclasses\User as ParseUser;
 
 class AuthController extends Controller
@@ -69,13 +69,17 @@ class AuthController extends Controller
      */
     public function postRegister(Request $request)
     {
-        $validator = $this->registrar->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
+        try {
+            $validator = $this->registrar->validator($request->all());
+            if ($validator->fails()) {
+                $this->throwValidationException(
+                    $request, $validator
+                );
+            }
+        } catch(ParseException $ex) {
+            flash()->error('A user is already registered with these credentials', 'Please check your input and try again.');
+            return redirect()->back();
+        } 
 
         $this->auth->login($this->registrar->create($request->all()));
 
