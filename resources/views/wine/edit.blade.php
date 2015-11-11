@@ -11,25 +11,6 @@
             </div>
 
         </div>
-        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <h3 id="myModalLabel"></h3>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" name="id">
-                <input type="hidden" name="menu">
-                <input type="hidden" name="category">
-                <input type="hidden" name="subcategory">
-                <input type="hidden" name="position">
-                <input type="hidden" name="type">
-                <textarea name="content"></textarea>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Discard</button>
-                <button class="btn btn-info item-action"></button>
-            </div>
-        </div>
     <div class="wrapper-landscape" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">

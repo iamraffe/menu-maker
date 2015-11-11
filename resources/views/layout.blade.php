@@ -9,7 +9,7 @@
 
     </head>
     <body>
-        @include('partials._user')
+        @include('partials._modal')
         <header role="banner">
             <a href="{{ url('admin/menus') }}"><img id="logo-main" src="/img/bufalina-logo.png" alt="Logo" class="logo animated fadeIn"></a>
         <nav id="navbar-primary" class="navbar navbar-default" role="navigation">
@@ -54,6 +54,10 @@
         <script src="/js/all.js"></script>
         @yield('scripts')
         @include('partials._flash')
-        
+        <script>
+            $('nav.navbar').affix({
+                offset: 140,
+            }); 
+        </script>
     </body>
 </html>

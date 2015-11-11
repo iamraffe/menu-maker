@@ -13,8 +13,8 @@
                   </div>
                 </div>
             </div>
-
         </div>
+
         <div class="wrapper">
              <div class="left-column column">
                 <img src="/img/logo.png" alt="Logo" class="logo">
