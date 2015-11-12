@@ -20,6 +20,7 @@
     function cleanTabs(){
       $('a[data-toggle="tab"]').parent().removeClass('active');
       $('.tab-pane').removeClass('active');
+      $('#edit-user-info, #collapseExample').collapse('hide');
     }
 
     function getProfileInfo(user){
@@ -121,6 +122,41 @@
             showConfirmButton: false
         });
       }
+    });
+    $(document).on('submit', 'form#edit-user', function(e){
+      e.preventDefault();
+      var user = '{{ \Auth::user()->objectId }}';
+      $.ajax({
+        url: "{{ url('admin/users/') }}"+"/"+user,
+        type: 'POST',
+        data: {_method: 'PUT', name: $('input[name=name]').val()},
+        encode          : true,
+        async: true,
+        beforeSend: function(){
+          $('div.request-pending').toggleClass('hide');
+        },
+        success: function(response){
+          $('div.request-pending').toggleClass('hide');
+          swal({
+              title: '',
+              text: 'Profile updated',
+              type: 'success',
+              timer: 1500,
+              showConfirmButton: false
+          });
+          $('#edit-user-info').collapse('hide');
+          getProfileInfo(user);
+        },
+        error: function(xhr, textStatus, thrownError) {
+          swal({
+              title: 'ERROR',
+              text: 'There was an error with your request. If this error persists please contact your webmaster.',
+              type: 'error',
+              timer: 2500,
+              showConfirmButton: false
+          });
+        },
+      }); 
     });
 </script>
 @stop

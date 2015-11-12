@@ -150,7 +150,7 @@ return [
         //
         Barryvdh\Snappy\ServiceProvider::class,
         LaraParse\ParseServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -202,7 +202,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'Image'     => Barryvdh\Snappy\Facades\SnappyImage::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
