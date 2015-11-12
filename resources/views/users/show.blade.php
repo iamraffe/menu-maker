@@ -1,11 +1,11 @@
 <div class="row">
  <div class="col-xs-12">
     <div class="panel">
-      <div class="panel-heading">
+{{--       <div class="panel-heading">
         <button data-original-title="Edit info" data-toggle="tooltip" type="button" class="btn pull-right btn-link">
           <span class="ion ion-ios-compose-outline"></span>
         </button>
-      </div>
+      </div> --}}
       <div class="panel-body">
         <div class="row">
           <div class="col-md-3 col-lg-3" align="center">
@@ -27,7 +27,7 @@
                   <td>Name</td>
                   <td>{{ $user->name }}</td>
                 </tr>
-                <tr>
+{{--                 <tr>
                   <td>Department</td>
                   <td>Web development</td>
                 </tr>
@@ -38,15 +38,16 @@
                 <tr>
                   <td>Location</td>
                   <td>Madrid, Spain</td>
-                </tr>
+                </tr> --}}
                 <tr>
                   <td>Email</td>
                   <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                 </tr>
+                {{-- <tr>
                   <td>Phone Number</td>
                   <td>913-981-628(Landline)<br><br>655-046-278(Mobile)
                   </td>
-                </tr>
+                </tr> --}}
               </tbody>
             </table>
           </div>

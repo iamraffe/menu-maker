@@ -36,12 +36,30 @@
                     <span class="ion ion-ios-at-outline"></span>
                     You
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li class="dropdown-header">Account</li>
-                    <li><a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="profile">My profile</a></li>
-                    <li><a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="settings">Preferences</a></li>
-                    <li class="dropdown-header">Group</li>
-                    <li><a href="#">Group members</a></li>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">{{-- 
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Account</li> --}}
+                    <li>
+                        <a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="profile">
+                            <span class="ion ion-ios-person-outline"></span>
+                            My profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="settings">
+                            <span class="ion ion-ios-settings"></span>
+                            Preferences
+                        </a>
+                    </li>
+{{--                     <li class="dropdown-header">Group</li>
+                    <li><a href="#">Group members</a></li> --}}
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="{{ url('auth/logout') }}">
+                            <span class="ion ion-log-out"></span>
+                            Logout
+                        </a>
+                    </li>
                   </ul>
                 </li>
               </ul>
