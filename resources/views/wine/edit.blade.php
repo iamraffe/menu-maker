@@ -712,7 +712,7 @@ $(document).on('click', '.update-item', function(e){
       success: function(response){
         $('#loading').hide();
         $('#myModal').modal('hide');
-        var text = '<button class="btn btn-link"><span class="ion ion-ios-shuffle"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="ion ion-ios-close-outline"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-action="edit" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
+        var text = '<button class="btn btn-link"><span class="ion ion-ios-shuffle"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="ion ion-ios-close-outline"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-action="edit" data-type="text" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
         if(type === 'text'){
           $('p#'+data["objectId"]).html(text);
         }
