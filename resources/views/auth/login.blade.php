@@ -56,7 +56,8 @@
                <div class="form-group">
                   <div class="input-group">
                       <span class="input-group-addon"><i class="ion ion-ios-email-outline"></i></span>
-                      <input type="email" class="form-control" name="email" value="" placeholder="E-mail">                                        
+                      <input type="text" class="form-control" name="email" value="" placeholder="E-mail" aria-describedby="basic-addon2">
+                      <span class="input-group-addon" id="basic-addon2">@bufalinapizza.com</span>                                        
                   </div>  
                </div>
                <div class="form-group">

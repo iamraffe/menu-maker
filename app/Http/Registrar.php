@@ -61,6 +61,7 @@ class Registrar extends LaraparseRegistrar
         $user->username = $data['username'];
         $user->email    = $data['email'];
         $user->password = $data['password'];
+        $user->pictureURL = '/img/default-profile-picture.png';
         $user->signUp();
 
         return $user;
