@@ -79,7 +79,7 @@ class AuthController extends Controller
     public function postRegister(Request $request)
     {
         $user = $request->all();
-        // $user['email'] = $user['email'].'@bufalinapizza.com';
+        $user['email'] = $user['email'].'@bufalinapizza.com';
         try {
             $validator = $this->registrar->validator($user);
             if ($validator->fails()) {
