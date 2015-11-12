@@ -23,7 +23,8 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
+                <h2 class="by-the-bottle" style="margin-top: 1.917cm; visibility: hidden;">{{ $categories[4]->name }}</h2>
+                <div class="separator" style="margin-left: 0"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 5 && $subcategory->category->objectId == $categories[4]->objectId)
                         <h2 class="subcategory">{{$subcategory->name}}</h2>
@@ -85,8 +86,8 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden;">
-                <h2 class="by-the-bottle" style="visibility: hidden;">BY THE BOTTLE</h2>
+                <h2 class="by-the-bottle" style="margin-top: 1.917cm; visibility: hidden;">{{ $categories[4]->name }}</h2>
+                <div class="separator" style="margin-left: 0"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
                 <h2 class="subcategory">{!! $categories[3]->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->position > 3 && $subcategory->category->objectId == $categories[3]->objectId)
