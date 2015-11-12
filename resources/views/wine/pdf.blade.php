@@ -8,7 +8,6 @@
     <div class="wrapper-landscape" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">
-                
             </div>
         </div>
         <div class="right-column column">
@@ -59,8 +58,8 @@
             @endforeach
             </div>
         </div>      
-        <div class="right-column column">
-            <div class="column-container text-container">
+        <div class="right-column column" style="position:relative;">
+            <div class="column-container text-container" style="position:absolute; right:0; top:0; height:100%; z-index: 99999; background: white; width: 100%;">
                 <img class="logo-intro" src="{{public_path('/img/bufalina-logo-simple-greyscale.png')}}" alt="Logo" class="logo">
                 <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
                 @foreach($items as $item)
@@ -125,8 +124,8 @@
                 @endforeach
             </div>
         </div>
-        <div class="right-column column">
-            <div class="column-container">
+        <div class="right-column column" style="position:relative;">
+            <div class="column-container" style="position:absolute; right:0; top:0; height:100%; z-index: 99999; background: white; width: 100%;">
                 <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
