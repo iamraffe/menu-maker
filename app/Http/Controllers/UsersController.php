@@ -78,9 +78,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $objectId)
     {
-        //
+        $user = $this->users->useMasterKey(true)->update($objectId, $request->all());
+        dd($user);
     }
 
     /**

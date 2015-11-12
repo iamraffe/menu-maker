@@ -38,8 +38,8 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li class="dropdown-header">Account</li>
-                    <li><a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal">My profile</a></li>
-                    <li><a href="#">Preferences</a></li>
+                    <li><a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="profile">My profile</a></li>
+                    <li><a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="settings">Preferences</a></li>
                     <li class="dropdown-header">Group</li>
                     <li><a href="#">Group members</a></li>
                   </ul>
