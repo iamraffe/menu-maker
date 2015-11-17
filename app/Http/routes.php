@@ -1,5 +1,14 @@
 <?php
 
+Route::group(['domain' => '{account}.'.env('APP_DOMAIN')], function () {
+  Route::get('/', 'GroupController@index');
+  // Route::get('/', function ($account) {
+  //   return '<h1>This is the login for: '.$account.'</h1>';
+  // });
+});
+
+Route::post('/group/create/step/{step}', 'GroupController@step');
+
 Route::get('password/reset/success', 'Auth\PasswordController@getResetSuccess');
 Route::get('password/reset', 'Auth\PasswordController@getReset');
 
@@ -36,4 +45,7 @@ Route::group(['prefix' => 'admin'], function()
 
 });
 
-Route::get('/', 'MenuController@index');
+
+
+// Route::get('/', 'MenuController@index');
+

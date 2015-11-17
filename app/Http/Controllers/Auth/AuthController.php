@@ -98,4 +98,5 @@ class AuthController extends Controller
         flash()->overlay('Thanks for signing up!', 'Please check your email and verify your account', 'info');
         return redirect()->back();
     }
+
 }
