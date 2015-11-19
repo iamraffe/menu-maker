@@ -53,7 +53,7 @@ class AuthController extends Controller
         ]);
 
         $user = $userRepo->findBy('username', $request->username);
-        
+
         if(!$user->emailVerified){
             flash()->error('', 'Your email must be verified before you can log in');
             return redirect()->back();
@@ -79,7 +79,7 @@ class AuthController extends Controller
     public function postRegister(Request $request)
     {
         $user = $request->all();
-        $user['email'] = $user['email'].'@bufalinapizza.com';
+        // $user['email'] = $user['email'].'@bufalinapizza.com';
         try {
             $validator = $this->registrar->validator($user);
             if ($validator->fails()) {
@@ -90,7 +90,7 @@ class AuthController extends Controller
         } catch(ParseException $ex) {
             flash()->error('A user is already registered with these credentials', 'Please check your input and try again.');
             return redirect()->back();
-        } 
+        }
 
         $this->registrar->create($user);
 
