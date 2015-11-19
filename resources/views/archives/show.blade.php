@@ -6,8 +6,8 @@
        <link type="text/css" media="all" rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
     </head>
     <body>
-    <div class="{{ $class }}">
-      {!! $savedFile->content !!}         
+    <div class="{{ $class.' '.$group->name }}">
+      {!! $savedFile->content !!}
     </div>
     <script type="text/javascript">
         // $(window).load(function() {
@@ -21,7 +21,7 @@
         //             while ($(this).text().trim().slice(i-1, i) != ' '){
         //                 i--;
         //             }
-                    
+
         //             $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
         //         }
         //     });

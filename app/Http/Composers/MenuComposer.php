@@ -50,8 +50,9 @@ class MenuComposer
 	{
     $group = $this->groups->findBy('account', $this->request->route('account'));
     $menu = $this->menu->findAllBy('group', $group);
-    $viewData['menu'] = $menu->filter(function($menuItem){
-      return strcmp($menuItem->name, $this->request->route('menu_name'))==0;
+    $name = $this->request->route('menu_name');
+    $viewData['menu'] = $menu->filter(function($menuItem) use ($name){
+      return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
     })->first();
 
 		// $viewData['menu'] = $this->menu->findBy('name', str_replace('-', ' ', $this->request->route('menu_name')));
