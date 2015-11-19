@@ -11,7 +11,16 @@
     <body>
         @include('partials._modal')
         <header role="banner">
-            <a href="{{ url('admin/menus') }}"><img id="logo-main" src="/img/bufalina-logo.png" alt="Logo" class="logo animated fadeIn"></a>
+            <a href="{{ url('admin/menus') }}">
+              @if(isset($group->logo) && strcmp($group->logo, '') != 0)
+                <img  id="logo-main" src="{{ $group->logo }}" alt="{{ $group->name }} Logo" class="logo animated fadeIn">
+                <h1 class="hide">{{ $group->name }}</h1>
+              @elseif(isset($group->name) && strcmp($group->name, '') != 0)
+                <h1>{{ $group->name }}</h1>
+              @else
+                <h1>Menu Styler</h1>
+              @endif
+            </a>
         <nav id="navbar-primary" class="navbar navbar-default" role="navigation">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,7 +36,7 @@
               <ul class="nav navbar-nav">
                 <li class="{{ \Request::is('/') ? 'active' : '' }}"><a href="{{ url('/admin/menus') }}"><span class="ion ion-ionic"></span> Home</a></li>
                 <li class="{{ \Request::is('admin/menus/'.str_slug($menu->name).'/edit') ? 'active' : '' }}"><a href="{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}"><span class="ion ion-ios-color-wand-outline"></span> Edit</a></li>
-                <li><a href="{{ url('admin/pdf/'.str_slug($menu->name)) }}" target="_blank"><span class="ion ion-ios-eye-outline"></span> Preview</a></a></li> 
+                <li><a href="{{ url('admin/pdf/'.str_slug($menu->name)) }}" target="_blank"><span class="ion ion-ios-eye-outline"></span> Preview</a></a></li>
                 <li><a href="{{ url('admin/menus/'.str_slug($menu->name).'/save') }}" ><span class="ion ion-ios-reload"></span> Save</a></li>
                 <li><a href="{{ url('admin/pdf/'.str_slug($menu->name).'/download') }}" ><span class="ion ion-ios-cloud-download-outline"></span> Download</a></li>
                 <li class="{{ \Request::is('admin/menus/'.str_slug($menu->name).'/archive') ? 'active' : '' }}"><a href="{{ url('admin/menus/'.str_slug($menu->name).'/archive') }}"><span class="ion ion-ios-filing-outline"></span> Archive</a></li>
@@ -36,17 +45,17 @@
                     <span class="ion ion-ios-at-outline"></span>
                     You
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">{{-- 
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">{{--
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Account</li> --}}
                     <li>
-                        <a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="profile">
+                        <a href="#user" href="{{ url('admin/users/'.$user->objectId) }}" data-toggle="modal" data-tab="profile">
                             <span class="ion ion-ios-person-outline"></span>
                             My profile
                         </a>
                     </li>
                     <li>
-                        <a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="settings">
+                        <a href="#user" href="{{ url('admin/users/'.$user->objectId) }}" data-toggle="modal" data-tab="settings">
                             <span class="ion ion-ios-settings"></span>
                             Preferences
                         </a>
@@ -75,7 +84,7 @@
         <script>
             $('nav.navbar').affix({
                 offset: 140,
-            }); 
+            });
         </script>
         <script type="text/javascript">
             $.ajaxSetup({
@@ -113,7 +122,7 @@
                       showConfirmButton: false
                   });
                 },
-              });      
+              });
             }
 
             function getAccountSettings(user){
@@ -125,10 +134,10 @@
               console.log($(this));
             })
             $('a[data-toggle="tab"][href=#profile]').on('show.bs.tab', function (e) {
-              getProfileInfo('{{ \Auth::user()->objectId }}');
+              getProfileInfo('{{ $user->objectId }}');
             })
             $('#user').on('show.bs.modal', function (event) {
-                var user = '{{ \Auth::user()->objectId }}';
+                var user = '{{ $user->objectId }}';
                 var button = $(event.relatedTarget);
                 var tab = button.data('tab');
                 (tab === 'profile') ? getProfileInfo(user) : getAccountSettings(user);
@@ -140,7 +149,7 @@
 
             function updatePassword(new_password){
               $.ajax({
-                url: "{{ url('admin/users/'.\Auth::user()->objectId) }}",
+                url: "{{ url('admin/users/'.$user->objectId) }}",
                 type: 'POST',
                 data: {_method: 'PUT', password: new_password},
                 encode          : true,
@@ -171,7 +180,7 @@
                       showConfirmButton: false
                   });
                 },
-              }); 
+              });
             }
             $(document).on('submit', 'form#change-password', function(e){
               e.preventDefault();
@@ -192,7 +201,7 @@
             });
             $(document).on('submit', 'form#edit-user', function(e){
               e.preventDefault();
-              var user = '{{ \Auth::user()->objectId }}';
+              var user = '{{ $user->objectId }}';
               $.ajax({
                 url: "{{ url('admin/users/') }}"+"/"+user,
                 type: 'POST',
@@ -223,7 +232,7 @@
                       showConfirmButton: false
                   });
                 },
-              }); 
+              });
             });
         </script>
     </body>

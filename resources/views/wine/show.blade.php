@@ -4,14 +4,15 @@
     <div class="wrapper-landscape" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">
-                
+
             </div>
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="logo-cover" src="/img/bufalina-logo-greyscale.png" alt="Bufalina Logo">
+                {{-- <img class="logo-cover" src="/img/bufalina-logo-greyscale.png" alt="Bufalina Logo"> --}}
+                <img class="logo-cover" src="{{ $group->logo }}" alt="{{ $group->name }}">
             </div>
-        </div>  
+        </div>
     </div>
 @foreach($categories as $category)
 @if($category->position == 1)
@@ -27,10 +28,10 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
+                    @endif
                 @endforeach
             </div>
-        </div>      
+        </div>
     </div>
 @endif
 @if($category->position == 2)
@@ -43,8 +44,8 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
-                @endforeach             
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="right-column column">
@@ -60,13 +61,13 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
-        </div>        
-    </div> 
+        </div>
+    </div>
 @endif
 @if($category->position == 3)
     <div class="wrapper-landscape">
@@ -78,8 +79,8 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
-                @endforeach                
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="right-column column">
@@ -96,12 +97,12 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
-        </div>        
+        </div>
     </div>
     <div class="wrapper-landscape">
         <div class="left-column column">
@@ -118,19 +119,19 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
         </div>
         <div class="right-column column">
             <div class="column-container">
-                
+
             </div>
-        </div>          
+        </div>
     </div>
-@endif  
+@endif
 @if($category->position == 4)
     <div class="wrapper-landscape">
         <div class="left-column column">
@@ -141,8 +142,8 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $category->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
-                @endforeach                
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="right-column column">
@@ -159,12 +160,12 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
-        </div>        
+        </div>
     </div>
     <div class="wrapper-landscape">
          <div class="left-column column">
@@ -181,8 +182,8 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
@@ -200,12 +201,12 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
-        </div>        
+        </div>
     </div>
 @endif
 @if($category->position == 5)
@@ -222,8 +223,8 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
@@ -239,13 +240,13 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
-        </div>        
-    </div> 
+        </div>
+    </div>
 @endif
 @endforeach
 @stop
@@ -287,7 +288,7 @@
               showConfirmButton: false
           });
         },
-      });      
+      });
     }
 
     function getAccountSettings(user){
@@ -345,7 +346,7 @@
               showConfirmButton: false
           });
         },
-      }); 
+      });
     }
     $(document).on('submit', 'form#change-password', function(e){
       e.preventDefault();
@@ -397,7 +398,7 @@
               showConfirmButton: false
           });
         },
-      }); 
+      });
     });
 </script>
 @stop

@@ -34,6 +34,7 @@ class MenuController extends Controller
     $this->menu = $menu;
     $this->categories = $categories;
     $this->middleware('auth');
+    parent::__construct();
 	}
 
 	public function index()
@@ -47,36 +48,36 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show($name)
+  public function show($account, $name)
   {
-    return strcmp($name, 'wine-list') == 0 ? view('wine.show') : view('menu.show');    
+    return strcmp($name, 'wine-list') == 0 ? view('wine.show') : view('menu.show');
   }
 
-  public function edit($name)
+  public function edit($accout, $name)
   {
     return strcmp($name, 'wine-list') == 0 ? view('wine.edit') : view('menu.edit');
   }
 
   public function store($content, $menu)
   {
-    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]); 
+    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]);
   }
 
-  public function storeOrUpdate($name)
+  public function storeOrUpdate($account, $name)
   {
     $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
-    
+
     if(strcmp($name, 'wine-list') == 0){
       $menuData = $this->makeWineMenu($menu);
       $_menuPartial = view()->make('partials._wine', $menuData)->render();
     }
     else{
       $menuData = $this->makeMenu($menu);
-      $_menuPartial = view()->make('partials._columns', $menuData)->render();  
+      $_menuPartial = view()->make('partials._columns', $menuData)->render();
     }
     $archives = $this->archives->findAllBy('menu', $menu);
     if($archives->contains('name', Carbon::now()->format('Y-m-d'))){
-      $this->update($_menuPartial); 
+      $this->update($_menuPartial);
     }
     else{
       $this->store($_menuPartial, $menuData['menu']);
@@ -116,7 +117,7 @@ class MenuController extends Controller
     return $this->archives->update($menu->objectId, ['content' => $_menu]);
   }
 
-  public function archive($name)
+  public function archive($account, $name)
   {
     $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
     $archives = $this->archives->findAllBy('menu', $menu, ['menu']);

@@ -54,7 +54,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($objectId)
+    public function show($account, $objectId)
     {
         $user = $this->users->find($objectId);
         return view()->make('users.show', compact('user'));
@@ -78,7 +78,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $objectId)
+    public function update(Request $request, $account, $objectId)
     {
         $user = $this->users->useMasterKey(true)->update($objectId, $request->all());
         dd($user);

@@ -4,21 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Repositories\ParseArchiveRepository;
+use App\Repositories\ParseCategoryRepository;
 use App\Repositories\ParseGroupRepository;
+use App\Repositories\ParseItemRepository;
+use App\Repositories\ParseMenuRepository;
+use App\Repositories\ParseSubCategoryRepository;
 use App\Repositories\ParseUserRepository;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    private $items;
+
+    private $archives;
+
+    private $menu;
+
+    private $categories;
+
+    private $subcategories;
+
     private $groups;
 
     private $users;
 
-    public function __construct(ParseGroupRepository $groups, ParseUserRepository $users)
+    public function __construct(ParseGroupRepository $groups, ParseUserRepository $users, ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories, ParseSubCategoryRepository $subcategories)
     {
+        $this->subcategories = $subcategories;
+        $this->items = $items;
+        $this->archives = $archives;
+        $this->menu = $menu;
+        $this->categories = $categories;
         $this->groups = $groups;
         $this->users = $users;
         // $this->middleware('auth', ['except' => 'index']);
+        parent::__construct();
     }
     /**
      * Display a listing of the resource.
@@ -28,6 +49,11 @@ class GroupController extends Controller
     public function index($account = null)
     {
         $group = $this->groups->findBy('account', $account);
+        // $allMenus = $this->menu->all();
+        // foreach ($allMenus as $key => $menu) {
+        //     $this->menu->update($menu->objectId, ['group' => $group]);
+        // }
+        // dd($allMenus);
         return empty($group) ? view('/auth/register') : view('/auth/login')->with('group', $group);
     }
 
