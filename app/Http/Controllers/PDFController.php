@@ -26,6 +26,8 @@ class PDFController extends Controller
         $this->menu = $menu;
 
         $this->categories = $categories;
+
+        parent::__construct();
     }
 
     /**
