@@ -16,7 +16,8 @@
             @elseif(isset($group->name) && strcmp($group->name, '') != 0)
               <h1>{{ $group->name }}</h1>
             @else
-              <h1>Menu Styler</h1>
+              <a href="{{ url('/') }}"><img src="/img/demo/group-logo.png" alt="Logo" class="bufalina-logo animated fadeIn"></a>
+              {{-- <h1 style="font-family: Open Sans">Menu Styler</h1> --}}
             @endif
             
           </div> 
