@@ -1,4 +1,5 @@
 <?php
+Route::get('/home', 'Auth\AuthController@getLogout');
 
 Route::group(['domain' => '{account}.'.env('APP_DOMAIN')], function () {
   Route::get('/', 'GroupController@index');
@@ -44,4 +45,5 @@ Route::group(['domain' => '{account}.'.env('APP_DOMAIN')], function () {
 });
 
 Route::get('/', 'GroupController@index');
+
 
