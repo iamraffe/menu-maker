@@ -809,6 +809,9 @@ input {
 }
 
 .wrapper-landscape.demo, .wrapper.demo{
+  .separator, .big-separator{
+    visibility: hidden !important;
+  }
   .column{
     .menu-section{
       margin-bottom: 0 !important;
@@ -853,7 +856,83 @@ input {
         }
 
       }
-    }    
+    }  
+
+    h2.by-the-bottle{
+      // padding-bottom: 0.632cm;
+      text-align: right;
+      // font-size: 17px;
+      letter-spacing: 2.5px;
+      // font-weight: 200;
+      // font-family: Pea Mystie;
+      // margin: auto;
+      width: 415px;
+      font-family: 'Futura Std Condensed' !important;
+      border-bottom: 1px solid #EF4023; 
+      color: #EF4023;
+      display: inline-block;
+      padding: 2.5px;
+      line-height: 1.5;
+      font-size: 14.5px !important;
+      margin-top: 15px;
+      position: relative;
+    }
+    h2.subcategory{
+      position: relative;
+      padding-top: 0.632cm;
+      padding-bottom: 0 !important;
+      text-align: left;
+      font-size: 15px;
+      letter-spacing: 2.5px;
+      font-weight: 200;
+      // font-family: Pea Mystie;
+      // margin: auto;
+      width: auto !important;
+      font-family: 'Futura Std Condensed' !important;
+      background-color: #EF4023; 
+      color: white;
+      display: table;
+      padding: 2.5px;
+      line-height: 1.5;
+      font-size: 14.5px !important;
+      margin-top: 15px;
+      margin-bottom: 12.5px !important;
+      margin-left: 0;
+      position: relative;
+
+      a, button{
+        outline: none;
+
+        font-size: 12px;
+        padding: 0;
+        margin-left: 0px !important;
+        line-height: 0;
+
+        &:hover, &:focus{
+          outline: none;
+          text-decoration: none;
+        }
+
+        span{
+          &.ion-ios-plus-outline{
+            font-size: 1.75em;
+            margin-left: 0px !important;
+            position: absolute;
+            right: -25px;
+            top: 2.5px;
+
+          }
+          &.ion-ios-compose-outline{
+            font-size: 1.75em;
+            margin-left: 5px;
+            position: absolute;
+            right: -55px;
+            top: 1.5px;
+          }
+        }
+
+      }
+    }
   }
   // p{
   //   font-family:  Universal Std Condensed !important;

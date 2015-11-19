@@ -53,7 +53,7 @@ class AuthController extends Controller
         ]);
 
         $user = $userRepo->findBy('username', $request->username);
-
+        
         if(!$user->emailVerified){
             flash()->error('', 'Your email must be verified before you can log in');
             return redirect()->back();
