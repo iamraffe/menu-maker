@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Registrar as Registrar;
+use App\Repositories\ParseGroupRepository;
 use App\Repositories\ParseUserRepository;
 use App\User;
 use Illuminate\Contracts\Auth\Guard;
@@ -76,9 +77,12 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postRegister(Request $request)
+    public function postRegister(Request $request, ParseGroupRepository $group, $account)
     {
+        // dd($account);
         $user = $request->all();
+        $group = $group->findBy('account', $account);
+        $user['group'] = $group;
         // $user['email'] = $user['email'].'@bufalinapizza.com';
         try {
             $validator = $this->registrar->validator($user);
