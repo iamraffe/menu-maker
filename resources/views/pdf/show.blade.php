@@ -6,7 +6,7 @@
        <link type="text/css" media="all" rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
     </head>
     <body>
-    <div class="wrapper">
+    <div class="wrapper {{ $group->name }}">
          <div class="left-column column">
             <img src="{{ public_path('/img/logo.png') }}" alt="Logo" class="logo" style="visibility: hidden;">
             @foreach($categories as $category)
