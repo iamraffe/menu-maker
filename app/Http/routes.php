@@ -2,9 +2,6 @@
 
 Route::group(['domain' => '{account}.'.env('APP_DOMAIN')], function () {
   Route::get('/', 'GroupController@index');
-  // Route::get('/', function ($account) {
-  //   return '<h1>This is the login for: '.$account.'</h1>';
-  // });
 });
 
 Route::post('/group/create/step/{step}', 'GroupController@step');
@@ -30,7 +27,7 @@ Route::group(['prefix' => 'admin'], function()
 	Route::get('menus/{menu_name}/edit', 'MenuController@edit');
 	Route::get('menus/{menu_name}/save', 'MenuController@storeOrUpdate');
   Route::get('menus/{menu_name}/archive', 'MenuController@archive');
-  
+
   Route::put('items/positions', 'ItemsController@positions');
 
   Route::get('archives/{menu}', 'ArchivesController@show');
@@ -45,7 +42,5 @@ Route::group(['prefix' => 'admin'], function()
 
 });
 
-
-
-// Route::get('/', 'MenuController@index');
+Route::get('/', 'GroupController@index');
 

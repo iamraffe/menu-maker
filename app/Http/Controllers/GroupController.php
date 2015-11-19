@@ -25,7 +25,7 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($account)
+    public function index($account = null)
     {
         $group = $this->groups->findBy('account', $account);
         return empty($group) ? view('/auth/register') : view('/auth/login')->with('group', $group);
@@ -94,7 +94,7 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 
     public function isUniqueUser($email)
@@ -108,7 +108,7 @@ class GroupController extends Controller
             case 0:
                 return $this->isUniqueUser($request->email);
                 break;
-            
+
             default:
                 # code...
                 break;
@@ -119,6 +119,6 @@ class GroupController extends Controller
     {
         // dd($this->handleStep($request, $step));
         return $this->handleStep($request, $step) ? response()->json(true, 200) : response()->json(false, 422);
-        //dd($request->all(),$step);   
+        //dd($request->all(),$step);
     }
 }
