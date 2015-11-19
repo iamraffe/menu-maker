@@ -5,7 +5,7 @@
        <link type="text/css" media="all" rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
     </head>
     <body>
-    <div class="wrapper-landscape" style="position: relative;">
+    <div class="wrapper-landscape {{ $group->name }}" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">
             </div>
@@ -16,7 +16,7 @@
             </div>
         </div>  
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container">
             </div>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
      <div class="left-column column">
         <div class="column-container">
             <h2 class="by-the-bottle" style="margin-top: 1.917cm;">{{ $categories[4]->name }}</h2>
@@ -71,7 +71,7 @@
             </div>
         </div> 
     </div> 
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="margin-top: 3.513cm;">
@@ -104,7 +104,7 @@
             </div>
         </div>
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container">
                 <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden;">
@@ -145,7 +145,7 @@
             </div>
         </div>
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="">
@@ -179,7 +179,7 @@
             </div>
         </div>
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="">
@@ -213,7 +213,7 @@
             </div>
         </div>        
     </div>
-    <div class="wrapper-landscape">    
+    <div class="wrapper-landscape {{ $group->name }}">    
             <div class="left-column column">
                 <div class="column-container">
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">

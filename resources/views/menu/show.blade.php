@@ -4,7 +4,7 @@
 @stop
 
 @section('content')
-    <div class="wrapper">
+    <div class="wrapper {{ $group->name }}">
         @include('partials._columns', compact('categories', 'items'))           
     </div>
 @stop

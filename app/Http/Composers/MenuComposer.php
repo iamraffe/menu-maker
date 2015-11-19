@@ -48,18 +48,26 @@ class MenuComposer
 
 	public function compose(View $view)
 	{
-    // strcmp($menuItem->name, str_replace('-', ' ', $this->request->route('menu_name')) == 0;
     $group = $this->groups->findBy('account', $this->request->route('account'));
     $menu = $this->menu->findAllBy('group', $group);
     $viewData['menu'] = $menu->filter(function($menuItem){
-      return $menuItem->name ==  $this->request->route('menu_name');
+      return strcmp($menuItem->name, $this->request->route('menu_name'))==0;
     })->first();
-    // dd($viewData);
-    // $allMenus = $this->menu->findAllBy('name', $this->request->route('account'));
 
 		// $viewData['menu'] = $this->menu->findBy('name', str_replace('-', ' ', $this->request->route('menu_name')));
 
     $viewData['categories'] = $this->categories->findAllBy('menu', $viewData['menu'], [], 1000, true, 'position');
+    // $viewData['categories'] = $this->categories->findAllBy('menu', $this->menu->findAllBy('objectId', 'Hon7Yeneka')->first(), [], 1000, true, 'position');
+    // // dd($viewData['categories'], $viewData['menu']);
+    // foreach ($viewData['categories'] as $key => $category) {
+    //     $this->categories->create([
+    //         'name' => $category->name,
+    //         'position' => $category->position,
+    //         'menu' => $viewData['menu']
+    //     ]);
+    // }
+
+    // dd(true);
 
     $viewData['items'] = $this->items->findAllBy('menu', $viewData['menu'], ['category'], 1000, true, 'position');
 

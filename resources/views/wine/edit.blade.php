@@ -11,7 +11,7 @@
             </div>
 
         </div>
-    <div class="wrapper-landscape" style="position: relative;">
+    <div class="wrapper-landscape {{ $group->name }}" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">
                 
@@ -25,7 +25,7 @@
     </div>
 @foreach($categories as $category)
 @if($category->position == 1)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container">
             </div>
@@ -52,7 +52,7 @@
     </div>
 @endif
 @if($category->position == 2)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="margin-top: 3.513cm;">
@@ -116,7 +116,7 @@
     </div> 
 @endif
 @if($category->position == 3)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
@@ -179,7 +179,7 @@
             </div>
         </div>        
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
@@ -227,7 +227,7 @@
     </div>
 @endif  
 @if($category->position == 4)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container text-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
@@ -290,7 +290,7 @@
             </div>
         </div>        
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container">
                 <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden;">
@@ -371,7 +371,7 @@
     </div>
 @endif
 @if($category->position == 5)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container">
                 <h2 class="by-the-bottle" style="margin-top: 1.917cm;">{{ $category->name }}</h2>
