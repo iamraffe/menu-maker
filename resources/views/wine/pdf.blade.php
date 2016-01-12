@@ -1,5 +1,13 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menu Maker</title>
+       <link type="text/css" media="all" rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
+    </head>
+    <body>
     <div class="wrapper-landscape" style="position: relative;">
-         <div class="left-column column">
+        <div class="left-column column">
             <div class="column-container">
             </div>
         </div>
@@ -232,3 +240,6 @@
             </div>
         </div>
     </div>
+
+    </body>
+</html>

@@ -34,7 +34,7 @@ class PDFController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($menu, $version)
+    public function show($menu, $version = null)
     {
         if(strcmp($menu, 'wine-list')==0){
             //$menu = $this->makeMenu($menu);
@@ -73,12 +73,15 @@ class PDFController extends Controller
       return ['subcategories' => $subcategories, 'categories' => $categories, 'items' => $items, 'menu' => $menu];
     }
 
-    public function download($menu)
+    public function download($menu, $version)
     {
         if(strcmp($menu, 'wine-list')==0){
-            $menu = $this->makeWineMenu($menu);
-            // dd($menu);
-            $pdf = \PDF::loadView('wine.pdf', $menu);
+            if(strcmp($version, 'shortened')==0){
+                $pdf = \PDF::loadView('wine.pdf_shortened', $menu);
+            }
+            else{
+               $pdf = \PDF::loadView('wine.pdf', $menu);
+            }
             return $pdf->setOrientation('landscape')->download();
         }
         else{
