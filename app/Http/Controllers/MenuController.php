@@ -47,9 +47,14 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show($name)
+  public function show($name, $version = null)
   {
-    return strcmp($name, 'wine-list') == 0 ? view('wine.show') : view('menu.show');    
+    if(strcmp($name, 'wine-list') == 0){
+      return (strcmp($version, 'shortened') == 0 ) ? view('wine.show_shortened') : view('wine.show');
+    }
+    else{
+      return view('menu.show');
+    }
   }
 
   public function edit($name)
@@ -59,24 +64,24 @@ class MenuController extends Controller
 
   public function store($content, $menu)
   {
-    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]); 
+    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]);
   }
 
   public function storeOrUpdate($name)
   {
     $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
-    
+
     if(strcmp($name, 'wine-list') == 0){
       $menuData = $this->makeWineMenu($menu);
       $_menuPartial = view()->make('partials._wine', $menuData)->render();
     }
     else{
       $menuData = $this->makeMenu($menu);
-      $_menuPartial = view()->make('partials._columns', $menuData)->render();  
+      $_menuPartial = view()->make('partials._columns', $menuData)->render();
     }
     $archives = $this->archives->findAllBy('menu', $menu);
     if($archives->contains('name', Carbon::now()->format('Y-m-d'))){
-      $this->update($_menuPartial); 
+      $this->update($_menuPartial);
     }
     else{
       $this->store($_menuPartial, $menuData['menu']);

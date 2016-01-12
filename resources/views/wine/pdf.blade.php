@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Menu Maker</title>
-       <link type="text/css" media="all" rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
-    </head>
-    <body>
     <div class="wrapper-landscape" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">
@@ -14,7 +7,7 @@
             <div class="column-container">
                 <img class="logo-cover" src="{{public_path('/img/bufalina-logo-greyscale.png')}}" alt="Bufalina Logo">
             </div>
-        </div>  
+        </div>
     </div>
     <div class="wrapper-landscape">
         <div class="left-column column">
@@ -33,8 +26,8 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
@@ -53,12 +46,12 @@
                             <p class="ui-state-default">
                                 {!! $item->relatedText !!}
                             </p>
-                        @endif 
-                    @endforeach  
+                        @endif
+                    @endforeach
                 @endif
             @endforeach
             </div>
-        </div>      
+        </div>
         <div class="right-column column" style="position:relative;">
             <div class="column-container text-container" style="position:absolute; right:0; top:0; height:100%; z-index: 99999; background: white; width: 100%;">
                 <img class="logo-intro" src="{{public_path('/img/bufalina-logo-simple-greyscale.png')}}" alt="Logo" class="logo">
@@ -66,11 +59,11 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $categories[0]->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
+                    @endif
                 @endforeach
             </div>
-        </div> 
-    </div> 
+        </div>
+    </div>
     <div class="wrapper-landscape">
         <div class="left-column column">
             <div class="column-container text-container">
@@ -80,8 +73,8 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $categories[1]->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
-                @endforeach             
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="right-column column">
@@ -97,8 +90,8 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
@@ -119,8 +112,8 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
@@ -138,8 +131,8 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
@@ -154,8 +147,8 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $categories[2]->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
-                @endforeach               
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="right-column column">
@@ -172,8 +165,8 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
@@ -188,10 +181,10 @@
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $categories[3]->objectId)
                         {!! $item->relatedText !!}
-                    @endif 
-                @endforeach   
+                    @endif
+                @endforeach
             </div>
-        </div>     
+        </div>
         <div class="right-column column">
             <div class="column-container">
                 <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; ">
@@ -206,14 +199,14 @@
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
-                            @endif 
-                        @endforeach  
+                            @endif
+                        @endforeach
                     @endif
                 @endforeach
             </div>
-        </div>        
+        </div>
     </div>
-    <div class="wrapper-landscape">    
+    <div class="wrapper-landscape">
             <div class="left-column column">
                 <div class="column-container">
                     <img class="category-logo" src="{{public_path('/img/logo.png')}}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
@@ -228,8 +221,8 @@
                                     <p class="ui-state-default">
                                         {!! $item->relatedText !!}
                                     </p>
-                                @endif 
-                            @endforeach  
+                                @endif
+                            @endforeach
                         @endif
                     @endforeach
                 </div>
@@ -237,7 +230,5 @@
         <div class="right-column column">
             <div class="column-container">
             </div>
-        </div>    
+        </div>
     </div>
-    </body>
-</html>

@@ -16,18 +16,25 @@ Route::controllers([
 Route::group(['prefix' => 'admin'], function()
 {
 	Route::get('pdf/{menu_name}/download', 'PDFController@download');
+  Route::get('pdf/{menu_name}/{version?}/download', 'PDFController@download');
 
 	Route::get('menus/{menu_name}', 'MenuController@show');
 	Route::get('menus/{menu_name}/edit', 'MenuController@edit');
 	Route::get('menus/{menu_name}/save', 'MenuController@storeOrUpdate');
   Route::get('menus/{menu_name}/archive', 'MenuController@archive');
-  
+
+  Route::get('menus/{menu_name}/{version}', 'MenuController@show');
+  Route::get('menus/{menu_name}/{version}/edit', 'MenuController@edit');
+  Route::get('menus/{menu_name}/{version}/save', 'MenuController@storeOrUpdate');
+  Route::get('menus/{menu_name}/{version}/archive', 'MenuController@archive');
+
   Route::put('items/positions', 'ItemsController@positions');
 
-  Route::get('archives/{menu}', 'ArchivesController@show');
+  Route::get('archives/{menu}/{version?}', 'ArchivesController@show');
 
   Route::resource('menus', 'MenuController');
   Route::resource('pdf', 'PDFController');
+  Route::get('pdf/{menu_name}/{version}', 'PDFController@show');
   Route::resource('items', 'ItemsController');
   Route::resource('categories', 'CategoriesController');
   Route::resource('subcategories', 'SubCategoriesController');
