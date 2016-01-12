@@ -73,9 +73,11 @@ class PDFController extends Controller
       return ['subcategories' => $subcategories, 'categories' => $categories, 'items' => $items, 'menu' => $menu];
     }
 
-    public function download($menu, $version)
+    public function download($menu, $version = null)
     {
+
         if(strcmp($menu, 'wine-list')==0){
+            $menu = $this->makeWineMenu($menu);
             if(strcmp($version, 'shortened')==0){
                 $pdf = \PDF::loadView('wine.pdf_shortened', $menu);
             }
@@ -85,7 +87,7 @@ class PDFController extends Controller
             return $pdf->setOrientation('landscape')->download();
         }
         else{
-            $menu = $this->makeMenu($menu);
+
             $pdf = \PDF::loadView('pdf.show', $menu);
             return $pdf->setOrientation('portrait')->download();
         }

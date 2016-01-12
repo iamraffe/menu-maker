@@ -11,8 +11,6 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-
-
 Route::group(['prefix' => 'admin'], function()
 {
 	Route::get('pdf/{menu_name}/download', 'PDFController@download');

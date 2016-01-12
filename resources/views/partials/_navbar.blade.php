@@ -14,18 +14,75 @@
         <li class="{{ \Request::is('/') ? 'active' : '' }}">
             <a href="{{ url('/admin/menus') }}"><span class="ion ion-ionic"></span> Home</a>
         </li>
-        <li class="{{ \Request::is('admin/menus/'.str_slug($menu->name).'/edit') ? 'active' : '' }}">
-            <a href="{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}"><span class="ion ion-ios-color-wand-outline"></span> Edit</a>
-        </li>
-        <li>
-            <a href="{{ url('admin/pdf/'.str_slug($menu->name)) }}" target="_blank"><span class="ion ion-ios-eye-outline"></span> Preview</a>
-        </li>
+        @if(!$menu->multivsn)
+            <li class="{{ \Request::is('admin/menus/'.str_slug($menu->name).'/edit') ? 'active' : '' }}">
+                <a href="{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}"><span class="ion ion-ios-color-wand-outline"></span> Edit</a>
+            </li>
+            <li>
+                <a href="{{ url('admin/pdf/'.str_slug($menu->name)) }}" target="_blank"><span class="ion ion-ios-eye-outline"></span> Preview</a>
+            </li>
+        @else
+            <li class="dropdown">
+              <a class="dropdown-toggle {{ \Request::is('admin/menus/'.str_slug($menu->name).'/edit') ? 'active' : '' }}" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="ion ion-ios-color-wand-outline"></span> Edit
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a href="{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}">
+                        Full version
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/menus/'.str_slug($menu->name).'/shortened/edit') }}">
+                        Short version
+                    </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="ion ion-ios-eye-outline"></span> Preview
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a href="{{ url('admin/pdf/'.str_slug($menu->name)) }}" target="_blank">
+                        Full version
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/pdf/'.str_slug($menu->name)).'/shortened' }}" target="_blank">
+                        Short version
+                    </a>
+                </li>
+              </ul>
+            </li>
+        @endif
         <li>
             <a href="{{ url('admin/menus/'.str_slug($menu->name).'/save') }}" ><span class="ion ion-ios-reload"></span> Save</a>
         </li>
-        <li>
-            <a href="{{ url('admin/pdf/'.str_slug($menu->name).'/download') }}" ><span class="ion ion-ios-cloud-download-outline"></span> Download</a>
-        </li>
+        @if(!$menu->multivsn)
+            <li>
+                <a href="{{ url('admin/pdf/'.str_slug($menu->name).'/download') }}" ><span class="ion ion-ios-cloud-download-outline"></span> Download</a>
+            </li>
+        @else
+            <li class="dropdown">
+              <a class="dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="ion ion-ios-cloud-download-outline"></span> Download
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a href="{{ url('admin/pdf/'.str_slug($menu->name).'/download') }}">
+                        Full version
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/pdf/'.str_slug($menu->name).'/shortened/download') }}">
+                        Short version
+                    </a>
+                </li>
+              </ul>
+            </li>
+        @endif
         <li class="{{ \Request::is('admin/menus/'.str_slug($menu->name).'/archive') ? 'active' : '' }}">
             <a href="{{ url('admin/menus/'.str_slug($menu->name).'/archive') }}"><span class="ion ion-ios-filing-outline"></span> Archive</a>
         </li>
