@@ -14,372 +14,31 @@
     <div class="wrapper-landscape" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">
-                
+
             </div>
         </div>
         <div class="right-column column">
             <div class="column-container">
                 <img class="logo-cover" src="/img/bufalina-logo-greyscale.png" alt="Bufalina Logo">
             </div>
-        </div>  
-    </div>
-@foreach($categories as $category)
-@if($category->position == 1)
-    <div class="wrapper-landscape">
-         <div class="left-column column">
-            <div class="column-container">
-            </div>
         </div>
-        <div class="right-column column">
-            <div class="column-container text-container">
-                <img class="logo-intro" src="/img/bufalina-logo-simple-greyscale.png" alt="Logo" class="logo">
-                <h2 class="category" data-id="{{$category->getObjectId()}}" style="visibility:hidden; height: 0px;">
-                {{--{!! $category->name !!}--}}
-                </h2>
-                <div class="separator"></div>
-                @foreach($items as $item)
-                    @if(null !== $item->category && $item->category->objectId == $category->objectId)
-                      <div class="item-container menu-text">
-                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="ion ion-ios-compose-outline"></span>
-                        </a>
-                        {!! $item->relatedText !!}
-                      </div>
-                    @endif 
-                @endforeach   
-            </div>
-        </div>      
     </div>
-@endif
-@if($category->position == 2)
-    <div class="wrapper-landscape">
-         <div class="left-column column">
-            <div class="column-container text-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="margin-top: 3.513cm;">
-                <h2 class="category" data-id="{{$category->getObjectId()}}">
-                    {!! $category->name !!}
-                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                        <span class="ion ion-ios-compose-outline"></span>
-                    </a>
-                </h2>
-                <div class="separator"></div>
-                @foreach($items as $item)
-                    @if(null !== $item->category && $item->category->objectId == $category->objectId)
-                      <div class="item-container menu-text">
-                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="ion ion-ios-compose-outline"></span>
-                        </a>
-                        {!! $item->relatedText !!}
-                      </div>
-                    @endif 
-                @endforeach             
-            </div>
-        </div>
-        <div class="right-column column">
-            <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
-                <h2  class="by-the-bottle">BY THE BOTTLE</h2>
-                <div class="separator"></div>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-plus-outline"></span>
-                          </a>
-                          {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-compose-outline"></span>
-                          </a>
-                        </h2>
-                        <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>        
-    </div> 
-@endif
-@if($category->position == 3)
-    <div class="wrapper-landscape">
-        <div class="left-column column">
-            <div class="column-container text-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
-                <h2 class="category" data-id="{{$category->getObjectId()}}">
-                    {!! $category->name !!}
-                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                        <span class="ion ion-ios-compose-outline"></span>
-                    </a>
-                </h2>
-                <div class="separator"></div>
-                @foreach($items as $item)
-                    @if(null !== $item->category && $item->category->objectId == $category->objectId)
-                      <div class="item-container menu-text">
-                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="ion ion-ios-compose-outline"></span>
-                        </a>
-                        {!! $item->relatedText !!}
-                      </div>
-                    @endif 
-                @endforeach                   
-            </div>
-        </div>
-        <div class="right-column column">
-            <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; ">
-                <h2  class="by-the-bottle">BY THE BOTTLE</h2>
-                <div class="separator"></div>
-                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-plus-outline"></span>
-                          </a>
-                          {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-compose-outline"></span>
-                          </a>
-                        </h2>
-                        <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>        
-    </div>
+<!-- CATEGORY START -->
+<!-- cat 5 -->
     <div class="wrapper-landscape">
         <div class="left-column column">
             <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
-                <h2 class="by-the-bottle">BY THE BOTTLE</h2>
-                <div class="separator"></div>
-                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->position > 1 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-plus-outline"></span>
-                          </a>
-                          {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-compose-outline"></span>
-                          </a>
-                        </h2>
-                        <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        <div class="right-column column">
-            <div class="column-container">
-                
-            </div>
-        </div>          
-    </div>
-@endif  
-@if($category->position == 4)
-    <div class="wrapper-landscape">
-        <div class="left-column column">
-            <div class="column-container text-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
-                <h2 class="category" data-id="{{$category->getObjectId()}}">
-                    {!! $category->name !!}
-                    <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
+                <h2 class="by-the-bottle" style="margin-top: 1.917cm;"  data-id="{{$categories[4]->getObjectId()}}" >
+                  {{ $categories[4]->name }}
+                  <a href="#myModal" role="button" class="open-modal" data-parent="{{ $categories[4]->getObjectId() }}" data-id="{{ $categories[4]->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
                         <span class="ion ion-ios-compose-outline"></span>
-                    </a>
+                  </a>
                 </h2>
-                <div class="separator"></div>
-                @foreach($items as $item)
-                    @if(null !== $item->category && $item->category->objectId == $category->objectId)
-                      <div class="item-container menu-text">
-                        <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-action="edit" data-type="html" data-toggle="modal">
-                            <span class="ion ion-ios-compose-outline"></span>
-                        </a>
-                        {!! $item->relatedText !!}
-                      </div>
-                    @endif 
-                @endforeach                   
-            </div>
-        </div>
-        <div class="right-column column">
-            <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; ">
-                <h2  class="by-the-bottle">BY THE BOTTLE</h2>
-                <div class="separator"></div>
-                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
+                <div class="separator" style="top: 40px;"></div>
                 @foreach($subcategories as $subcategory)
-                    @if($subcategory->position < 2 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                            <span class="ion ion-ios-plus-outline"></span>
-                          </a>
-                          {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-compose-outline"></span>
-                          </a>
-                        </h2>
-                        <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>        
-    </div>
-    <div class="wrapper-landscape">
-         <div class="left-column column">
-            <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden;">
-                <h2 class="by-the-bottle">BY THE BOTTLE</h2>
-                <div class="big-separator"></div>
-                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->position > 1 && $subcategory->position < 4 &&$subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                            <span class="ion ion-ios-plus-outline"></span>
-                          </a>
-                          {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-compose-outline"></span>
-                          </a>
-                        </h2>
-                        <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        <div class="right-column column">
-            <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden;">
-                <h2 class="by-the-bottle" style="visibility: hidden;">BY THE BOTTLE</h2>
-                <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->position > 3 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" style="padding-top:0; font-size: 14px; padding-bottom: 12.5px;" data-id="{{$subcategory->getObjectId()}}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                            <span class="ion ion-ios-plus-outline"></span>
-                          </a>
-                          {{$subcategory->name}}
-                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
-                              <span class="ion ion-ios-compose-outline"></span>
-                          </a>
-                        </h2>
-                        <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>        
-    </div>
-@endif
-@if($category->position == 5)
-    <div class="wrapper-landscape">
-         <div class="left-column column">
-            <div class="column-container">
-                <h2 class="by-the-bottle" style="margin-top: 1.917cm;">{{ $category->name }}</h2>
-                <div class="big-separator" style="top: 40px;"></div>
-                @foreach($subcategories as $subcategory)
-                    @if($subcategory->position < 6 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                    @if($subcategory->position < 6 && $subcategory->category->objectId == $categories[4]->objectId)
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[4]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
                           </a>
                           {{$subcategory->name}}
@@ -388,22 +47,22 @@
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
+                                <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                    <button class="btn btn-link">
+                                        <span class="ion ion-ios-shuffle"></span>
+                                    </button>
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                        <span class="ion ion-ios-close-outline"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                        <span class="ion ion-ios-compose-outline"></span>
+                                    </a>
+                                </p>
+                            @endif
+                        @endforeach
                         </div>
                     @endif
                 @endforeach
@@ -413,9 +72,9 @@
             <div class="column-container">
                 <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
                 @foreach($subcategories as $subcategory)
-                    @if($subcategory->position > 5 && $subcategory->category->objectId == $category->objectId)
-                        <h2 class="subcategory" data-id="{{$subcategory->getObjectId()}}">
-                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                    @if($subcategory->position > 5 && $subcategory->category->objectId == $categories[4]->objectId)
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[4]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
                           </a>
                           {{$subcategory->name}}
@@ -424,30 +83,191 @@
                           </a>
                         </h2>
                         <div class="menu-contents item-container">
-                          @foreach($items as $item)
-                              @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
-                                  <p id="{{ $item->getObjectId() }}" class="ui-state-default">
-                                      <button class="btn btn-link">
-                                          <span class="ion ion-ios-shuffle"></span>
-                                      </button>
-                                      <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                          <span class="ion ion-ios-close-outline"></span>
-                                      </button>
-                                      {!! $item->relatedText !!}
-                                      <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-type="text" data-action="edit" data-toggle="modal">
-                                          <span class="ion ion-ios-compose-outline"></span>
-                                      </a>
-                                  </p>
-                              @endif 
-                          @endforeach
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
+                                <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                    <button class="btn btn-link">
+                                        <span class="ion ion-ios-shuffle"></span>
+                                    </button>
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                        <span class="ion ion-ios-close-outline"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                        <span class="ion ion-ios-compose-outline"></span>
+                                    </a>
+                                </p>
+                            @endif
+                        @endforeach
                         </div>
                     @endif
                 @endforeach
             </div>
-        </div>        
-    </div> 
-@endif
-@endforeach
+        </div>
+    </div>
+<!-- end -->
+<!-- cat 2 -->
+    <div class="wrapper-landscape">
+        <div class="left-column column">
+            <div class="column-container">
+                <h2 class="by-the-bottle" style="margin-top: 1.917cm;">BY THE BOTTLE</h2>
+                <div class="big-separator" style="top: 40px;"></div>
+                @foreach($subcategories as $subcategory)
+                    @if($subcategory->category->objectId == $categories[1]->objectId)
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[1]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-compose-outline"></span>
+                          </a>
+                        </h2>
+                        <div class="menu-contents item-container">
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId)
+                                <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                    <button class="btn btn-link">
+                                        <span class="ion ion-ios-shuffle"></span>
+                                    </button>
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                        <span class="ion ion-ios-close-outline"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                        <span class="ion ion-ios-compose-outline"></span>
+                                    </a>
+                                </p>
+                            @endif
+                        @endforeach
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        <div class="right-column column">
+            <div class="column-container">
+                <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
+                <h2 class="subcategory">{!! $categories[2]->name !!}</h2>
+                @foreach($subcategories as $subcategory)
+                    @if($subcategory->category->objectId == $categories[2]->objectId)
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[2]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-compose-outline"></span>
+                          </a>
+                        </h2>
+                        <div class="menu-contents item-container">
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 6)
+                                <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                    <button class="btn btn-link">
+                                        <span class="ion ion-ios-shuffle"></span>
+                                    </button>
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                        <span class="ion ion-ios-close-outline"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                        <span class="ion ion-ios-compose-outline"></span>
+                                    </a>
+                                </p>
+                            @endif
+                        @endforeach
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+<!-- end -->
+
+<!-- cat 4 -->
+    <div class="wrapper-landscape">
+        <div class="left-column column">
+            <div class="column-container">
+                <h2 class="by-the-bottle" style="margin-top: 1.917cm;">BY THE BOTTLE</h2>
+                <div class="big-separator" style="top: 40px;"></div>
+                <h2 class="subcategory">{!! $categories[3]->name !!}</h2>
+                @foreach($subcategories as $subcategory)
+                    @if($subcategory->position < 3 && $subcategory->category->objectId == $categories[3]->objectId)
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[3]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-compose-outline"></span>
+                          </a>
+                        </h2>
+                        <div class="menu-contents item-container">
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 20)
+                                <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                    <button class="btn btn-link">
+                                        <span class="ion ion-ios-shuffle"></span>
+                                    </button>
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                        <span class="ion ion-ios-close-outline"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                        <span class="ion ion-ios-compose-outline"></span>
+                                    </a>
+                                </p>
+                            @endif
+                        @endforeach
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        <div class="right-column column">
+            <div class="column-container">
+                <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
+                <h2 class="subcategory" style="visibility: hidden;">{!! $categories[3]->name !!}</h2>
+                @foreach($subcategories as $subcategory)
+                    @if($subcategory->position > 2 && $subcategory->position < 5 && $subcategory->category->objectId == $categories[3]->objectId)
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[3]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-compose-outline"></span>
+                          </a>
+                        </h2>
+                        <div class="menu-contents item-container">
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 12)
+                                <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                    <button class="btn btn-link">
+                                        <span class="ion ion-ios-shuffle"></span>
+                                    </button>
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                        <span class="ion ion-ios-close-outline"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                        <span class="ion ion-ios-compose-outline"></span>
+                                    </a>
+                                </p>
+                            @endif
+                        @endforeach
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+<!-- end -->
+
+
+
+<!-- CATEGORY END -->
 @stop
 
 @section('scripts')
@@ -597,7 +417,7 @@ $(document).on('click', '.update-category', function(e){
         name: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
         _method: 'PUT'
     };
-    
+
     $.ajax({
       url: "{{ url('/admin/categories/') }}"+"/"+data["objectId"],
       data: data,
@@ -638,7 +458,7 @@ $(document).on('click', '.update-subcategory', function(e){
         name: $($.parseHTML(tinymce.get('content').getContent())).children('button').remove().end().html(),
         _method: 'PUT'
     };
-    
+
     $.ajax({
       url: "{{ url('/admin/subcategories/') }}"+"/"+data["objectId"],
       data: data,
@@ -735,7 +555,7 @@ $(document).on('click', '.update-item', function(e){
 UPDATE ITEM POSITIONS
  */
 $(function() {
-    $( ".menu-contents" ).sortable({ 
+    $( ".menu-contents" ).sortable({
         placeholder: "ui-sortable-placeholder",
         activate: function(e,ui){
             $(this).addClass('draggin');
@@ -787,7 +607,7 @@ $(document).on('click', 'button.delete-item', function(e){
       showCancelButton: true,
       confirmButtonColor: "#DD6B55",
       confirmButtonText: "Yes, delete it!",
-      closeOnConfirm: true 
+      closeOnConfirm: true
     }, function(){
       $.ajax({
           type        : 'POST',

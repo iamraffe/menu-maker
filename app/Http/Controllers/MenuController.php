@@ -57,9 +57,15 @@ class MenuController extends Controller
     }
   }
 
-  public function edit($name)
+  public function edit($name, $version = null)
   {
-    return strcmp($name, 'wine-list') == 0 ? view('wine.edit') : view('menu.edit');
+    if(strcmp($name, 'wine-list') == 0){
+      return (strcmp($version, 'shortened') == 0 ) ? view('wine.edit_shortened') : view('wine.edit');
+    }
+    else{
+      return view('menu.edit');
+    }
+    // return strcmp($name, 'wine-list') == 0 ? view('wine.edit') : view('menu.edit');
   }
 
   public function store($content, $menu)
