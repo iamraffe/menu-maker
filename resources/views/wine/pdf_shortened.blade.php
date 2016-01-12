@@ -13,7 +13,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="logo-cover" src="{{public_path('/img/bufalina-logo-greyscale.png')}}" alt="Bufalina Logo">
+                <img class="logo-cover" src="{{public_path('/img/bufalina-logo-greyscale.png')}}" alt="Bufalina Logo" style="visibility: hidden;">
             </div>
         </div>
     </div>

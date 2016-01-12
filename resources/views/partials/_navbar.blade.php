@@ -57,14 +57,31 @@
               </ul>
             </li>
         @endif
-        <li>
-            <a href="{{ url('admin/menus/'.str_slug($menu->name).'/save') }}" ><span class="ion ion-ios-reload"></span> Save</a>
-        </li>
         @if(!$menu->multivsn)
+            <li>
+                <a href="{{ url('admin/menus/'.str_slug($menu->name).'/save') }}" ><span class="ion ion-ios-reload"></span> Save</a>
+            </li>
             <li>
                 <a href="{{ url('admin/pdf/'.str_slug($menu->name).'/download') }}" ><span class="ion ion-ios-cloud-download-outline"></span> Download</a>
             </li>
         @else
+            <li class="dropdown">
+              <a class="dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="ion ion-ios-reload"></span> Save as
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a href="{{ url('admin/menus/'.str_slug($menu->name).'/save') }}">
+                        Full version
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/menus/'.str_slug($menu->name).'/shortened/save') }}">
+                        Short version
+                    </a>
+                </li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a class="dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <span class="ion ion-ios-cloud-download-outline"></span> Download

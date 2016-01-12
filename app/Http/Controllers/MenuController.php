@@ -73,13 +73,18 @@ class MenuController extends Controller
     return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]);
   }
 
-  public function storeOrUpdate($name)
+  public function storeOrUpdate($name, $version = null)
   {
     $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
 
     if(strcmp($name, 'wine-list') == 0){
       $menuData = $this->makeWineMenu($menu);
-      $_menuPartial = view()->make('partials._wine', $menuData)->render();
+      if(strcmp($version, 'shortened') == 0 ){
+        $_menuPartial = view()->make('partials._wine_shortened', $menuData)->render();
+      }
+      else{
+        $_menuPartial = view()->make('partials._wine', $menuData)->render();
+      }
     }
     else{
       $menuData = $this->makeMenu($menu);
