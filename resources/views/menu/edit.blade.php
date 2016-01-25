@@ -18,7 +18,7 @@
         <div class="wrapper {{ $group->name }}">
              <div class="left-column column">
                 {{-- <img src="/img/logo.png" alt="Logo" class="logo"> --}}
-                <img src="{{ $group->logo }}" alt="Logo" class="logo">
+                <img src="{{ $group->menu_logo }}" alt="Logo" class="logo">
                 @foreach($categories as $category)
                     @if($category->position < 4)
                         <div class="menu-section">

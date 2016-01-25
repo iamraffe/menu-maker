@@ -19,7 +19,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="logo-cover" src="/img/bufalina-logo-greyscale.png" alt="Bufalina Logo">
+                <img class="logo-cover" src="{{ $group->menu_logo }}" alt="Bufalina Logo">
             </div>
         </div>
     </div>
