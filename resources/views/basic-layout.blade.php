@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Menu Maker</title>
+        <title>MenuStyler</title>
         <link rel="icon" type="image/png" href="/img/favicon.png">
         <meta name="_token" content="{!! csrf_token() !!}"/>
         <link href="{{ elixir('css/all.css') }}" rel="stylesheet" media="all">
@@ -19,8 +19,8 @@
               <a href="{{ url('/') }}"><img src="/img/demo/group-logo.png" alt="Logo" class="bufalina-logo animated fadeIn"></a>
               {{-- <h1 style="font-family: Open Sans">Menu Styler</h1> --}}
             @endif
-            
-          </div> 
+
+          </div>
         </div>
         @yield('content')
       </div>

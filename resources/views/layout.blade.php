@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Menu Maker</title>
+        <title>{{ ucfirst($group->name) }} | MenuStyler</title>
         <link rel="icon" type="image/png" href="/img/favicon.png">
         <meta name="_token" content="{!! csrf_token() !!}"/>
         @yield('css')
