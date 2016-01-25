@@ -25,19 +25,19 @@
                    <div class="form-group">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="ion ion-ios-person-outline"></i></span>
-                          <input type="text" class="form-control" name="username" value="" placeholder="Username">                                        
-                      </div>  
+                          <input type="text" class="form-control" name="username" value="" placeholder="Username">
+                      </div>
                    </div>
                    <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="ion ion-ios-locked-outline"></i></span>
                         <input type="password" class="form-control" name="password" placeholder="Password">
-                    </div>  
+                    </div>
                     <div class="form-group">
                       <div class="col-sm-10 col-sm-offset-1">
                         <a href="{{ url('password/email') }}" class="btn btn-link pull-right">Forgot password? <span class="ion ion-ios-help-outline"></span></a>
                       </div>
-                    </div>                                                                
+                    </div>
                    </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-default pull-right">Log in <i class="ion ion-ios-arrow-thin-right"></i></button>
@@ -50,15 +50,15 @@
                <div class="form-group">
                   <div class="input-group">
                       <span class="input-group-addon"><i class="ion ion-ios-person-outline"></i></span>
-                      <input type="text" class="form-control" name="username" value="" placeholder="Username">                                        
-                  </div>  
+                      <input type="text" class="form-control" name="username" value="" placeholder="Username">
+                  </div>
                </div>
                <div class="form-group">
                   <div class="input-group">
                       <span class="input-group-addon"><i class="ion ion-ios-email-outline"></i></span>
                       <input type="text" class="form-control" name="email" value="" placeholder="E-mail" aria-describedby="basic-addon2">
-                      <span class="input-group-addon" id="basic-addon2">@bufalinapizza.com</span>                                        
-                  </div>  
+                      {{-- <span class="input-group-addon" id="basic-addon2">@bufalinapizza.com</span> --}}
+                  </div>
                </div>
                <div class="form-group">
                   <div class="input-group">
@@ -102,24 +102,24 @@
                    <div class="form-group">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="ion ion-ios-person-outline"></i></span>
-                          <input type="text" class="form-control" name="username" value="" placeholder="Username">                                        
-                      </div>  
+                          <input type="text" class="form-control" name="username" value="" placeholder="Username">
+                      </div>
                    </div>
                    <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="ion ion-ios-locked-outline"></i></span>
                         <input type="password" class="form-control" name="password" placeholder="Password">
-                    </div>  
+                    </div>
                     <div class="form-group">
                       <div class="col-sm-10 col-sm-offset-1">
                         <a href="{{ url('password/email') }}" class="btn btn-link pull-right">Forgot password? <span class="ion ion-ios-help-outline"></span></a>
                       </div>
-                    </div>                                                                
+                    </div>
                    </div>
                     <div class="form-group">
                       <button type="submit" href="#" class="btn btn-default pull-right">Log in <i class="ion ion-ios-arrow-thin-right"></i></button>
                     </div>
-                </form> 
+                </form>
                 <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
@@ -148,7 +148,7 @@
       </div> --}}
     </div>
   </div>
-{{-- <div class="col-md-6 col-md-offset-3"> 
+{{-- <div class="col-md-6 col-md-offset-3">
   @if (count($errors) > 0)
       <div class="alert alert-danger">
           <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -164,24 +164,24 @@
      <div class="form-group">
         <div class="input-group">
             <span class="input-group-addon"><i class="ion ion-ios-person-outline"></i></span>
-            <input type="text" class="form-control" name="username" value="" placeholder="Username">                                        
-        </div>  
+            <input type="text" class="form-control" name="username" value="" placeholder="Username">
+        </div>
      </div>
      <div class="form-group">
       <div class="input-group">
           <span class="input-group-addon"><i class="ion ion-ios-locked-outline"></i></span>
           <input type="password" class="form-control" name="password" placeholder="Password">
-      </div>  
+      </div>
       <div class="form-group">
         <div class="col-sm-10 col-sm-offset-1">
           <a href="{{ url('password/email') }}" class="btn btn-link pull-right">Forgot password? <span class="ion ion-ios-help-outline"></span></a>
         </div>
-      </div>                                                                
+      </div>
      </div>
       <div class="form-group">
         <button type="submit" href="#" class="btn btn-default pull-right">Log in <i class="ion ion-ios-arrow-thin-right"></i></button>
       </div>
-  </form> 
+  </form>
 </div> --}}
 @stop
 

@@ -72,10 +72,10 @@
               console.log($(this));
             })
             $('a[data-toggle="tab"][href=#profile]').on('show.bs.tab', function (e) {
-              getProfileInfo('{{ \Auth::user()->objectId }}');
+              getProfileInfo('{{ $user->objectId }}');
             })
             $('#user').on('show.bs.modal', function (event) {
-                var user = '{{ \Auth::user()->objectId }}';
+                var user = '{{ $user->objectId }}';
                 var button = $(event.relatedTarget);
                 var tab = button.data('tab');
                 (tab === 'profile') ? getProfileInfo(user) : getAccountSettings(user);
@@ -87,7 +87,7 @@
 
             function updatePassword(new_password){
               $.ajax({
-                url: "{{ url('admin/users/'.\Auth::user()->objectId) }}",
+                url: "{{ url('admin/users/'.$user->objectId) }}",
                 type: 'POST',
                 data: {_method: 'PUT', password: new_password},
                 encode          : true,
@@ -139,7 +139,7 @@
             });
             $(document).on('submit', 'form#edit-user', function(e){
               e.preventDefault();
-              var user = '{{ \Auth::user()->objectId }}';
+              var user = '{{ $user->objectId }}';
               $.ajax({
                 url: "{{ url('admin/users/') }}"+"/"+user,
                 type: 'POST',

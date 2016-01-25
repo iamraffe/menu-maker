@@ -26,6 +26,8 @@ class PDFController extends Controller
         $this->menu = $menu;
 
         $this->categories = $categories;
+
+        parent::__construct();
     }
 
     /**
@@ -34,17 +36,22 @@ class PDFController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($menu, $version = null)
+    public function show($account, $menu, $version = null)
+
     {
         if(strcmp($menu, 'wine-list')==0){
             //$menu = $this->makeMenu($menu);
             $menu = $this->makeWineMenu($menu);
+
             if(strcmp($version, 'shortened')==0){
                 $pdf = \PDF::loadView('wine.pdf_shortened', $menu);
             }
             else{
                $pdf = \PDF::loadView('wine.pdf', $menu);
             }
+
+            // $pdf = \PDF::loadView('wine.pdf', $menu);
+
             return $pdf->setOrientation('landscape')->stream();
         }
         else{
@@ -73,7 +80,7 @@ class PDFController extends Controller
       return ['subcategories' => $subcategories, 'categories' => $categories, 'items' => $items, 'menu' => $menu];
     }
 
-    public function download($menu, $version = null)
+    public function download($account, $menu, $version = null)
     {
 
         if(strcmp($menu, 'wine-list')==0){
@@ -88,6 +95,15 @@ class PDFController extends Controller
         }
         else{
 
+
+        //     // dd($menu);
+        //     $pdf = \PDF::loadView('wine.pdf', $menu);
+        //     return $pdf->setOrientation('landscape')->download();
+        // }
+        // else{
+        //     $menu = $this->makeMenu($menu);
+
+            $menu = $this->makeMenu($menu);
             $pdf = \PDF::loadView('pdf.show', $menu);
             return $pdf->setOrientation('portrait')->download();
         }

@@ -11,7 +11,7 @@
             </div>
 
         </div>
-    <div class="wrapper-landscape" style="position: relative;">
+    <div class="wrapper-landscape {{ $group->name }}" style="position: relative;">
          <div class="left-column column">
             <div class="column-container">
                 
@@ -19,20 +19,20 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="logo-cover" src="/img/bufalina-logo-greyscale.png" alt="Bufalina Logo">
+                <img class="logo-cover" src="{{ $group->logo }}" alt="Bufalina Logo">
             </div>
         </div>  
     </div>
 @foreach($categories as $category)
 @if($category->position == 1)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container">
             </div>
         </div>
         <div class="right-column column">
             <div class="column-container text-container">
-                <img class="logo-intro" src="/img/bufalina-logo-simple-greyscale.png" alt="Logo" class="logo">
+                <img class="logo-intro" src="{{ $group->logo }}" alt="Logo" class="logo">
                 <h2 class="category" data-id="{{$category->getObjectId()}}" style="visibility:hidden; height: 0px;">
                 {{--{!! $category->name !!}--}}
                 </h2>
@@ -52,10 +52,10 @@
     </div>
 @endif
 @if($category->position == 2)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container text-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="margin-top: 3.513cm;">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="margin-top: 3.513cm;">
                 <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
                     <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
@@ -77,7 +77,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 @foreach($subcategories as $subcategory)
@@ -116,10 +116,10 @@
     </div> 
 @endif
 @if($category->position == 3)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container text-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="">
                 <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
                     <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
@@ -141,7 +141,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; ">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; ">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
@@ -179,10 +179,10 @@
             </div>
         </div>        
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
@@ -227,10 +227,10 @@
     </div>
 @endif  
 @if($category->position == 4)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container text-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="">
                 <h2 class="category" data-id="{{$category->getObjectId()}}">
                     {!! $category->name !!}
                     <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
@@ -252,7 +252,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden; ">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; ">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
@@ -290,10 +290,10 @@
             </div>
         </div>        
     </div>
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden;">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden;">
                 <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="big-separator"></div>
                 <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
@@ -332,7 +332,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="/img/logo.png" alt="Logo" class="logo" style="visibility: hidden;">
+                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden;">
                 <h2 class="by-the-bottle" style="visibility: hidden;">BY THE BOTTLE</h2>
                 <h2 class="subcategory" data-id="{{$category->getObjectId()}}">{!! $category->name !!}</h2>
                 @foreach($subcategories as $subcategory)
@@ -371,7 +371,7 @@
     </div>
 @endif
 @if($category->position == 5)
-    <div class="wrapper-landscape">
+    <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container">
                 <h2 class="by-the-bottle" style="margin-top: 1.917cm;">{{ $category->name }}</h2>

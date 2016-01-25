@@ -10,8 +10,16 @@
       <div id="no-nav-container" class="container-fluid">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <h1>Bufalina</h1>
-            <a href="{{ url('/') }}"><img src="/img/bufalina-logo.png" alt="Bufalina Logo" class="bufalina-logo animated fadeIn"></a>
+            @if(isset($group->logo) && strcmp($group->logo, '') != 0)
+              <a href="{{ url('/') }}"><img src="{{ $group->logo }}" alt="{{ $group->name }} Logo" class="bufalina-logo animated fadeIn"></a>
+              <h1 class="hide">{{ $group->name }}</h1>
+            @elseif(isset($group->name) && strcmp($group->name, '') != 0)
+              <h1>{{ $group->name }}</h1>
+            @else
+              <a href="{{ url('/') }}"><img src="/img/demo/group-logo.png" alt="Logo" class="bufalina-logo animated fadeIn"></a>
+              {{-- <h1 style="font-family: Open Sans">Menu Styler</h1> --}}
+            @endif
+            
           </div> 
         </div>
         @yield('content')

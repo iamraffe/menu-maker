@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Registrar as Registrar;
+use App\Repositories\ParseGroupRepository;
 use App\Repositories\ParseUserRepository;
 use App\User;
 use Illuminate\Contracts\Auth\Guard;
@@ -76,10 +77,13 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postRegister(Request $request)
+    public function postRegister(Request $request, ParseGroupRepository $group, $account)
     {
+        // dd($account);
         $user = $request->all();
-        $user['email'] = $user['email'].'@bufalinapizza.com';
+        $group = $group->findBy('account', $account);
+        $user['group'] = $group;
+        // $user['email'] = $user['email'].'@bufalinapizza.com';
         try {
             $validator = $this->registrar->validator($user);
             if ($validator->fails()) {
@@ -90,7 +94,7 @@ class AuthController extends Controller
         } catch(ParseException $ex) {
             flash()->error('A user is already registered with these credentials', 'Please check your input and try again.');
             return redirect()->back();
-        } 
+        }
 
         $this->registrar->create($user);
 
@@ -98,4 +102,5 @@ class AuthController extends Controller
         flash()->overlay('Thanks for signing up!', 'Please check your email and verify your account', 'info');
         return redirect()->back();
     }
+
 }

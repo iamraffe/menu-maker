@@ -9,6 +9,7 @@ use App\ParseClasses\Item;
 use App\ParseClasses\Menu;
 use App\Repositories\ParseArchiveRepository;
 use App\Repositories\ParseCategoryRepository;
+use App\Repositories\ParseGroupRepository;
 use App\Repositories\ParseItemRepository;
 use App\Repositories\ParseMenuRepository;
 use App\Repositories\ParseSubCategoryRepository;
@@ -29,13 +30,17 @@ class MenuController extends Controller
 
   private $categories;
 
-	public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories)
+  private $groups;
+
+	public function __construct(ParseGroupRepository $groups, ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories)
 	{
     $this->items = $items;
     $this->archives = $archives;
     $this->menu = $menu;
     $this->categories = $categories;
     $this->middleware('auth');
+    $this->groups = $groups;
+    parent::__construct();
 	}
 
 	public function index()
@@ -67,7 +72,7 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show($name, $version = null)
+  public function show($account, $name, $version = null)
   {
     if(strcmp($name, 'wine-list') == 0){
       return (strcmp($version, 'shortened') == 0 ) ? view('wine.show_shortened') : view('wine.show');
@@ -77,7 +82,7 @@ class MenuController extends Controller
     }
   }
 
-  public function edit($name, $version = null)
+  public function edit($account, $name, $version = null)
   {
     if(strcmp($name, 'wine-list') == 0){
       return (strcmp($version, 'shortened') == 0 ) ? view('wine.edit_shortened') : view('wine.edit');
@@ -93,17 +98,26 @@ class MenuController extends Controller
     return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]);
   }
 
-  public function storeOrUpdate($name)
+  public function storeOrUpdate($account, $name)
   {
-    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+
+    // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+
+    $group = $this->groups->findBy('account', $account);
+    $menus = $this->menu->findAllBy('group', $group);
+    $menu = $menus->filter(function($menuItem) use ($name){
+      return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
+    })->first();
+    // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
 
     if(strcmp($name, 'wine-list') == 0){
       $menuData = $this->makeWineMenu($menu);
-      $_menuPartial = view()->make('partials._wine', $menuData)->render();
+      $_menuPartial = view()->make('partials.archives._wine', $menuData)->render();
     }
     else{
       $menuData = $this->makeMenu($menu);
       $_menuPartial = view()->make('partials._columns', $menuData)->render();
+      // $_menuPartial = view()->make('partials.archives._menu', $menuData)->render();
     }
     $archives = $this->archives->findAllBy('menu', $menu);
     if($archives->contains('name', Carbon::now()->format('Y-m-d'))){
@@ -147,9 +161,16 @@ class MenuController extends Controller
     return $this->archives->update($menu->objectId, ['content' => $_menu]);
   }
 
-  public function archive($name)
+  public function archive($account, $name)
   {
-    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+    // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+    $group = $this->groups->findBy('account', $account);
+    $menus = $this->menu->findAllBy('group', $group);
+
+    // dd($group, $menus);
+    $menu = $menus->filter(function($menuItem) use ($name){
+      return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
+    })->first();
     $archives = $this->archives->findAllBy('menu', $menu, ['menu']);
     return view('archives.index', compact('archives', 'menu'));
   }

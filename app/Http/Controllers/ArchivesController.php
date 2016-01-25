@@ -16,6 +16,7 @@ class ArchivesController extends Controller
   {
       $this->archives = $archives;
       $this->middleware('auth');
+      parent::__construct();
   }
 
   // public function index()
@@ -24,22 +25,22 @@ class ArchivesController extends Controller
   //   return view('archives.index', compact('archives'));
   // }
 
-  public function show($objectId)
+  public function show($account, $objectId)
   {
     // dd($objectId);
     $savedFile = $this->archives->find($objectId, ['menu']);
-    
-    if(strcmp($savedFile->menu->objectId, 'BeQYNaR0Gc')==0){
+
+    if(strcmp($savedFile->menu->objectId, 'BeQYNaR0Gc')==0 || strcmp($savedFile->menu->objectId, 'Ywi70Fq2xV') == 0){
       $class = "wrapper-landscape";
       $pdf = \PDF::loadView('archives.show', compact('savedFile', 'class'));
       $pdf->setOrientation('landscape');
     }
     else{
-      $class = "wrapper"; 
+      $class = "wrapper";
       $pdf = \PDF::loadView('archives.show', compact('savedFile', 'class'));
       $pdf->setOrientation('portrait');
-    }    
-    
+    }
+
     return $pdf->stream();
   }
 }
