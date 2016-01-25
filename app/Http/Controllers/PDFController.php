@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Repositories\ParseCategoryRepository;
+use App\Repositories\ParseGroupRepository;
 use App\Repositories\ParseItemRepository;
 use App\Repositories\ParseMenuRepository;
 use App\Repositories\ParseSubCategoryRepository;
@@ -19,13 +20,15 @@ class PDFController extends Controller
 
     private $categories;
 
-    public function __construct(ParseItemRepository $items, ParseMenuRepository $menu, ParseCategoryRepository $categories)
+    public function __construct(ParseItemRepository $items, ParseMenuRepository $menu, ParseCategoryRepository $categories, ParseGroupRepository $groups)
     {
         $this->items = $items;
 
         $this->menu = $menu;
 
         $this->categories = $categories;
+
+        $this->groups = $groups;
 
         parent::__construct();
     }
@@ -36,10 +39,15 @@ class PDFController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($account, $menu, $version = null)
+    public function show($account, $name, $version = null)
 
     {
-        if(strcmp($menu, 'wine-list')==0){
+        $group = $this->groups->findBy('account', $account);
+        $menus = $this->menu->findAllBy('group', $group);
+        $menu = $menus->filter(function($menuItem) use ($name){
+          return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
+        })->first();
+        if(strcmp($name, 'wine-list')==0){
             //$menu = $this->makeMenu($menu);
             $menu = $this->makeWineMenu($menu);
 
@@ -62,9 +70,10 @@ class PDFController extends Controller
         // return $pdf->setOrientation('landscape')->stream();
     }
 
-    public function makeMenu($name)
+    public function makeMenu($menu)
     {
-        $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+        // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+        
         $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
         $items = $this->items->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
         return ['categories' => $categories, 'items' => $items];
@@ -72,7 +81,7 @@ class PDFController extends Controller
 
     public function makeWineMenu($menu)
     {
-      $menu = $this->menu->findBy('name', str_replace('-', ' ', $menu));
+      // $menu = $this->menu->findBy('name', str_replace('-', ' ', $menu));
       $subcategoryRepo = new ParseSubCategoryRepository();
       $subcategories = $subcategoryRepo->findAllBy('menu', $menu, ['category'], 1000, true, 'position');
       $categories = $this->categories->findAllBy('menu', $menu, [], 1000, true, 'position');
@@ -80,10 +89,14 @@ class PDFController extends Controller
       return ['subcategories' => $subcategories, 'categories' => $categories, 'items' => $items, 'menu' => $menu];
     }
 
-    public function download($account, $menu, $version = null)
+    public function download($account, $name, $version = null)
     {
-
-        if(strcmp($menu, 'wine-list')==0){
+        $group = $this->groups->findBy('account', $account);
+        $menus = $this->menu->findAllBy('group', $group);
+        $menu = $menus->filter(function($menuItem) use ($name){
+          return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
+        })->first();
+        if(strcmp($name, 'wine-list')==0){
             $menu = $this->makeWineMenu($menu);
             if(strcmp($version, 'shortened')==0){
                 $pdf = \PDF::loadView('wine.pdf_shortened', $menu);
@@ -94,15 +107,6 @@ class PDFController extends Controller
             return $pdf->setOrientation('landscape')->download();
         }
         else{
-
-
-        //     // dd($menu);
-        //     $pdf = \PDF::loadView('wine.pdf', $menu);
-        //     return $pdf->setOrientation('landscape')->download();
-        // }
-        // else{
-        //     $menu = $this->makeMenu($menu);
-
             $menu = $this->makeMenu($menu);
             $pdf = \PDF::loadView('pdf.show', $menu);
             return $pdf->setOrientation('portrait')->download();
