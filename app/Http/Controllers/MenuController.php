@@ -15,6 +15,8 @@ use App\Repositories\ParseSubCategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Parse\ParseQuery;
+use Parse\ParseRole;
+use Parse\ParseUser;
 use \Carbon\Carbon as Carbon;
 
 class MenuController extends Controller
@@ -38,6 +40,24 @@ class MenuController extends Controller
 
 	public function index()
 	{
+
+    // $query = new ParseQuery('_User');
+    // // $user = $query->get('3rU7jrnGJ8');
+    // // 
+    // $user = \Auth::user();
+    // // dd($user->groups->getQuery()->find());
+    // $groups = $user->getRelation('groups');
+
+    // $groupQuery = new ParseQuery("Group");
+    // $group = $groupQuery->equalTo("account",'demo')->first();
+
+    // $groups->add($group);
+    // // dd($group);
+    // // $user->set('groups', $group);
+    // $user->save(true);
+
+    // dd($user->groups->getQuery()->find());
+
 		return view('menu.index');
 	}
 
