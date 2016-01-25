@@ -92,6 +92,7 @@
             You
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="dropdown-header">@account</li>
             <li>
                 <a href="#user" href="{{ url('admin/users/'.\Auth::user()->objectId) }}" data-toggle="modal" data-tab="profile">
                     <span class="ion ion-ios-person-outline"></span>
@@ -104,6 +105,17 @@
                     Preferences
                 </a>
             </li>
+            @if(count(\Auth::user()->groups->getQuery()->find())>0)
+                <li class="dropdown-header">@restaurants</li>
+                @foreach(\Auth::user()->groups->getQuery()->find() as $group)
+                    <li>
+                        <a href="{{ 'http://'.$group->account.'.'.env('APP_DOMAIN') }}" >
+                            <span class="ion ion-ios-minus-empty"></span>
+                            {{ ucfirst($group->name) }}
+                        </a>
+                    </li>
+                @endforeach
+            @endif
             <li role="separator" class="divider"></li>
             <li>
                 <a href="{{ url('auth/logout') }}">
