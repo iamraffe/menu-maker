@@ -11,7 +11,7 @@
     <body>
         @include('partials._modal')
         <header role="banner">
-            <a href="{{ url('admin/menus') }}"><img id="logo-main" src="/img/bufalina-logo.png" alt="Logo" class="logo animated fadeIn"></a>
+            <a href="{{ url('admin/menus') }}"><img id="logo-main" src="{{ $group->logo }}" alt="Logo" class="logo animated fadeIn"></a>
             @include('partials._navbar')
         </header><!-- header role="banner" -->
 
