@@ -52,7 +52,7 @@ class ItemsController extends Controller
   public function store(Request $request)
   {
     // dd([$this->menu->find($request->input('menu')), $request->all(), $request->menu, strcmp($request->input('menu'), 'BeQYNaR0Gc') == 0]);
-    if(strcmp($request->input('menu'), 'BeQYNaR0Gc') == 0 || strcmp($request->input('menu'), 'Ywi70Fq2xV') == 0){
+    if(strcmp($request->input('menu'), 'BeQYNaR0Gc') == 0 || strcmp($request->input('menu'), 'Ywi70Fq2xV') == 0 || strcmp($request->input('menu'), 'c4opmreiOf') == 0){
       $subcategory = $this->subcategories->find($request->input('subcategory'));
       $position = $this->items->findAllBy('subcategory', $subcategory)->count();
       $item = [

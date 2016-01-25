@@ -10,7 +10,7 @@
         <div class="right-column column">
             <div class="column-container">
                 {{-- <img class="logo-cover" src="/img/bufalina-logo-greyscale.png" alt="Bufalina Logo"> --}}
-                <img class="logo-cover" src="{{ $group->logo }}" alt="{{ $group->name }}">
+                <img class="logo-cover" src="{{ $group->menu_logo }}" alt="{{ $group->name }}">
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container text-container">
-                <img class="logo-intro" src="{{ $group->logo }}" alt="Logo" class="logo">
+                <img class="logo-intro" src="{{ $group->menu_logo }}" alt="Logo" class="logo">
                 <div class="separator"></div>
                 @foreach($items as $item)
                     @if(null !== $item->category && $item->category->objectId == $categories[0]->objectId)
@@ -50,7 +50,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
+                <img class="category-logo" src="{{ $group->menu_logo }}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 @foreach($subcategories as $subcategory)
@@ -85,7 +85,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; ">
+                <img class="category-logo" src="{{ $group->menu_logo }}" alt="Logo" class="logo" style="visibility: hidden; ">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 <h2 class="subcategory">{!! $categories[2]->name !!}</h2>
@@ -107,7 +107,7 @@
     <div class="wrapper-landscape {{ $group->name }}">
         <div class="left-column column">
             <div class="column-container">
-                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
+                <img class="category-logo" src="{{ $group->menu_logo }}" alt="Logo" class="logo" style="visibility: hidden; margin-top: 3.513cm;">
                 <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 <h2 class="subcategory">{!! $categories[2]->name !!}</h2>
@@ -148,7 +148,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden; ">
+                <img class="category-logo" src="{{ $group->menu_logo }}" alt="Logo" class="logo" style="visibility: hidden; ">
                 <h2  class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="separator"></div>
                 <h2 class="subcategory">{!! $categories[3]->name !!}</h2>
@@ -170,7 +170,7 @@
     <div class="wrapper-landscape {{ $group->name }}">
          <div class="left-column column">
             <div class="column-container">
-                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden;">
+                <img class="category-logo" src="{{ $group->menu_logo }}" alt="Logo" class="logo" style="visibility: hidden;">
                 <h2 class="by-the-bottle">BY THE BOTTLE</h2>
                 <div class="big-separator"></div>
                 <h2 class="subcategory">{!! $categories[3]->name !!}</h2>
@@ -190,7 +190,7 @@
         </div>
         <div class="right-column column">
             <div class="column-container">
-                <img class="category-logo" src="{{ $group->logo }}" alt="Logo" class="logo" style="visibility: hidden;">
+                <img class="category-logo" src="{{ $group->menu_logo }}" alt="Logo" class="logo" style="visibility: hidden;">
                 <h2 class="by-the-bottle" style="visibility: hidden;">BY THE BOTTLE</h2>
                 <h2 class="subcategory">{!! $categories[3]->name !!}</h2>
                 @foreach($subcategories as $subcategory)

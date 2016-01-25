@@ -49,8 +49,11 @@ class MenuComposer
 	public function compose(View $view)
 	{
     $group = $this->groups->findBy('account', $this->request->route('account'));
+
     $menu = $this->menu->findAllBy('group', $group);
+
     $name = $this->request->route('menu_name');
+
     $viewData['menu'] = $menu->filter(function($menuItem) use ($name){
       return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
     })->first();
@@ -71,7 +74,7 @@ class MenuComposer
     // dd(true);
 
     $viewData['items'] = $this->items->findAllBy('menu', $viewData['menu'], ['category'], 1000, true, 'position');
-
+    // dd($viewData['menu'], $viewData['items']);
 		if(strcmp($this->request->route('menu_name'), 'wine-list')==0){
 			$subcategoryRepo = new ParseSubCategoryRepository();
 			$viewData['subcategories'] = $subcategoryRepo->findAllBy('menu', $viewData['menu'], ['category'], 1000, true, 'position');

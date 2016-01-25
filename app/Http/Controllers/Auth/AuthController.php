@@ -83,7 +83,7 @@ class AuthController extends Controller
         $user = $request->all();
         $group = $group->findBy('account', $account);
         $user['group'] = $group;
-        // $user['email'] = $user['email'].'@bufalinapizza.com';
+        $user['email'] = $user['email'].'@bufalinapizza.com';
         try {
             $validator = $this->registrar->validator($user);
             if ($validator->fails()) {

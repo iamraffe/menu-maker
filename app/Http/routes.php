@@ -4,6 +4,15 @@ Route::get('/home', 'Auth\AuthController@getLogout');
 Route::group(['domain' => '{account}.'.env('APP_DOMAIN')], function () {
   Route::get('/', 'GroupController@index');
 
+  Route::get('password/reset/success', 'Auth\PasswordController@getResetSuccess');
+  Route::get('password/reset', 'Auth\PasswordController@getReset');
+  /**
+   * Auth handling
+   */
+  Route::controllers([
+      'auth' => 'Auth\AuthController',
+      'password' => 'Auth\PasswordController',
+  ]);
 Route::group(['prefix' => 'admin'], function()
 {
 	Route::get('pdf/{menu_name}/download', 'PDFController@download');
@@ -34,16 +43,8 @@ Route::group(['prefix' => 'admin'], function()
 
   Route::post('/group/create/step/{step}', 'GroupController@step');
 
-  Route::get('password/reset/success', 'Auth\PasswordController@getResetSuccess');
-  Route::get('password/reset', 'Auth\PasswordController@getReset');
 
-  /**
-   * Auth handling
-   */
-  Route::controllers([
-      'auth' => 'Auth\AuthController',
-      'password' => 'Auth\PasswordController',
-  ]);
+
 
 
 
