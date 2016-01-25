@@ -57,7 +57,9 @@
                   <div class="input-group">
                       <span class="input-group-addon"><i class="ion ion-ios-email-outline"></i></span>
                       <input type="text" class="form-control" name="email" value="" placeholder="E-mail" aria-describedby="basic-addon2">
-                      {{-- <span class="input-group-addon" id="basic-addon2">@bufalinapizza.com</span> --}}
+                      @if($group->domain_specific_email)
+                        <span class="input-group-addon" id="basic-addon2">{{ '@'.$group->email_domain }}</span>
+                      @endif
                   </div>
                </div>
                <div class="form-group">
