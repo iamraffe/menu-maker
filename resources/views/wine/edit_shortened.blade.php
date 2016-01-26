@@ -326,7 +326,7 @@ $('#myModal').on('show.bs.modal', function (event) {
   // modal.find('.modal-body input[name="position"]').val(position);
 });
 $('#myModal').on('hide.bs.modal', function (event) {
-  $('button').removeClass('hide add-item update-item');
+  $('button').removeClass('hide add-item update-item update-category update-subcategory');
 });
 
 /*
