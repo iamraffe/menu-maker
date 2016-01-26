@@ -122,6 +122,7 @@ class MenuController extends Controller
     }
     else{
       $menuData = $this->makeMenu($menu);
+      $menuData["archive"] = true;
       $_menuPartial = view()->make('partials._columns', $menuData)->render();
       // $_menuPartial = view()->make('partials.archives._menu', $menuData)->render();
     }
