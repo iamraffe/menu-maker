@@ -1,20 +1,18 @@
 @extends('layout')
 
 @section('content')
-        <div id="loading">
-            <div class="container">
-                 <div class="progress">
-                  <div class="progress-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                    Loading...
-                  </div>
-                </div>
+    <div id="loading">
+        <div class="container">
+             <div class="progress">
+              <div class="progress-bar progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                Loading...
+              </div>
             </div>
-
         </div>
+    </div>
     <div class="wrapper-landscape" style="position: relative;">
-         <div class="left-column column">
+        <div class="left-column column">
             <div class="column-container">
-
             </div>
         </div>
         <div class="right-column column">
@@ -143,12 +141,45 @@
                         </div>
                     @endif
                 @endforeach
+                {{-- EDIT ON FEB 12 --}}
+                <h2 class="subcategory" style="margin: 0cm 1.35cm" data-id="{!! $categories[2]->getObjectId() !!}">{!! $categories[2]->name !!}</h2>
+                @foreach($subcategories as $subcategory)
+                    @if($subcategory->category->objectId == $categories[2]->objectId && $subcategory->position == 1)
+                        <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
+                          <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[2]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-plus-outline"></span>
+                          </a>
+                          {{$subcategory->name}}
+                          <a href="#myModal" role="button" class="open-modal" data-id="{{ $subcategory->getObjectId() }}" data-action="edit-subcategory" class="btn btn-link" data-toggle="modal">
+                              <span class="ion ion-ios-compose-outline"></span>
+                          </a>
+                        </h2>
+                        <div class="menu-contents item-container">
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 12)
+                                <p id="{{ $item->getObjectId() }}" class="ui-state-default">
+                                    <button class="btn btn-link">
+                                        <span class="ion ion-ios-shuffle"></span>
+                                    </button>
+                                    <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
+                                        <span class="ion ion-ios-close-outline"></span>
+                                    </button>
+                                    {!! $item->relatedText !!}
+                                    <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-type="text" data-action="edit" data-toggle="modal">
+                                        <span class="ion ion-ios-compose-outline"></span>
+                                    </a>
+                                </p>
+                            @endif
+                        @endforeach
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="right-column column">
             <div class="column-container">
                 <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
-                <h2 class="subcategory">{!! $categories[2]->name !!}</h2>
+                <h2 class="subcategory">{!! $categories[2]->name !!} *dramatic pause* continued</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->category->objectId == $categories[2]->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
@@ -162,7 +193,8 @@
                         </h2>
                         <div class="menu-contents item-container">
                         @foreach($items as $item)
-                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 6)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 6 && $subcategory->position != 1 ||
+                                null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position > 11 && $subcategory->position == 1)
                                 <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                     <button class="btn btn-link">
                                         <span class="ion ion-ios-shuffle"></span>
