@@ -98,8 +98,9 @@ class MenuController extends Controller
     return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]);
   }
 
-  public function storeOrUpdate($name, $version = null)
+  public function storeOrUpdate($account, $name, $version = null)
   {
+
 
     // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
 
@@ -121,6 +122,7 @@ class MenuController extends Controller
     }
     else{
       $menuData = $this->makeMenu($menu);
+      $menuData["archive"] = true;
       $_menuPartial = view()->make('partials._columns', $menuData)->render();
       // $_menuPartial = view()->make('partials.archives._menu', $menuData)->render();
     }

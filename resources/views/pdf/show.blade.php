@@ -8,7 +8,7 @@
     <body>
     <div class="wrapper {{ $group->name }}">
          <div class="left-column column">
-            <img src="{{ public_path($group->menu_logo) }}" alt="Logo" class="logo">
+            <img src="{{ public_path($group->menu_logo) }}" alt="Logo" class="logo" style="visibility:hidden;">
             @foreach($categories as $category)
                 @if($category->position < 4)
                     <div class="menu-section">
@@ -45,24 +45,5 @@
             @endforeach
         </div>
     </div>
-    <script type="text/javascript">
-    //     $(window).load(function() {
-    //         $("p").each(function(index){
-    //             var size = $(this).text().trim().length;
-    //             if(size < 76){
-    //                 $(this).addClass('force-one-line');
-    //             }
-    //             else if(size < 90){
-    //                 var i = 5;
-    //                 while ($(this).text().trim().slice(i-1, i) != ' '){
-    //                     i--;
-    //                 }
-
-    //                 $(this).html([$(this).text().trim().slice(0, i), '<br>', $(this).text().trim().slice(i)].join(''));
-    //             }
-    //         });
-
-    //     });
-    </script>
     </body>
 </html>
