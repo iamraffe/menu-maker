@@ -47,17 +47,17 @@ class MenuController extends Controller
 	{
 
     // $query = new ParseQuery('_User');
-    // // $user = $query->get('3rU7jrnGJ8');
-    // //
-    // $user = \Auth::user();
-    // // dd($user->groups->getQuery()->find());
+    // $user = $query->get('IinhRoJVru');
+    // // //
+    // // $user = \Auth::user();
+    // // // dd($user->groups->getQuery()->find());
     // $groups = $user->getRelation('groups');
 
     // $groupQuery = new ParseQuery("Group");
-    // $group = $groupQuery->equalTo("account",'demo')->first();
+    // $group = $groupQuery->equalTo("account",'bufalinadue')->first();
 
     // $groups->add($group);
-    // // dd($group);
+    // // // dd($group);
     // // $user->set('groups', $group);
     // $user->save(true);
 

@@ -135,8 +135,8 @@ return [
     |
     */
 
-    'domain' => null,
-    // 'domain' => env('APP_DOMAIN'),
+    // 'domain' => null,
+    'domain' => '.'.env('APP_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------

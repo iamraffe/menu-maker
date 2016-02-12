@@ -49,12 +49,12 @@ class GroupController extends Controller
     public function index($account = null)
     {
         $group = $this->groups->findBy('account', $account);
-        // $allMenus = $this->menu->all();
-        // foreach ($allMenus as $key => $menu) {
-        //     $this->menu->update($menu->objectId, ['group' => $group]);
-        // }
-        // dd($allMenus);
-        return empty($group) ? view('/auth/register') : view('/auth/login')->with('group', $group);
+        if(\Auth::check()){
+            return redirect()->to('http://'.$group->account.'.'.env('APP_DOMAIN').'/admin/menus/');
+        }
+        else{
+            return empty($group) ? view('/auth/register') : view('/auth/login')->with('group', $group);
+        }
     }
 
     /**
