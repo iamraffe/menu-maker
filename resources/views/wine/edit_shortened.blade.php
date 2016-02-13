@@ -179,7 +179,7 @@
         <div class="right-column column">
             <div class="column-container">
                 <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
-                <h2 class="subcategory">{!! $categories[2]->name !!} *dramatic pause* continued</h2>
+                <h2 class="subcategory">{!! $categories[2]->name !!}, continued</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->category->objectId == $categories[2]->objectId)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
