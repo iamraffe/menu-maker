@@ -121,7 +121,7 @@
                     @endif
                 @endforeach
                 {{-- EDIT ON FEB 12 --}}
-                <h2 class="subcategory" style="margin: 0cm 1.35cm" data-id="{!! $categories[2]->getObjectId() !!}">{!! $categories[2]->name !!}</h2>
+                <h2 class="subcategory" data-id="{!! $categories[2]->getObjectId() !!}">{!! $categories[2]->name !!}</h2>
                 @foreach($subcategories as $subcategory)
                     @if($subcategory->category->objectId == $categories[2]->objectId && $subcategory->position == 1)
                         <h2 class="subcategory">
