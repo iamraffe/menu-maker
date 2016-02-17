@@ -1,11 +1,12 @@
 <div class="wrapper-landscape" style="position: relative;">
 <div class="left-column column">
 <div class="column-container">
+
 </div>
 </div>
 <div class="right-column column">
 <div class="column-container">
-<img class="logo-cover" src="{{public_path('/img/bufalina-logo-greyscale.png')}}" alt="Bufalina Logo" style="visibility: hidden;">
+<img class="logo-cover" src="{{public_path($group->menu_logo)}}" alt="Bufalina Logo" style="visibility: hidden;">
 </div>
 </div>
 </div>
