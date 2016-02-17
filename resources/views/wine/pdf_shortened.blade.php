@@ -120,6 +120,24 @@
                         @endforeach
                     @endif
                 @endforeach
+                {{-- EDIT ON FEB 12 --}}
+                <h2 class="subcategory" style="margin: 0cm 1.35cm" data-id="{!! $categories[2]->getObjectId() !!}">{!! $categories[2]->name !!}</h2>
+                @foreach($subcategories as $subcategory)
+                    @if($subcategory->category->objectId == $categories[2]->objectId && $subcategory->position == 1)
+                        <h2 class="subcategory">
+                          {{$subcategory->name}}
+                        </h2>
+                        <div class="menu-contents item-container">
+                        @foreach($items as $item)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 12)
+                                <p class="ui-state-default">
+                                    {!! $item->relatedText !!}
+                                </p>
+                            @endif
+                        @endforeach
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="right-column column">
@@ -131,7 +149,8 @@
                     @if($subcategory->category->objectId == $categories[2]->objectId)
                         <h2  class="subcategory">{{$subcategory->name}}</h2>
                         @foreach($items as $item)
-                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 6)
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 6 && $subcategory->position != 1 ||
+                                null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position > 11 && $subcategory->position == 1)
                                 <p class="ui-state-default">
                                     {!! $item->relatedText !!}
                                 </p>
