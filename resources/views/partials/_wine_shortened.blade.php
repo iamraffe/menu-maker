@@ -137,7 +137,7 @@
 <div class="column-container">
 <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
 <div class="separator" style="margin-left: 0; visibility: hidden"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
-<h2 class="subcategory">{!! $categories[2]->name !!}</h2>
+<h2 class="subcategory">{!! $categories[2]->name !!}, continued</h2>
 @foreach($subcategories as $subcategory)
 @if($subcategory->category->objectId == $categories[2]->objectId)
 <h2  class="subcategory">{{$subcategory->name}}</h2>
