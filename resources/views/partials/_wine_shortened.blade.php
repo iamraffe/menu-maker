@@ -139,7 +139,7 @@
 <div class="separator" style="margin-left: 0; visibility: hidden"><img src="{{public_path('img/wine-list-separator.png') }}" alt="Content separator"></div>
 <h2 class="subcategory">{!! $categories[2]->name !!}, continued</h2>
 @foreach($subcategories as $subcategory)
-@if($subcategory->category->objectId == $categories[2]->objectId)
+@if($subcategory->category->objectId == $categories[2]->objectId && $subcategory->position != 1)
 <h2  class="subcategory">{{$subcategory->name}}</h2>
 @foreach($items as $item)
 @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 6 && $subcategory->position != 1 ||

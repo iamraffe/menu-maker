@@ -181,7 +181,7 @@
                 <h2 class="by-the-bottle" style="visibility: hidden; margin-top: 1.917cm;">BY THE BOTTLE</h2>
                 <h2 class="subcategory">{!! $categories[2]->name !!}, continued</h2>
                 @foreach($subcategories as $subcategory)
-                    @if($subcategory->category->objectId == $categories[2]->objectId)
+                    @if($subcategory->category->objectId == $categories[2]->objectId && $subcategory->position != 1)
                         <h2 class="subcategory" data-id="{{ $subcategory->getObjectId() }}">
                           <a href="#myModal" role="button" class="open-modal" data-category="{{ $categories[2]->getObjectId() }}" data-subcategory="{{ $subcategory->getObjectId() }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
                               <span class="ion ion-ios-plus-outline"></span>
