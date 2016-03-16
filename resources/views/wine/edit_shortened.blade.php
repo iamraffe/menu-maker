@@ -193,7 +193,7 @@
                         </h2>
                         <div class="menu-contents item-container">
                         @foreach($items as $item)
-                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 6 && $subcategory->position != 1 ||
+                            @if(null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position < 12 && $subcategory->position != 1 ||
                                 null !== $item->subcategory && $item->subcategory->objectId == $subcategory->objectId && $item->position > 11 && $subcategory->position == 1)
                                 <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                     <button class="btn btn-link">
