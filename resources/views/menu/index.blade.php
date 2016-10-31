@@ -1,7 +1,7 @@
 @extends('basic-layout')
 
 @section('content')
-  @if($group->account == 'bufalinadue')
+  @if($group->account == 'bufalinadues')
     <div class="row menus">
       <div class="col-sm-4">
         <h3 class="animated fadeIn {{ $group->account }}"><a href="{{ url('admin/menus/menu') }}">menu</a></h3>
