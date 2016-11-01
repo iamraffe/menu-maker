@@ -38,6 +38,7 @@ return [
         '\App\ParseClasses\Menu',
         '\App\ParseClasses\Category',
         '\App\ParseClasses\SubCategory',
+        '\App\ParseClasses\Group',
     ],
 
 
@@ -57,6 +58,8 @@ return [
     |
     */
     'repositories' => [
+        '\App\Repositories\ParseUserRepository' => '\App\Repositories\Contracts\UserRepository',
+        '\App\Repositories\ParseGroupRepository' => '\App\Repositories\Contracts\GroupRepository',
         '\App\Repositories\ParseSubCategoryRepository' => '\App\Repositories\Contracts\SubCategoryRepository',
         '\App\Repositories\ParseCategoryRepository' => '\App\Repositories\Contracts\CategoryRepository',
         '\App\Repositories\ParseMenuRepository' => '\App\Repositories\Contracts\MenuRepository',

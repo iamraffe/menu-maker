@@ -9,12 +9,15 @@ use App\ParseClasses\Item;
 use App\ParseClasses\Menu;
 use App\Repositories\ParseArchiveRepository;
 use App\Repositories\ParseCategoryRepository;
+use App\Repositories\ParseGroupRepository;
 use App\Repositories\ParseItemRepository;
 use App\Repositories\ParseMenuRepository;
 use App\Repositories\ParseSubCategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Parse\ParseQuery;
+use Parse\ParseRole;
+use Parse\ParseUser;
 use \Carbon\Carbon as Carbon;
 
 class MenuController extends Controller
@@ -27,19 +30,40 @@ class MenuController extends Controller
 
   private $categories;
 
-	public function __construct(ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories)
+  private $groups;
+
+	public function __construct(ParseGroupRepository $groups, ParseItemRepository $items, ParseArchiveRepository $archives, ParseMenuRepository $menu, ParseCategoryRepository $categories)
 	{
     $this->items = $items;
     $this->archives = $archives;
     $this->menu = $menu;
     $this->categories = $categories;
     $this->middleware('auth');
+    $this->groups = $groups;
+    parent::__construct();
 	}
 
 	public function index()
 	{
-    $allMenus = $this->menu->all();
-		return view('menu.index', compact('allMenus'));
+
+    // $query = new ParseQuery('_User');
+    // $user = $query->get('IinhRoJVru');
+    // // //
+    // // $user = \Auth::user();
+    // // // dd($user->groups->getQuery()->find());
+    // $groups = $user->getRelation('groups');
+
+    // $groupQuery = new ParseQuery("Group");
+    // $group = $groupQuery->equalTo("account",'bufalinadue')->first();
+
+    // $groups->add($group);
+    // // // dd($group);
+    // // $user->set('groups', $group);
+    // $user->save(true);
+
+    // dd($user->groups->getQuery()->find());
+
+		return view('menu.index');
 	}
 
   /**
@@ -48,44 +72,63 @@ class MenuController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show($name)
+  public function show($account, $name, $version = null)
   {
-
     if(strcmp($name, 'wine-list') == 0){
-      return view('wine.show');
+      return (strcmp($version, 'shortened') == 0 ) ? view('wine.show_shortened') : view('wine.show');
     }
-
-    return view('menu.show');
+    else{
+      return view('menu.show');
+    }
   }
 
-  public function edit($name)
+  public function edit($account, $name, $version = null)
   {
-    if(strcmp($name, 'wine-list')==0){
-      return view('wine.edit');
+    if(strcmp($name, 'wine-list') == 0){
+      return (strcmp($version, 'shortened') == 0 ) ? view('wine.edit_shortened') : view('wine.edit');
     }
-    return view('menu.edit'); 
+    else{
+      return view('menu.edit');
+    }
+    // return strcmp($name, 'wine-list') == 0 ? view('wine.edit') : view('menu.edit');
   }
 
   public function store($content, $menu)
   {
-    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]); 
+    return $this->archives->create(['name'=> Carbon::now()->format('Y-m-d'), 'content' => $content, 'menu' => $menu]);
   }
 
-  public function storeOrUpdate($name)
+  public function storeOrUpdate($account, $name, $version = null)
   {
-    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
-    
+
+
+    // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+
+    $group = $this->groups->findBy('account', $account);
+    $menus = $this->menu->findAllBy('group', $group);
+    $menu = $menus->filter(function($menuItem) use ($name){
+      return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
+    })->first();
+    // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+
     if(strcmp($name, 'wine-list') == 0){
       $menuData = $this->makeWineMenu($menu);
-      $_menuPartial = view()->make('partials._wine', $menuData)->render();
+      if(strcmp($version, 'shortened') == 0 ){
+        $_menuPartial = view()->make('partials._wine_shortened', $menuData)->render();
+      }
+      else{
+        $_menuPartial = view()->make('partials._wine', $menuData)->render();
+      }
     }
     else{
       $menuData = $this->makeMenu($menu);
-      $_menuPartial = view()->make('partials._columns', $menuData)->render();  
+      $menuData["archive"] = true;
+      $_menuPartial = view()->make('partials._columns', $menuData)->render();
+      // $_menuPartial = view()->make('partials.archives._menu', $menuData)->render();
     }
     $archives = $this->archives->findAllBy('menu', $menu);
     if($archives->contains('name', Carbon::now()->format('Y-m-d'))){
-      $this->update($_menuPartial); 
+      $this->update($_menuPartial);
     }
     else{
       $this->store($_menuPartial, $menuData['menu']);
@@ -122,60 +165,20 @@ class MenuController extends Controller
   public function update($_menu)
   {
     $menu = $this->archives->findBy('name', Carbon::now()->format('Y-m-d'));
-    // dd($_menu);
     return $this->archives->update($menu->objectId, ['content' => $_menu]);
   }
 
-  public function archive($name)
+  public function archive($account, $name)
   {
-    $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
-    // dd($menu);
+    // $menu = $this->menu->findBy('name', str_replace('-', ' ', $name));
+    $group = $this->groups->findBy('account', $account);
+    $menus = $this->menu->findAllBy('group', $group);
+
+    // dd($group, $menus);
+    $menu = $menus->filter(function($menuItem) use ($name){
+      return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
+    })->first();
     $archives = $this->archives->findAllBy('menu', $menu, ['menu']);
     return view('archives.index', compact('archives', 'menu'));
   }
-
-  // public function download()
-  // {
-  //   $categories = $this->prepareItems();
-  //   $pdf = \PDF::loadView('pdf', ['categories' => $categories]);
-  //   // $pdf->setOption('user-style-sheet', '/your/file.css');
-  //   return $pdf->download();
-  // }
-
-  // public function update(Request $request)
-  // {
-
-  //   $newOrder = $request->json()->all();
-  //   if(empty($newOrder)){
-  //     $this->items->update($request->input('objectId'), [ 'relatedText' => $request->input('relatedText')]);
-  //   }
-  //   else{
-  //     // $allItems = $this->items->all();
-  //     foreach($newOrder as $key => $objectId){
-  //       // $found = $allItems->filter(function($item) use ($objectId){
-  //       //   return $item->objectId == $objectId;
-  //       // })->first();
-  //       $this->items->update($objectId, ['position' => intval($key)+1]);
-  //     }
-  //   }
-		// return response()->json(['Message' => 'Item updated.'], 200);
-  // }
-
-  // public function store(Request $request)
-  // {
-
-  //   $item = [
-  //     'position' => intval($request->input('position')),
-  //     'parent' => $this->items->find($request->input('parent')),
-  //     'relatedText' => $request->input('relatedText'),
-  //     'category' => false
-  //   ];
-
-  //   $this->items->create($item);
-  // }
-
-  // public function delete($objectId)
-  // {
-  //   $this->items->delete($objectId);
-  // }
 }

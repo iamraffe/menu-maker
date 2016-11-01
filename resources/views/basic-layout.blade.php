@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Menu Maker</title>
+        <title>MenuStyler</title>
         <link rel="icon" type="image/png" href="/img/favicon.png">
         <meta name="_token" content="{!! csrf_token() !!}"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link href="/css/all.css" rel="stylesheet" media="all">
+        <link href="{{ elixir('css/all.css') }}" rel="stylesheet" media="all">
     </head>
     <body>
       <div id="no-nav-container" class="container-fluid">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <h1>Bufalina</h1>
-            <img src="/img/bufalina-logo.png" alt="Bufalina Logo" class="bufalina-logo animated fadeIn">
-          </div> 
+            @if(isset($group->logo) && strcmp($group->logo, '') != 0)
+              <a href="{{ url('/') }}"><img src="{{ $group->logo }}" alt="{{ $group->name }} Logo" class="bufalina-logo animated fadeIn"></a>
+              <h1 class="hide">{{ $group->name }}</h1>
+            @elseif(isset($group->name) && strcmp($group->name, '') != 0)
+              <h1>{{ $group->name }}</h1>
+            @else
+              <a href="{{ url('/') }}"><img src="/img/demo/group-logo.png" alt="Logo" class="bufalina-logo animated fadeIn"></a>
+              {{-- <h1 style="font-family: Open Sans">Menu Styler</h1> --}}
+            @endif
+
+          </div>
         </div>
         @yield('content')
       </div>
       <script src="/js/all.js"></script>
       @yield('scripts')
+      @include('partials._flash')
     </body>
 </html>

@@ -1,61 +1,78 @@
 <?php
+Route::get('/home', 'Auth\AuthController@getLogout');
 
-/**
- * Auth handling
- */
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+Route::group(['domain' => '{account}.'.env('APP_DOMAIN')], function () {
+  Route::get('/', 'GroupController@index');
 
-/**
- * Admin area - Backend routes.
- */
-// Route::get('admin', ['middleware' => 'auth', 'uses' => 'AdminController@index']);
-
-
-
-
+  Route::get('password/reset/success', 'Auth\PasswordController@getResetSuccess');
+  Route::get('password/reset', 'Auth\PasswordController@getReset');
+  /**
+   * Auth handling
+   */
+  Route::controllers([
+      'auth' => 'Auth\AuthController',
+      'password' => 'Auth\PasswordController',
+  ]);
 Route::group(['prefix' => 'admin'], function()
 {
 	Route::get('pdf/{menu_name}/download', 'PDFController@download');
+  Route::get('pdf/{menu_name}/{version?}/download', 'PDFController@download');
 
 	Route::get('menus/{menu_name}', 'MenuController@show');
 	Route::get('menus/{menu_name}/edit', 'MenuController@edit');
 	Route::get('menus/{menu_name}/save', 'MenuController@storeOrUpdate');
   Route::get('menus/{menu_name}/archive', 'MenuController@archive');
-  
+
+  Route::get('menus/{menu_name}/{version}', 'MenuController@show');
+  Route::get('menus/{menu_name}/{version}/edit', 'MenuController@edit');
+  Route::get('menus/{menu_name}/{version}/save', 'MenuController@storeOrUpdate');
+  Route::get('menus/{menu_name}/{version}/archive', 'MenuController@archive');
+
   Route::put('items/positions', 'ItemsController@positions');
 
-  Route::get('archives/{menu}', 'ArchivesController@show');
+  Route::get('archives/{menu}/{version?}', 'ArchivesController@show');
 
   Route::resource('menus', 'MenuController');
   Route::resource('pdf', 'PDFController');
+  Route::get('pdf/{menu_name}/{version}', 'PDFController@show');
   Route::resource('items', 'ItemsController');
   Route::resource('categories', 'CategoriesController');
   Route::resource('subcategories', 'SubCategoriesController');
+  Route::resource('users', 'UsersController');
+  Route::resource('groups', 'GroupsController');
 
+  Route::post('/group/create/step/{step}', 'GroupController@step');
+
+
+
+
+
+
+  // Route::group(['prefix' => 'admin'], function()
+  // {
+  // 	Route::get('pdf/{menu_name}/download', 'PDFController@download');
+
+
+  	// Route::get('menus/{menu_name}', 'MenuController@show');
+  	// Route::get('menus/{menu_name}/edit', 'MenuController@edit');
+  	// Route::get('menus/{menu_name}/save', 'MenuController@storeOrUpdate');
+   //  Route::get('menus/{menu_name}/archive', 'MenuController@archive');
+
+    // Route::put('items/positions', 'ItemsController@positions');
+
+    // Route::get('archives/{menu}', 'ArchivesController@show');
+
+    // Route::resource('menus', 'MenuController');
+    Route::resource('pdf', 'PDFController');
+    // Route::resource('items', 'ItemsController');
+    // Route::resource('categories', 'CategoriesController');
+    // Route::resource('subcategories', 'SubCategoriesController');
+    // Route::resource('users', 'UsersController');
+    // Route::resource('groups', 'GroupsController');
+
+  });
 });
 
-Route::get('/', function () {
-    return redirect('admin/menus');
-});
-
-// Route::get('/', 'MenuController@index');
-
-// Route::get('create', 'MenuController@create');
-
-// Route::get('edit', 'MenuController@edit');
-
-// Route::post('update', 'MenuController@update');
-
-// Route::post('store', 'MenuController@store');
-
-// Route::get('save', 'MenuController@save');
-
-// Route::get('download', 'MenuController@download');
-
-// Route::delete('delete/{objectId}', 'MenuController@delete');
+Route::get('/', 'GroupController@index');
 
 
-//Route::resource('menu', 'MenuController');

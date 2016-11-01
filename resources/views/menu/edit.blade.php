@@ -1,6 +1,8 @@
 @extends('layout')
 
-
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/1.2.8/css/froala_editor.min.css">
+@stop
 
 @section('content')
         <div id="loading">
@@ -11,38 +13,22 @@
                   </div>
                 </div>
             </div>
-
         </div>
-        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <h3 id="myModalLabel"></h3>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" name="id">
-                <input type="hidden" name="menu">
-                <input type="hidden" name="category">
-                <input type="hidden" name="position">
-                <textarea name="content"></textarea>
-            </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Discard</button>
-                <button class="btn btn-info item-action"></button>
-            </div>
-        </div>
-        <div class="wrapper">
+        <div class="wrapper {{ $group->name }}">
              <div class="left-column column">
-                <img src="/img/logo.png" alt="Logo" class="logo">
+                {{-- <img src="/img/logo.png" alt="Logo" class="logo"> --}}
+                <img src="{{ $group->menu_logo }}" alt="Logo" class="logo">
                 @foreach($categories as $category)
                     @if($category->position < 4)
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
+                                    <span class="ion ion-ios-plus-outline"></span>
+                                </a>
                                 {!!$category->name!!}
                                 <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-pencil"></span>
-                                </a>
-                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-plus"></span>
+                                    <span class="ion ion-ios-compose-outline"></span>
                                 </a>
                             </h2>
                             <div class="menu-contents item-container">
@@ -50,14 +36,14 @@
                                     @if($item->category->objectId == $category->objectId)
                                         <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                             <button class="btn btn-link">
-                                                <span class="fa fa-arrows-v"></span>
+                                                <span class="ion ion-ios-shuffle"></span>
                                             </button>
                                             <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                                <span class="fa fa-times"></span>
+                                                <span class="ion ion-ios-close-outline"></span>
                                             </button>
                                             {!! $item->relatedText !!}
-                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
-                                                <span class="fa fa-pencil"></span>
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-toggle="modal">
+                                                <span class="ion ion-ios-compose-outline"></span>
                                             </a>
                                         </p>
                                     @endif
@@ -72,12 +58,12 @@
                     @if($category->position > 3)
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
+                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}" class="btn btn-link" data-toggle="modal">
+                                    <span class="ion ion-ios-plus-outline"></span>
+                                </a>
                                 {!!$category->name!!}
                                 <a href="#myModal" role="button" class="open-modal" data-parent="{{ $category->getObjectId() }}" data-id="{{ $category->getObjectId() }}" data-position="{{ $category->position }}" data-action="edit-category" class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-pencil"></span>
-                                </a>
-                                <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}" class="btn btn-link" data-toggle="modal">
-                                    <span class="fa fa-plus"></span>
+                                    <span class="ion ion-ios-compose-outline"></span>
                                 </a>
                             </h2>
                             <div class="menu-contents item-container">
@@ -85,14 +71,14 @@
                                     @if($item->category->objectId == $category->objectId)
                                         <p id="{{ $item->getObjectId() }}" class="ui-state-default">
                                             <button class="btn btn-link">
-                                                <span class="fa fa-arrows-v"></span>
+                                                <span class="ion ion-ios-shuffle"></span>
                                             </button>
                                             <button class="delete-item btn btn-link" data-id="{{ $item->getObjectId() }}">
-                                                <span class="fa fa-times"></span>
+                                                <span class="ion ion-ios-close-outline"></span>
                                             </button>
                                             {!! $item->relatedText !!}
-                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-position="{{ $item->position }}" data-category="{{ $category->getObjectId() }}" data-toggle="modal">
-                                                <span class="fa fa-pencil"></span>
+                                            <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="{{ $item->getObjectId() }}" data-toggle="modal">
+                                                <span class="ion ion-ios-compose-outline"></span>
                                             </a>
                                         </p>
                                     @endif
@@ -106,7 +92,7 @@
 @stop 
 
 @section('scripts')
-    <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script type="text/javascript">
         $.ajaxSetup({
           headers: {
@@ -147,6 +133,9 @@
               category: $(this).parent().siblings('.modal-body').children('input[name=category]').val(),
               relatedText: $($.parseHTML(tinymce.get('content').getContent())).html()
             };
+            // console.log(data);
+            // console.log($('h2.category[data-id='+data["category"]+']').siblings('.item-container').append(response));
+
             $.ajax({
               url: "{{ url('/admin/items/') }}",
               data: data,
@@ -159,37 +148,57 @@
               },
               success: function(response){
                 $('#loading').hide();
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                $('h2.category[data-id='+data["category"]+']').siblings('.item-container').append(response);
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
               },
               error: function(xhr, textStatus, thrownError) {
-                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: 'error',
+                    timer: 2500,
+                    showConfirmButton: false
+                });
               },
             });
 
         });
-        $('button.delete-item').on('click', function(e){
+        $(document).on('click', 'button.delete-item', function(e){
             e.preventDefault();
             var param = $(this).attr("data-id");
-            var answer = confirm('Are you sure you want to delete this item?');
-            if (answer)
-            {
-                $.ajax({
-                    type        : 'POST',
-                    url         : "{{ url('admin/items/') }}"+"/"+param,
-                    data : {_method : 'DELETE'},
-                    encode          : true,
-                    beforeSend: function(){
-                      $('#loading').show().fadeIn('fast');
-                    },
-                    error: function(xhr, textStatus, thrownError) {
-                        alert('Se ha producido un error. Por favor, inténtelo más tarde..');
-                    },
-                    success: function(response) {
-                        $('#loading').hide();
-                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
-                    }
-                });
-            }
+            swal({
+              title: "Are you sure you want to delete this item?",
+              text: "You will not be able to undo this action!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              closeOnConfirm: true 
+            }, function(){
+              $.ajax({
+                  type        : 'POST',
+                  url         : "{{ url('admin/items/') }}"+"/"+param,
+                  data : {_method : 'DELETE'},
+                  encode          : true,
+                  beforeSend: function(){
+                    $('#loading').show().fadeIn('fast');
+                  },
+                  error: function(xhr, textStatus, thrownError) {
+                    swal({
+                        title: 'ERROR',
+                        text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                        type: 'error',
+                        timer: 2500,
+                        showConfirmButton: false
+                    });
+                  },
+                  success: function(response) {
+                      $('#loading').hide();
+                      $('p#'+param).remove();
+                      // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                  }
+              });
+            });
         });
         $('#myModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
@@ -222,7 +231,7 @@
           // modal.find('.modal-body input[name="position"]').val(position);
         });
         $('#myModal').on('hide.bs.modal', function (event) {
-            $('button').removeClass('hide add-item update-item');
+            $('button').removeClass('hide add-item update-item update-category update-subcategory');
 
         });
         $(document).on('click', '.update-item', function(e){
@@ -248,10 +257,19 @@
               success: function(response){
                 $('#loading').hide();
                 $('#myModal').modal('hide');
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                var template = '<button class="btn btn-link"><span class="ion ion-ios-shuffle"></span></button> <button class="delete-item btn btn-link" data-id="'+data['objectId']+'"><span class="ion ion-ios-close-outline"></span></button>'+data['relatedText']+' <a href="#myModal" role="button" class="open-modal" class="btn btn-link" data-id="'+data['objectId']+'" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a>';
+
+                $('p#'+data["objectId"]).html(template);
               },
               error: function(xhr, textStatus, thrownError) {
-                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: 'error',
+                    timer: 2500,
+                    showConfirmButton: false
+                });
               },
             });
         });
@@ -277,10 +295,19 @@
               success: function(response){
                 $('#loading').hide();
                 $('#myModal').modal('hide');
-                window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                var template = '<a href="#myModal" role="button" class="open-modal" data-category="'+data["objectId"]+'" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-plus-outline"></span></a> ' + data["name"]+' <a href="#myModal" role="button" class="open-modal" data-parent="'+data["objectId"]+'" data-id="'+data["objectId"]+'" data-action="edit-category" class="btn btn-link" data-toggle="modal"><span class="ion ion-ios-compose-outline"></span></a> ';
+
+                $('h2[data-id='+data["objectId"]+']').html(template);
               },
               error: function(xhr, textStatus, thrownError) {
-                  alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                swal({
+                    title: 'ERROR',
+                    text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                    type: 'error',
+                    timer: 2500,
+                    showConfirmButton: false
+                });
               },
             });
         });
@@ -289,12 +316,25 @@
             selector:   "textarea",
             body_class: "tinymce-body",
             content_css: "/css/all.css",
-            // skin_url: "/js/skins/lightgray",
+            skin_url: "/skins/light",
             width:      '100%',
             height:     50,
             statusbar:  false,
             menubar:    false,
-            toolbar:    "bold",
+            toolbar:    "bold | BR",
+            theme: "modern",
+            skin: 'light',
+            setup: function(editor) {
+                editor.addButton('BR', {
+                    text: 'Insert Breakline',
+                    icon: false,
+                    onclick: function() {
+                        editor.insertContent('<br>');
+                        editor.selection.select(editor.getBody(), true);
+                        editor.selection.collapse(false);
+                    }
+                });
+            }
         });
         // Prevent bootstrap dialog from blocking focusin
         $(document).on('focusin', function(e) {
@@ -329,10 +369,16 @@
                       },
                       success: function(response){
                         $('#loading').hide();
-                        window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
+                        // window.location.href = "{{ url('admin/menus/'.str_slug($menu->name).'/edit') }}";
                       },
                       error: function(xhr, textStatus, thrownError) {
-                          alert('Se ha producido un error. Por favor, inténtelo más tarde..');
+                        swal({
+                            title: 'ERROR',
+                            text: 'There was an error with your request. If this error persists please contact your webmaster.',
+                            type: 'error',
+                            timer: 2500,
+                            showConfirmButton: false
+                        });
                       },
                     });
                 }

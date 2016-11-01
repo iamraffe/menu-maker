@@ -5,7 +5,7 @@ namespace App\Repositories;
 use LaraParse\Repositories\AbstractParseRepository;
 use App\Repositories\Contracts\CategoryRepository;
 
-class ParseCategoryRepository extends AbstractParseRepository implements CategoryRepository
+class ParseCategoryRepository extends ParseBaseRepository implements CategoryRepository
 {
 
     /**

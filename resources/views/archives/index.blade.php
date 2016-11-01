@@ -30,11 +30,27 @@
                             <tr>
                                 <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->name)->format('l, jS \\of F, Y') }}</td>
                                 <td>{{ $item->menu->name }}</td>
-                                <td><a href="{{ url('admin/archives/'.$item->objectId) }}" class="btn btn-default" target="_blank"><span class="ion ion-ios-paperplane-outline"></span></a></td>
+                                <td>
+                                    <a href="{{ url('admin/archives/'.$item->objectId) }}" class="btn btn-default" target="_blank"><span class="ion ion-ios-paperplane-outline"></span></a>
+<!--                                     @if($menu->multivsn)
+                                        <div class="dropdown">
+                                          <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            View as...
+                                            <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="{{ url('admin/archives/'.$item->objectId) }}" target="_blank">Full version</a></li>
+                                            <li><a href="{{ url('admin/archives/'.$item->objectId.'/shortened') }}" target="_blank">Short version</a></li>
+                                          </ul>
+                                        </div>
+                                    @else
+                                        <a href="{{ url('admin/archives/'.$item->objectId) }}" class="btn btn-default" target="_blank"><span class="ion ion-ios-paperplane-outline"></span></a>
+                                    @endif -->
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
-                </table>               
+                </table>
             </div>
         </div>
     </div>

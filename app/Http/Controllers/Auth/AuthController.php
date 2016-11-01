@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Registrar as Registrar;
+use App\Repositories\ParseGroupRepository;
+use App\Repositories\ParseUserRepository;
 use App\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Parse\ParseUser;
 use Validator;
-use \LaraParse\Auth\Registrar as Registrar;
-use \LaraParse\Subclasses\User as ParseUser;
+use \LaraParse\Subclasses\User as LaraParseUser;
 
 class AuthController extends Controller
 {
@@ -29,7 +32,7 @@ class AuthController extends Controller
 
     protected $redirectTo = '/admin/menus';
 
-    public function __construct(Guard $auth, Registrar $registrar, ParseUser $user)
+    public function __construct(Guard $auth, Registrar $registrar, LaraParseUser $user)
     {
         $this->auth = $auth;
         $this->registrar = $registrar;
@@ -43,12 +46,19 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(Request $request)
+    public function postLogin(Request $request, ParseUserRepository $userRepo)
     {
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required',
         ]);
+
+        $user = $userRepo->findBy('username', $request->username);
+
+        if(!$user->emailVerified){
+            flash()->error('', 'Your email must be verified before you can log in');
+            return redirect()->back();
+        }
 
         $credentials = $request->only('username', 'password');
 
@@ -67,18 +77,33 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postRegister(Request $request)
+    public function postRegister(Request $request, ParseGroupRepository $group, $account)
     {
-        $validator = $this->registrar->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+        // dd($account);
+        $user = $request->all();
+        $group = $group->findBy('account', $account);
+        $user['group'] = $group;
+        if($group->domain_specific_email){
+            $user['email'] = $user['email'].'@'.$group->email_domain;
+        }
+        
+        try {
+            $validator = $this->registrar->validator($user);
+            if ($validator->fails()) {
+                $this->throwValidationException(
+                    $request, $validator
+                );
+            }
+        } catch(ParseException $ex) {
+            flash()->error('A user is already registered with these credentials', 'Please check your input and try again.');
+            return redirect()->back();
         }
 
-        $this->auth->login($this->registrar->create($request->all()));
+        $this->registrar->create($user);
 
-        return redirect()->intended($this->redirectPath());
+        // $this->auth->login();
+        flash()->overlay('Thanks for signing up!', 'Please check your email and verify your account', 'info');
+        return redirect()->back();
     }
+
 }

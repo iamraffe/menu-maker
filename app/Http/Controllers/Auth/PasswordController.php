@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
+use Parse\ParseException;
+use Parse\ParseUser;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PasswordController extends Controller
 {
@@ -28,5 +32,49 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Request an email password reset
+     *
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
+    public function postEmail(Request $request)
+    {
+        $this->validate($request, ['email' => 'required|email']);
+
+        try {
+            ParseUser::requestPasswordReset($request->input('email'));
+        } catch(ParseException $ex) {
+            flash()->error('There is no user registered with the email '.$request->input('email'), 'Please check your input and try again.');
+            return redirect()->back();
+        } 
+
+        flash()->overlay('An email has been sent to '.$request->input('email'), 'Please follow instructions in the email to change your password.', 'success');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Display the password reset view for the given token.
+     *
+     * @param  string  $token
+     * @return \Illuminate\Http\Response
+     */
+    public function getReset()
+    {
+        return view('auth.reset')->with(['username' => \Input::get('username'), 'token' => \Input::get('token')]);
+    }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getResetSuccess()
+    {
+        flash()->overlay('Your password has been reset succesfully!', '', 'success');
+        return view('auth.success');
     }
 }
