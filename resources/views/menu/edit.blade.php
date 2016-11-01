@@ -20,7 +20,7 @@
                 {{-- <img src="/img/logo.png" alt="Logo" class="logo"> --}}
                 <img src="{{ $group->menu_logo }}" alt="Logo" class="logo">
                 @foreach($categories as $category)
-                    @if($category->position < 4 && $category->menu->objectId !== 'fEush7DVHv' || $category->position < 6)
+                    @if(($category->position < 4 && $category->menu->objectId !== 'fEush7DVHv') || $category->position < 6)
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
                                 <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}"  class="btn btn-link" data-toggle="modal">
@@ -55,7 +55,7 @@
             </div>
             <div class="right-column column">
                 @foreach($categories as $category)
-                    @if($category->position > 3 && $category->menu->objectId !== 'fEush7DVHv' || $category->position > 5)
+                    @if(($category->position > 3 && $category->menu->objectId !== 'fEush7DVHv') || $category->position > 5)
                         <div class="menu-section">
                             <h2 class="category" data-id="{{ $category->getObjectId() }}">
                                 <a href="#myModal" role="button" class="open-modal" data-category="{{ $category->getObjectId() }}" data-position="{{ count($items) }}" data-action="add" data-menu="{{ $menu->getObjectId() }}" class="btn btn-link" data-toggle="modal">
