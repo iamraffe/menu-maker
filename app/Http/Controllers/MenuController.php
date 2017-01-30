@@ -174,7 +174,7 @@ class MenuController extends Controller
     $group = $this->groups->findBy('account', $account);
     $menus = $this->menu->findAllBy('group', $group);
 
-    dd($menus)
+    // dd($menus)
     $menu = $menus->filter(function($menuItem) use ($name){
       return strcmp($menuItem->name, str_replace('-', ' ', $name))==0;
     })->first();
